@@ -15,20 +15,28 @@
 </head>
 	
 <body ng-app="gwDemo">
-	<h1>Ghostwording Demo</h1>
-	
-	<div ng-controller="intentionsController" class="container-fluid">
-		<div ng-repeat="intention in intentions">
-			<div class="row well" ng-click="select(intention)">
-				<div class="col-xs-4 ">
-					<img src="{{intention.ImagePath}}"  style="width:100%;height:auto;"/>
-				</div>
-				
-				<div class="col-xs-8 vcenter">
-					<h3>{{intention.Label}}</h3> 
-				</div>
-			</div>  
-  		</div>
-  	</div>
+  <h1>Ghostwording Demo</h1>
+  
+  <div ng-controller="intentionsController" class="container-fluid">
+  <div ng-repeat="intention in intentions">
+    <div class="row well" ng-click="select(intention)">
+       <div class="col-xs-4 ">
+          <img src="{{intention.ImagePath}}"  style="width:100%;height:auto;"/>
+       </div>
+    
+       <div class="col-xs-8 vcenter">
+         <h3>{{intention.Label}}</h3> 
+       </div>
+    </div>  
+    <div class="row" ng-show="intention.texts">
+       <div class="panel panel-default" ng-repeat="text in intention.texts | slice:0:3">
+          <div class="panel-body">
+ 
+             {{text.Content}}
+          </div>
+       </div>
+    </div>
+  </div>
+  </div>
 </body>
 </html>
