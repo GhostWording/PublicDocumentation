@@ -9,12 +9,12 @@ the detailled sections of the API.
 In this documument you will be guided to create a simple Ghostwording web application
 that covers the main concepts:
 
-- [x] use an area application
-- [x] Get the intentions for your application (named DocDemo)
-- [x] Get the texts for each intention
-- [x] notify the user actions api for a selection of a text
+* [x] use an area application
+* [x] Get the intentions for your application (named DocDemo)
+* [x] Get the texts for each intention
+* [x] notify the user actions api for a selection of a text
 
-Start reading [Here](user_guide.md).
+Start reading [Here](UserGuide/user_guide.md).
 
 ## Sections
 
