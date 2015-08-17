@@ -353,12 +353,12 @@ this.actions =
   If you clone this repository, you'll have a copy of the full code demo
   within the [Code](Code) folder of this section.
   
-  With this demo you learned how to:
-  
-- [x] use an area application
-- [x] Get the intentions for your application (named DocDemo)
-- [x] Get the texts for each intention
-- [x] notify the user actions api for a selection of a text
+With this demo you learned how to:
+
+  * use an area application
+  * Get the intentions for your application (named DocDemo)
+  * Get the texts for each intention
+  * notify the user actions api for a selection of a text
 
  For more details about the API, you should now go to the dedicated pages of 
  each section [here](../Sections).

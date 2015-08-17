@@ -1,6 +1,6 @@
 # Public API
 
-First you should read the [User Guide](user_guide.md), it will show you the main APIs 
+First you should read the [User Guide](UserGuide/user_guide.md), it will show you the main APIs 
 and concepts behind Ghostwording. If you need more details then you can dive into
 the detailled sections of the API.
 
@@ -9,10 +9,10 @@ the detailled sections of the API.
 In this documument you will be guided to create a simple Ghostwording web application
 that covers the main concepts:
 
-* [x] use an area application
-* [x] Get the intentions for your application (named DocDemo)
-* [x] Get the texts for each intention
-* [x] notify the user actions api for a selection of a text
+  * use an area application
+  * Get the intentions for your application (named DocDemo)
+  * Get the texts for each intention
+  * notify the user actions api for a selection of a text
 
 Start reading [Here](UserGuide/user_guide.md).
 
