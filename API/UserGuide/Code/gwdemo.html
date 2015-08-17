@@ -30,8 +30,9 @@
     </div>  
     <div class="row" ng-show="intention.texts">
        <div class="panel panel-default" ng-repeat="text in intention.texts | slice:0:3">
-          <div class="panel-body">
- 
+         
+          <div class="panel-body" ng-click="star(text)">
+            <span class="glyphicon glyphicon-heart" style="font-size:2em;color:red" aria-hidden="false" ng-show="text.star"></span>
              {{text.Content}}
           </div>
        </div>
@@ -39,4 +40,5 @@
   </div>
   </div>
 </body>
+
 </html>

@@ -264,3 +264,107 @@ Here is how your application looks like at the step 3:
 You can also check the demo live for this step [Here](http://output.jsbin.com/judixa/6).
 
 
+
+## Step 04 : Tracking
+
+Now you know the principal parts of navigating through the api `area->intentions->texts`, 
+we'll add some user tracking. It's an important part of the application 
+development process because the user actions help us to improve the quality
+of the texts provided within a certain context and what are the texts users
+prefer.
+
+In this exemple we'll suppose that the application have a `favorite text/star`
+function. Each time a user will star a text, we'll send to the server
+the information that the text is stared within the context of your application.
+
+To simplify the user tracking you'll just have a GET call to do to the 
+useractions api with the parameters of your context:
+
+        GET http://api.cvd.io/userevent?{querystring}
+
+For more information about the content of the query string parameters, please
+have a look to the dedicated page [User Actions](../Sections/useractions.md)
+
+Here is the api call definition to add to your api service:
+
+```javascript
+this.actions = 
+    $resource("http://api.cvd.io/userevent",{},{
+    star:
+    {
+      method:'GET',
+      isArray:false,
+      headers : {"Accept":"application/json"},
+      params:{
+        ActionLocation:'textList',
+        TargetType:'text',
+        areaId : appNameArea
+      }
+    }
+  });
+  ```
+  
+  Please note that the params provided here within the resource are the ones
+  statically defined for the call within the context of text within a list of texts
+  and then we'll add 2 more parameters directly when we'll use the resource
+  to define the exact action.
+  
+  The call is asynchronous on the server side and optimized for heavy load,
+  that means you'll immediatly get in return an empty object with an `HTTP 200`
+  status code (unless there is a problem on the server that can't handle the request and dispatch it to the event bus).
+
+  
+  ```javascript
+  $scope.star = function(text)
+  {
+    
+    text.star = (text.star === undefined)? true : !text.star;
+    var actionType = (text.star) ? "star" : "unstar";
+    // for simplicity we don't save the star status here
+    // but just set it locally and notify the server of the event
+    // (that means, each time you'll load the texts, you'll loose that state
+    
+    api.actions.star({
+      TargetId:text.TextId,
+      ActionType:actionType
+    });
+  };
+  ```
+  
+  Update now your text content section in order to add the star function
+  and a small hear to simulate that a text was selected:
+  
+  ```html
+      <div class="panel-body" ng-click="star(text)">
+        <span class="glyphicon glyphicon-heart" style="font-size:2em;color:red" aria-hidden="false" ng-show="text.star"></span>
+        {{text.Content}}
+      </div>
+  ```
+  
+  Here is now the app with the text favorite feature:
+  
+  ![step 4](Gwdemo-step04-userevents.png)
+  
+  You can check the final app online [here](http://output.jsbin.com/judixa/7)
+  
+  
+  ## Final word
+  
+  If you clone this repository, you'll have a copy of the full code demo
+  within the [Code](Code) folder of this section.
+  
+  With this demo you learned how to:
+  
+- [x] use an area application
+- [x] Get the intentions for your application (named DocDemo)
+- [x] Get the texts for each intention
+- [x] notify the user actions api for a selection of a text
+
+ For more details about the API, you should now go to the dedicated pages of 
+ each section [here](../Sections).
+ 
+ ** Happy coding**
+ 
+ [Rui Carvalho (@rhwy)](http://github.com/rhwy)
+ 
+ 

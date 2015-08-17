@@ -37,6 +37,21 @@ var api = function ($resource) {
     }
   });
   
+  this.actions = 
+    $resource("http://api.cvd.io/userevent",{},{
+    star:
+    {
+      method:'GET',
+      isArray:false,
+      headers : {"Accept":"application/json"},
+      params:{
+        ActionLocation:'textList',
+        TargetType:'text',
+        areaId : appNameArea
+      }
+    }
+  });
+  
 };
  
 gwDemo.service("api", api);
@@ -71,4 +86,19 @@ gwDemo.controller('intentionsController', function ($scope, api, $http) {
         intention.texts = api.texts.getAll({intention:intention.SlugPrototypeLink});
       }
   };
+  
+  $scope.star = function(text)
+  {
+    text.star = (text.star === undefined)? true : !text.star;
+    var actionType = (text.star) ? "star" : "unstar";
+    // for simplicity we don't save the star status here
+    // but just set it locally and notify the server of the event
+    // (that means, each time you'll load the texts, you'll loose that state
+    
+    api.actions.star({
+      TargetId:text.TextId,
+      ActionType:actionType
+    });
+  };
+  
 });
