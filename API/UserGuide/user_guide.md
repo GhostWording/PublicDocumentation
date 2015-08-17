@@ -153,9 +153,114 @@ of all the properties of an intention, just open your console and watch them.
 
 You can also check the demo live for this step [Here](http://output.jsbin.com/judixa/4).
 
+Here we are now:
+
+![application at step 2](Gwdemo-step02-intentions.png)
+
 **Test:** _give it a try and change the culture to `fr-FR` to see the change:_
 
         var userLanguage = 'fr-FR';
  
  
+
+## Step 03 : Get the texts
+
+The feature we add now is that each time we click on an intention it will load from
+the server the list of texts associated with that intention. 
+
+To load the texts, we'll call the texts api by providing the `slug` of the intention, 
+which is a textual -human readable- id for the text that you'll have within the intention
+properties:
+
+    GET /{areaName}/{intentionSlug}/texts
+    
+Note that we'll also provide the area name in order to identify your app and that the
+`accept-langage` is also used to find the texts in the prefered user language. 
+
+Let's add the resource call to the api for the texts:
+
+```javascript
+this.texts = $resource("http://api.cvd.io/"+appNameArea+"/:intention/texts",{intention:'@intention'},{ 
+    getAll:
+    {
+      method:'GET',
+      cache:true,
+      isArray : true,
+      headers: {
+        "Accept":"application/json",
+        "Accept-Language":userLanguage},
+      params:{}
+    }
+  });
+  ```
+  
+  Then within the **intentionController** add a select method that will load the texts
+  from a click on the intention:
+  
+  ```javascript
+  
+  gwDemo.controller('intentionsController', function ($scope, api, $http) {
+  $scope.intentions  = api.intentions.getAll();
+  
+  console.log($scope.intentions);
+  
+  $scope.select = function(intention){
+    if(intention.texts !== undefined)
+      {
+        intention.texts = undefined;
+      } else
+      {
+        console.log(intention.texts);
+        intention.texts = api.texts.getAll({intention:intention.SlugPrototypeLink});
+      }
+  };
+});
+  
+  ```
+  
+  We'll attach the texts directly to the intention object within a `texts` property and 
+  note that we put a console.log with the texts in order for you to see the format and
+  properties of a text.
+  
+  When you call the texts api, you'll get all the texts corresponding to your intention/culture.
+  It's actually by design, we choose to not use pagination here to simplify the api and
+  due to most common use of the api (with offline modes), we let the app designer choose
+  the process of caching and paginate localy that fits better for it's app.
+  
+  In order to shrink the page and show only the first 5 texts, we'll add a small angular
+  filter that we'll use directly in the html:
+  
+  ```javascript
+  gwDemo.filter('slice', function() {
+  return function(arr, start,end) {
+    
+    if(arr===undefined)
+      {
+        return arr;
+      }
+    
+    return arr.slice(start, end);
+  };
+});
+```
+
+Then add the row corresponding to your texts bloc within the repeat bloc above the 
+intention information row:
+
+```html
+    <div class="row" ng-show="intention.texts">
+       <div class="panel panel-default" ng-repeat="text in intention.texts | slice:0:3">
+          <div class="panel-body">
+            {{text.Content}}
+          </div>
+       </div>
+    </div>
+```
+
+Here is how your application looks like at the step 3:
+
+![Step 3 - texts](Gwdemo-step03-texts.png)
+
+You can also check the demo live for this step [Here](http://output.jsbin.com/judixa/6).
+
 
