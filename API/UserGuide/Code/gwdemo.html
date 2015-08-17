@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+	<meta name="description" content="Ghoswording APIs simple but complete demo with application,intentions,texts and userevents">
+	<script src="https://code.jquery.com/jquery.min.js"></script>
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<script src="https://rawgit.com/angular/bower-angular/master/angular.min.js"></script>
+	<script src="https://rawgit.com/angular/bower-angular-resource/master/angular-resource.min.js"></script>
+	<script src="gwdemo.js"></script>
+	<meta charset="utf-8">
+	<title>My GhostWording Demo</title>
+</head>
+	
+<body ng-app="gwDemo">
+	<h1>Ghostwording Demo</h1>
+	
+	<div ng-controller="intentionsController" class="container-fluid">
+		<div ng-repeat="intention in intentions">
+			<div class="row well" ng-click="select(intention)">
+				<div class="col-xs-4 ">
+					<img src="{{intention.ImagePath}}"  style="width:100%;height:auto;"/>
+				</div>
+				
+				<div class="col-xs-8 vcenter">
+					<h3>{{intention.Label}}</h3> 
+				</div>
+			</div>  
+  		</div>
+  	</div>
+</body>
+</html>
