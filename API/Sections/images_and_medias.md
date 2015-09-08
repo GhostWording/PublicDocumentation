@@ -9,7 +9,7 @@ These resources, mostly images, are available and organized through containers, 
 In order to get a better idea of what images you'll find and the structure of the folders, you can directly navigate html version of the api
 throught the browser:
 
-        [http://gw-static.azurewebsites.net/containers](http://gw-static.azurewebsites.net/containers)
+[http://gw-static.azurewebsites.net/containers](http://gw-static.azurewebsites.net/containers)
     
 The containers are a simple way to organize the image by their type. 
 
