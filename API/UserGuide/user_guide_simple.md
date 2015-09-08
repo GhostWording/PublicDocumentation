@@ -113,4 +113,4 @@ You'll get in return a `200 HTTP` code with an empty json object `{}`.
 ## Going further
 
 Once you're familiar with that, you can continue with the [full tutorial with javascript live demo] (user_guide.md) or 
-start reading the [full api documentation](README.md)
+start reading the [full api documentation](../README.md)
