@@ -1,30 +1,53 @@
-## How to use APIs for Static Resources
+## How to use APIs for Images
 
-Shared static resources are available physicaly through gw-static.azurewebsites.net (but also through an Azure CDN later on).
+### Presentation of the Images API
 
-Static resources, mostly images, are available and organized through containers.
+Alongside the texts, we also have a collection of categorized images, that are available physicaly through gw-static.azurewebsites.net (but also through an Azure CDN later on).
 
-The containers are a simple way to qualify the image contents. 
-Even if we provide qualified information through the Apis, all the information is available in the path of the resource:
+These resources, mostly images, are available and organized through containers, they are an essential part of our apps in order to illustrate the texts and make the apps more funny.
 
-    /{application-name}/{recipient}/{theme}/{size}
+In order to get a better idea of what images you'll find and the structure of the folders, you can directly navigate html version of the api
+throught the browser:
 
-For exemple:
+        [http://gw-static.azurewebsites.net/containers](http://gw-static.azurewebsites.net/containers)
+    
+The containers are a simple way to organize the image by their type. 
 
-    /cvd/parent/puppies/small
+In order to get :
 
-This container represents images, in small size, for the cvd app with the theme puppies and is valid for parent recipient. 
+* images by intention use /Container/specialoccasions
+* images by recipient use /Container/cvd
+* images by themes use /Container/themes
 
-Then the url for an image inside that container, should be like that:
+For exemple, if you want to show some kittens to send a nice message to your mum:
 
-  http://gw-static.azurewebsites.net/cvd/parent/istockpuppies/small/iStock_000005341891_Medium.jpg.
-  
-![the image](http://gw-static.azurewebsites.net/cvd/parent/istockpuppies/small/iStock_000005341891_Medium.jpg)
+        GET /container/files/themes/kittens/small
+
+(here you ask for the files for theme kittens in small formal)
+
+You'll get in return a list of relative urls (to http://gw-static.azurewebsites.net) of the images:
+
+        [
+            "/themes/kittens/small/196385_329668327144444_1541590776_n.jpg",
+            "/themes/kittens/small/307352_10151401995947488_1448832011_n.jpg",
+            "/themes/kittens/small/377706_342512579193352_894978699_n.jpg",
+            "/themes/kittens/small/shutterstock_70392409.jpg",
+            ...
+        ]
+
+Then you'll recompose the url in your app to show the images:
+        
+        http://gw-static.azurewebsites.net/themes/kittens/small/shutterstock_70392409.jpg
+        
+![kitten and mouse](http://gw-static.azurewebsites.net/themes/kittens/small/shutterstock_70392409.jpg)
+        
+
+In the following paragraphs you'll see deeper how navigate through this image api.
 
 In order to access these qualified resources, you should query first the server APIs to get the list of containers and 
 then get the list of images in a container.
 
-Note that each container can have it's own definition to qualify it's
+Note that each container can have it's own definition to qualify it's hierarchy
 
 
 ###List all the children containers available for your app
