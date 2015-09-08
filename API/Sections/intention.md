@@ -1,12 +1,4 @@
-## All areas and intentions
-
-You can get an exhaustive list of all the intentions without any area classification with this simple call:
-
-    GET /intentions
-
-It will return a complete list of intentions with all the details as in the exemples below
-
-## All collections
+## Get all intentions for your app
 
 Intentions is one of the logical ways of grouping Text entities
 
@@ -93,3 +85,14 @@ You can get an indention by it's prototype slug:
 exemple:
     
     GET /General/thank-you
+    
+    
+## All areas and intentions
+
+In case you need to have a list of all intentions available, you can get an exhaustive list of all the intentions without any area classification with this simple call:
+
+    GET /intentions
+
+It will return a complete list of intentions with all the details as in the exemples below
+
+
