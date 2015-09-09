@@ -1,38 +1,27 @@
 # Shared Configurations
 
 This api contains configurations and definitions to be shared by all applications.
-
-## Areas - relation types for area and default Folder Path
-
-**Description**: define relation types, or sexed recipients, with some additional attributes (for exemple for the recipient type Sweetheart and gender female)
-
-**Call** :
-
-    GET http://gw-static-apis.azurewebsites.net/area/defaultImageFolderPathForRecipient.json
-  
-**Returned data**: 
-An array of relation types for the area
-
-    [
-      {
-        "Id": "SweetheartF",
-        "RecipientTypeTag": "9E2D23",
-        "Gender": "F",
-        "usualRecipient": true,
-        "subscribableRecipient": true,
-        "dashLabel": "Ma chérie",
-        "MailLabel": "mailVotre chérie",
-        "LocalLabel": "Votre chérie",
-        "TuOuVous": "T",
-        "Importance": 1,
-        "defaultImageFolderPath": ""
-      },
-      ...
-    ]
   
 ## Recipient - relation types
 
-**Description** : defining the different relation types with genders and importance
+**Description** : defining an id for the a relation type + gender
+
+The main properties you are interested in are then:
+
+- Id is the id for the recipient type (for example Mother or SweetheartM,)
+- RecipientTypeTag is the id for the relation type id (for example parents, sibling, loveinterest, sweetheart)
+- Gender is F for Female and H for Male (Homme in French)
+
+For example, when the relation type id the id for Parent and the Gender is Female, the recipient type is Mother
+For example, when the relation type id the id for Sweetheart and the Gender is Male the recipient type is SweetheartM
+
+Content example
+
+        { "Id": "Mother",            "RecipientTypeTag": "64C63D", "Gender": "F"} 
+        { "Id": "Father",             "RecipientTypeTag": "64C63D", "Gender": "H"} 
+        { "Id": "SweetheartF",    RecipientTypeTag": "9E2D23", "Gender": "F"},
+        { "Id": "SweetheartM",   "RecipientTypeTag": "9E2D23", "Gender": "H"},
+
 
 **Call** : 
 
@@ -58,10 +47,14 @@ An object with relation types array property:
         ..
         ]
     }
-    
+ 
+
+   
 ## Data Quizz - LoveQuizz
 
-**Description** : Array of ids of texts to be used in the love quizz
+**Description** : Array of ids of prototypes of texts to be used in the love quizz. Then the quizz will get later all the realizations of the texts in the user culture
+
+This configuration is used on  [http://www.commentvousdire.com/en/loveQuizz](http://www.commentvousdire.com/en/loveQuizz)
 
 **Call** :
 
