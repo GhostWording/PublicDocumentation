@@ -1,6 +1,6 @@
 # User Guide - Api calls for a simple Ghostwording app
 
-## Getting a list of text
+## Getting a list of texts
 
 The most common requests to the API involve getting a list of texts to express a given intention.
 
@@ -18,9 +18,12 @@ You  need to set the http headers of your GET request to
 
 You can try that from any Rest Client such as Postman (www.getpostman.com)
 
+## Getting a list of texts
+
 In http://api.cvd.io/DocDemo/I-would-like-to-see-you-again/text
-"I-would-like-to-see-you-again" is the slug of the intention for which you request texts
-"DocDemo" is the name of your application. We call it an area name.
+`DocDemo` is the name of your application. We call it an area name.
+`I-would-like-to-see-you-again` is the slug of the intention for which you request texts
+
 
 For the "Le bout des lèvres" the area name is "LipTip" so if you want to get texts to say I like you for this application you would send this request :
 GET http://api.cvd.io/LipTip/I-like-you/texts
