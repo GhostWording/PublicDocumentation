@@ -18,32 +18,26 @@ You  need to set the http headers of your GET request to
 
 You can try that from any Rest Client such as Postman (www.getpostman.com)
 
-## Getting a list of texts
+## Area names
 
 In http://api.cvd.io/DocDemo/I-would-like-to-see-you-again/text
-`DocDemo` is the name of your application. We call it an area name.
+
+`DocDemo` is the name of your application : we call it an area name.
+
 `I-would-like-to-see-you-again` is the slug of the intention for which you request texts
 
+For the `Le bout des lèvres` the area name is `LipTip` so if you want to get texts to say I like you for this application you would send this request :
 
-For the "Le bout des lèvres" the area name is "LipTip" so if you want to get texts to say I like you for this application you would send this request :
 GET http://api.cvd.io/LipTip/I-like-you/texts
 
-In order to build a Ghostwording application (or area) and get the texts you want, you'll need to get first some intentions (the categories of the content you 
-want to express) and then get the texts for each one.
+## Choosing the language of the texts
 
-For the purpose of this exemple, we'll use an area called `DocDemo`. This area is defined for you by the Ghostwording editors, 
-and it's basically the name of your app with the categories you can see attached to it (the intentions).
-
-Note that all Ghostwording api calls are culturized. That means that you need to provide an appropriate `Accept-Language` header 
+All Ghostwording api calls are culturized. You need to provide an appropriate `Accept-Language` header 
 in all your calls. Accepted values are actually `["en-EN","fr-FR","es-ES"]`
 
-Note also that actually the only format supported by the api is json, which means you need to provide the `Accept` header with
-the value `application/json`.
+##  Intentions
 
-So, the hierarchy for your calls in order to get the texts will be `area > intentions > texts`. We'll see then how to post some
-activity for tracking.
-
-## Getting Intentions
+Our apps usually help users express intentions such as `I-miss-you`, `I-think-of-you` or `good-morning`
 
 The pattern to get the list of the intentions for your area is the following:
 
