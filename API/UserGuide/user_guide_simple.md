@@ -1,5 +1,23 @@
 # User Guide - Api calls for a simple Ghostwording app
 
+The most common requests to the API involve getting a list of texts to express a given intention.
+
+A simple example would be :
+http://api.cvd.io/DocDemo/I-would-like-to-see-you-again/text
+
+If you type the above urlabout in your browser it will display an arror because our API returns json files, not HTML files. 
+You  need to set the http headers of your GET request to
+     "Accept" : "application/json",
+     "Accept-Language" : "en-EN"  //to get a list of texts in English
+You can try that from any Rest Client such as Postman (www.getpostman.com)
+
+In http://api.cvd.io/DocDemo/I-would-like-to-see-you-again/text
+"I-would-like-to-see-you-again" is the slug of the intention for which you request texts
+"DocDemo" is the name of your application. We call it an area name.
+
+For the "Le bout des lèvres" the area name is "LipTip" so if you want to get texts to say I like you for this application you would send this request :
+GET http://api.cvd.io/LipTip/I-like-you/texts
+
 In order to build a Ghostwording application (or area) and get the texts you want, you'll need to get first some intentions (the categories of the content you 
 want to express) and then get the texts for each one.
 
