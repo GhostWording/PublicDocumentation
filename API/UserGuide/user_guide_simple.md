@@ -7,8 +7,10 @@ http://api.cvd.io/DocDemo/I-would-like-to-see-you-again/text
 
 If you type the above urlabout in your browser it will display an arror because our API returns json files, not HTML files. 
 You  need to set the http headers of your GET request to
+     [
      "Accept" : "application/json",
      "Accept-Language" : "en-EN"  //to get a list of texts in English
+     ]
 You can try that from any Rest Client such as Postman (www.getpostman.com)
 
 In http://api.cvd.io/DocDemo/I-would-like-to-see-you-again/text
