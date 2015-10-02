@@ -1,5 +1,7 @@
 # User Guide - Api calls for a simple Ghostwording app
 
+## Getting a list of text
+
 The most common requests to the API involve getting a list of texts to express a given intention.
 
 A simple example would be:
@@ -38,7 +40,7 @@ the value `application/json`.
 So, the hierarchy for your calls in order to get the texts will be `area > intentions > texts`. We'll see then how to post some
 activity for tracking.
 
-## first, get Intentions
+## Getting Intentions
 
 The pattern to get the list of the intentions for your area is the following:
 
