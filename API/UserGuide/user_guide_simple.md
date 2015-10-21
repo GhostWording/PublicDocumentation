@@ -2,15 +2,19 @@
 
 ## Getting a list of texts
 
-The most common requests to the API involve getting a list of texts to express a given intention.
+The most common requests to the API involve getting a list of texts to express a given Intention, such as 'I would like to see you again'
 
 A simple example would be:
      
      GET http://api.cvd.io/DocDemo/intention/BD7387/texts
 
-You can also use the form with the slug name instead of ID (but the one with ID is more performant)
+where `BD7387` is the Id of the Intention `I would like to see you again`
 
-     GET http://api.cvd.io/DocDemo/I-would-like-to-see-you-again/text
+You can get the same list of texts with a syntax that uses the slug of the intention: 
+
+     GET http://api.cvd.io/DocDemo/I-would-like-to-see-you-again/texts
+
+where `I-would-like-to-see-you-again` is the slug of the Intention, but using the Id will make the call quicker
 
 If you type the above urlabout in your browser it will display an arror because our API returns json files, not HTML files. 
 You  need to set the http headers of your GET request to
