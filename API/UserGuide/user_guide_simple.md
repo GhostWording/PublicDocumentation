@@ -14,7 +14,7 @@ You can get the same list of texts with a syntax that uses the slug of the inten
 
      GET http://api.cvd.io/DocDemo/I-would-like-to-see-you-again/texts
 
-where `I-would-like-to-see-you-again` is the slug of the Intention, but using the Id when you have it makes the call more efficient, so it is the preferred syntax.
+where `I-would-like-to-see-you-again` is the slug of the Intention, but using the Id is more efficient so you should only use the slug version if the Id is not available.
 
 If you type one of the two urls above in your browser it will display an error because the API returns json files, not HTML files. 
 You  need to set the http headers of your GET request to
