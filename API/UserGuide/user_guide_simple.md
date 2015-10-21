@@ -5,8 +5,12 @@
 The most common requests to the API involve getting a list of texts to express a given intention.
 
 A simple example would be:
+     
+     GET http://api.cvd.io/DocDemo/intention/BD7387/texts
 
-GET http://api.cvd.io/DocDemo/I-would-like-to-see-you-again/text
+You can also use the form with the slug name instead of ID (but the one with ID is more performant)
+
+     GET http://api.cvd.io/DocDemo/I-would-like-to-see-you-again/text
 
 If you type the above urlabout in your browser it will display an arror because our API returns json files, not HTML files. 
 You  need to set the http headers of your GET request to
@@ -20,15 +24,16 @@ You can try that from any Rest Client such as Postman (www.getpostman.com)
 
 ## Area names
 
-In http://api.cvd.io/DocDemo/I-would-like-to-see-you-again/text
+In http://api.cvd.io/DocDemo/intention/BD7387/texts
 
 `DocDemo` is the name of your application : we call it an area name.
 
-`I-would-like-to-see-you-again` is the slug of the intention for which you request texts
+`BD7387` is the ID of the intention for which you request texts
 
 For the `Le bout des lèvres` the area name is `LipTip` so if you want to get texts to say I like you for this application you would send this request :
 
-GET http://api.cvd.io/LipTip/I-like-you/texts
+GET http://api.cvd.io/LipTip/intention/64B504/texts
+
 
 ## Choosing the language of the texts
 
@@ -75,6 +80,10 @@ you'll get an array of intentions like that:
 ## then, get the Texts 
 
 After you'll get your intentions, you could get the corresponding texts. They use the following pattern:
+     
+     GET /{areaName}/intention/{intention_id}/texts
+
+You can also use the more readable form with the slugs instead of the ID (but it performs worse):
 
       GET /{areaName}/{intentionSlug}/texts
 
@@ -84,7 +93,8 @@ returned by the `/{area-name}/intentions` api call.
 That means, that for the intention `"I would like to see you again"`, you'll make a call like that (with the appropriate headers):
 
 
-      GET http://api.cvd.io/DocDemo/I-would-like-to-see-you-again/texts
+      GET http://api.cvd.io/DocDemo/intention/BD7387/texts
+      
       HEADERS :
         [
           "Accept" : "application/json",
