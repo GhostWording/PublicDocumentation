@@ -16,7 +16,7 @@ You can get the same list of texts with a syntax that uses the slug of the inten
 
 where `I-would-like-to-see-you-again` is the slug of the Intention, but using the Id will make the call quicker
 
-If you type the above urlabout in your browser it will display an arror because our API returns json files, not HTML files. 
+If you type one of the two urls above in your browser it will display an arror because the API returns json files, not HTML files. 
 You  need to set the http headers of your GET request to
 
      [
@@ -83,18 +83,11 @@ you'll get an array of intentions like that:
 
 ## then, get the Texts 
 
-After you'll get your intentions, you could get the corresponding texts. They use the following pattern:
+After getting the list of intentions, you can  get the texts for each intention using the following syntax:
      
      GET /{areaName}/intention/{intention_id}/texts
 
-You can also use the more readable form with the slugs instead of the ID (but it performs worse):
-
-      GET /{areaName}/{intentionSlug}/texts
-
-The `{intentionSlug}` is a human readable id for the intention that you can find on the properties of each intention
-returned by the `/{area-name}/intentions` api call.
-
-That means, that for the intention `"I would like to see you again"`, you'll make a call like that (with the appropriate headers):
+For the intention `"I would like to see you again"`, the `IntentionId` field is `BD7387` so the call would  be:
 
 
       GET http://api.cvd.io/DocDemo/intention/BD7387/texts
