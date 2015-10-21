@@ -1,6 +1,6 @@
 # User Guide : How to build a simple Ghostwording app
 
-TD;LR if you only want to get the syntax of the api calls, you can read this [simplified page](API/UserGuide/user_guide_simple.md)
+TD;LR if you only want to get the syntax of the api calls, you can read this [simplified page](user_guide_simple.md)
 
 This is a hands-on tutorial to explain the logic and main services of the Ghostwording API, it will guide through a simple web 
 application that covers the principal services used. 
