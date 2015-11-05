@@ -277,18 +277,21 @@ This is a full description of the properties of a text you'll get when calling t
 
 ### Tag Ids
 
-Texts have a "TagIds" property which is an array of strings, for example :
+Texts have a "TagIds" property which is an array of strings, for example:
 
- "TagIds": ["801BD9","5D79C9","7A55C6","8CC4E5","9E2D23","C2D9A4","FC0342"],
+        "TagIds": ["801BD9","5D79C9","7A55C6","8CC4E5","9E2D23","C2D9A4","FC0342"],
 
 A tag can represent any type of properties : Style of text (Humoristic, Poetic, ...), Suitable age groups for recipients (<= 17, 18 to 39, etc.), Relation type between the sender and the recipient (the sender is writing to a parent, a friend, a sibling, a partner/sweetheart, a loveinterest, ...) and other things
 
-For example "801BD9" : suitable for poetic style and "9E2D23" : suitable for a relation type like partner/sweetheart
+For example: 
+
+        "801BD9" : poetic style  
+        "9E2D23" : suitable for your sweetheart
 
 Once you get a list of texts for the Intention "I think of you", if you want to select texts that are both poetic and suitable for a sweetheart, you select texts for which the TagIds property contains both "801BD9" and "9E2D23".
 
 
-### Filtering texts by relation type
+### Filtering texts by `relation type`
 
 There are currently a dozen of possible tag. The most used ones are
 * 9E2D23 : Sweetheart (Partner, darling)
@@ -299,6 +302,38 @@ There are currently a dozen of possible tag. The most used ones are
 * 6E7DFB : Others friends / Facebook friends
 * 420A3E : FamillyYoungsters (Child, godchild, nephew)
  
-        
+### Filtering texts by `gender`
+
+Code for genders are
+*'H' : a man (example : I have shaven my beard this morning)
+*'F' : a woman (example : How do you like my lipstick)
+*'N' : a single person, man, woman or unknow gender (example : I'm hungry)
+*'P' : several persons (example : we will be late)
+*'I' : indifferent (example : the weather looks nice)
+In languages such as English, gender compatibility will we mostly determined by the meaning.
+In most other languages the spelling of a sentence will also be different if the text is written by a man or a woman, to a man or to a woman. For example in French "I am clever" will be writen "Je suis intelligent" or "Je suis intelligente" depending if the sender is a man or a woman. Many English messages will have 4 translations in French and 4 translations in English, depending on the gendere of the sender and the recipient.
+
+The `Sender` property of a text represents  the constraint on the `sender gender`
+The sender if typically the user of the app. Examples could be
+*'H' : a man (example : I have shaven my beard this morning)
+*'F' : a woman (example : How do you like my lipstick)
+*'N' : a single person, man, woman or unknow gender (example : I'm hungry)
+*'P' : several persons (example : we will be late)
+*'I' : indifferent (example : the weather looks nice)
+If the user is a man, acceptable values for the `Sender` property of the texts he will be able to send are 'H' , 'N', 'I' and 'P' (a user can express himself as a member of a group).
+If the user is a woman, acceptable values for the `Sender` property of the texts he will be able to send are 'F' , 'N', 'I' and 'P' 
+
+The `Target` property of a text represents the constraint on the `recipient gender`.
+An app such as Le bout des lèvres, will assume that if the sender is a man, the recipient is a woman and vice versa.
+Examples could be
+*'H' : a man (example : Your beard looks good today)
+*'F' : a woman (example : I like your lipstick)
+*'N' : a single person, man, woman or unknow gender (example : I saw you alone in your car)
+*'P' : several persons (example : you are a great team)
+*'I' : indifferent (example : the weather looks nice)
+If the recipient of a message is a women , acceptable values for the `Target` property of the texts that can be sent will be 'F' , 'N' and 'I' (but not 'P')
+If the recipient of a message is a man, acceptable values for the `Target` property of the texts that can be sent will be 'H', 'N' and 'I' (but not 'P')
+
+
 
 
