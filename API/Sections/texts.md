@@ -302,6 +302,8 @@ There are currently a dozen of possible tag for relation types. The most used on
 * 2B4F14 : Long lost friends
 * 6E7DFB : Others friends / Facebook friends
 * 420A3E : FamillyYoungsters (Child, godchild, nephew)
+
+In `Le bout des lèvres` we always check that relation type 9E2D23 is includes in the TagIds of the text we display.
  
 ### Filtering texts by `gender`
 
@@ -345,7 +347,7 @@ Examples could be
 * H : a man (example : Your beard looks good today)
 * F : a woman (example : I like your lipstick)
 * N : a single person, man, woman or unknow gender (example : I saw you alone in your car)
-* P : several persons (example : you are a great team)
+* P : several persons (example : je suis content de vous avoir revus)
 * I : indifferent (example : the weather looks nice)
 
 If the recipient of a message is a women , acceptable values for the `Target` property of the texts that can be sent will be 'F' , 'N' and 'I' (but not 'P')
@@ -357,9 +359,14 @@ If the recipient of a message is a man, acceptable values for the `Target` prope
 In many languages, recipients will be adressed differently depending if the sender is a close friend or relative or wants to show respect of distance. The `PoliteForm` property of texts is used to code that. It currently contains the following values
 * T : familiar (example : tu es belle)
 * V : polite (example : vous êtes belle)
-* I : indifferent (example : la terre est ronde)
+* I : indifferent (example : il fait beau, the weather is nice)
 
 In most apps, constraints on  the correct verbal form will be dictated by the  context.
 
-In an app such as `Le bout des lèvres` the user write to his or her sweetheart. In that case the polite form (V) will not appropriate. In that case, the app will display all texts for which `PoliteForm != 'V'`
+As an example in an app such as `Le bout des lèvres` the user writes to his or her sweetheart. In that context the polite form V is not very appropriate so the app will only suggest texts for which `PoliteForm != 'V'`
 
+## Caveat 
+
+An app can suggest texts that are correct in English but will be improper in French or Spanish because the sender gender, the recipient gender or the polite verbal form are not correct. 
+
+When changes are made to the filtering logic, an app should be tested in a language other than English to check that the result makes sense.
