@@ -303,7 +303,7 @@ There are currently a dozen of possible tag for relation types. The most used on
 * 6E7DFB : Others friends / Facebook friends
 * 420A3E : FamillyYoungsters (Child, godchild, nephew)
 
-In `Le bout des lèvres` we always check that relation type 9E2D23 is includes in the TagIds of the text we display.
+In `Le bout des lèvres` we always check that relation type 9E2D23 is included in the TagIds of the text we display.
  
 ### Filtering texts by `gender`
 
@@ -321,7 +321,7 @@ In most other languages the spelling of a sentence will also be different if the
 
 For example in French "I am clever" will be writen "Je suis intelligent" or "Je suis intelligente" depending if the sender is a man or a woman. 
 
-Many English messages will have 4 translations in French and 4 translations in English, depending on the gendere of the sender and the recipient.
+Many English messages will have 4 translations in French and 4 translations in English, depending on the gender of the sender and the recipient.
 
 ## Sender gender 
 
