@@ -350,15 +350,15 @@ Examples could be
 * P : several persons (example : je suis content de vous avoir revus)
 * I : indifferent (example : the weather looks nice)
 
-If the recipient of a message is a women , acceptable values for the `Target` property of the texts that can be sent will be 'F' , 'N' and 'I' (but not 'P')
+If the recipient of a message is a women , acceptable values for the `Target` property of the texts that can be sent will be 'F' , 'N' and 'I'
 
-If the recipient of a message is a man, acceptable values for the `Target` property of the texts that can be sent will be 'H', 'N' and 'I' (but not 'P')
+If the recipient of a message is a man, acceptable values for the `Target` property of the texts that can be sent will be 'H', 'N' and 'I' 
 
 ## Polite verbal form
 
 In many languages, recipients will be adressed differently depending if the sender is a close friend or relative or wants to show respect of distance. The `PoliteForm` property of texts is used to code that. It currently contains the following values
-* T : familiar (example : tu es belle)
-* V : polite (example : vous êtes belle)
+* T : familiar (example : tu es belle, you are pretty)
+* V : polite (example : vous êtes belle, you are pretty)
 * I : indifferent (example : il fait beau, the weather is nice)
 
 In most apps, constraints on  the correct verbal form will be dictated by the  context.
