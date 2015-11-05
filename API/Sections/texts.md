@@ -307,11 +307,11 @@ There are currently a dozen of possible tag. The most used ones are
 
 Code for genders are
 
-*'H' : a man (example : I have shaven my beard this morning)
-*'F' : a woman (example : How do you like my lipstick)
-*'N' : a single person, man, woman or unknow gender (example : I'm hungry)
-*'P' : several persons (example : we will be late)
-*'I' : indifferent (example : the weather looks nice)
+* H : a man (example : I have shaven my beard this morning)
+* F : a woman (example : How do you like my lipstick)
+* N : a single person, man, woman or unknow gender (example : I'm hungry)
+* P : several persons (example : we will be late)
+* I : indifferent (example : the weather looks nice)
 
 In languages such as English, gender compatibility will we mostly determined by the meaning.
 In most other languages the spelling of a sentence will also be different if the text is written by a man or a woman, to a man or to a woman. For example in French "I am clever" will be writen "Je suis intelligent" or "Je suis intelligente" depending if the sender is a man or a woman. Many English messages will have 4 translations in French and 4 translations in English, depending on the gendere of the sender and the recipient.
