@@ -73,3 +73,7 @@ These are typical values for actions and targets (but not exclusive):
 | RefreshImages     |                       |                   |
 | Swipe             |                       |                   |		
 
+## Real world captured values
+here is a small capture from our database of real events in order to ensure the kind of data we care:
+
+![user events](https://cloud.githubusercontent.com/assets/212965/11058239/bcbeb128-8791-11e5-9b24-798538b2face.png)
