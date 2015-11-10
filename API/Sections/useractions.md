@@ -32,7 +32,7 @@ where `{querystring}` contains these key/values:
 The key/values below are mandatory because they are key discriminatory factors for analysis:
 - **VersionNumber** : each time you build and publish your app, you have to increase your application version number, this allows us to control and check how people is using the apps depending on version updates
 - **OsType** : because we have some identical apps (with same AreaId) in different platforms, it is necessary for us to know what's platform it is:
-    - andoid
+    - Android
     - iOS
     - web
 
