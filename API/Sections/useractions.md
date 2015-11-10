@@ -10,18 +10,16 @@ The format is the following:
 
 where `{querystring}` contains these key/values:
 
-- **ActionType** (*): stores the user action : click, ...
-- **ActionLocation** (*): where the action is initiated on your app (MenuBar, SplashScreen, TextDetailView, TextList, IntentionList,.....)
+- **ActionType** (*): stores the user action : Click, Swipe, SendSMS, SendMail, RefreshTexts, ...
+- **ActionLocation** (*): where the action is initiated on your app : Splash, Tutorial, MainScreen, TextDetailView, TextList, IntentionList,.....)
 - **TargetId** (*):
-    - for areas, intentions and texts : their id,
-    - for navigation : a chosen name for the target (GeneralArea, ImportantArea, RecipientList)
-    - for commands : the id of the property they are targeting (like Gender - Male, Age - over45,...)
+    - for intentions, texts or photos : their id (or their name if they don't have an id)
+    - for commands : the id of the button or control being pressed (example : LanguageButton, GenderButton, AgeButton)
+- **TargetParameter** : additional values  ('fr-FR', 'Male', '18 to 39')
 
 (*) See [Values](#values) paragraph below to check the kind of values you can have
 
-- **TargetType** : this describes the intention of the user action. It may be Area / Intention / Text / Navigation / Command 
-(such as filter, profile or language buttons)
-- **TargetParameter** : additional value given in the context of the call for a target
+- **TargetType** : Is it a Text, an Image, a Command (like a button), an Intention (= a text category)
 - **AreaId** : the id/name of the area you use to get your intentions, this is usually the name of your app
 - **ClientTime** : the time get from the client side
 - **DeviceId** : An identifier of the user device that you affect from your app
