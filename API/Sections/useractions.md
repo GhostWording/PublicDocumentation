@@ -11,7 +11,7 @@ The format is the following:
 where `{querystring}` contains these key/values:
 
 - **ActionType** (*): Thetype of user action : Click, Swipe, SendSMS, SendMail, RefreshTexts, ...
-- **TargetType** : Is it a Text, an Image, a Command (like a button), an Intention (= a text category)
+- **TargetType** : For UI events it can be Text, Image, Intention (= a text category), Command (anything else). For non UI events (such as app being launched of loosing focus) is will be App.
 - **TargetId** (*):
     - for intentions, texts or photos : their id (or their name if they don't have an id)
     - for commands : the id of the button or control being pressed (example : LanguageButton, GenderButton, AgeButton)
