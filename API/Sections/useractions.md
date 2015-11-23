@@ -13,8 +13,8 @@ where `{querystring}` contains these key/values:
 - **ActionType** (*): Thetype of user action : Click, Swipe, SendSMS, SendMail, RefreshTexts, ...
 - **TargetType** : For UI events it can be Text, Image, Intention (= a text category), Command (anything else). For non UI events (such as app being launched of loosing focus) is will be App.
 - **TargetId** (*):
-    - for intentions, texts or photos : their id (or their name if they don't have an id)
-    - for commands : the id of the button or control being pressed (example : LanguageButton, GenderButton, AgeButton)
+    - for texts, images or intentions : their Id (or their name if they don't have an id)
+    - for commands : the id of the button or control being pressed (example : LanguageButton, GenderButton, AgeButton). This id is local to each app.
 - **TargetParameter** : additional values  ('fr-FR', 'Male', '18 to 39')
 - **ActionLocation** (*): where the action is initiated on your app : Splash, Tutorial, MainScreen, TextDetailView, TextList, IntentionList,.....)
 
