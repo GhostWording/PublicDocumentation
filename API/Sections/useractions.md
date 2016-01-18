@@ -30,7 +30,7 @@ where `{querystring}` contains these key/values:
 - **FacebookId** : if the user is logged with Facebook within your app, you should setup he's facebook id here
 - **ExperimentId** : the Id of the experiment for A/B testing
 - **VariationId** : the version/id of the experiment
-- **IsNewInstall** : boolean value indicating if userevents came from a variation from a fresh install (or false if user had already re-installed the app)
+- **IsNewInstall** : boolean value(**true** or **false** and not 1 or 0) indicating if userevents came from a variation from a fresh install (or false if user had already re-installed the app)
 
 The key/values below are mandatory because they are key discriminatory factors for analysis:
 - **VersionNumber** : each time you build and publish your app, you have to increase your application version number, this allows us to control and check how people is using the apps depending on version updates
