@@ -4,6 +4,8 @@ This api contains configurations and definitions to be shared by all application
   
 ## Recipient - relation types
 
+** [OBSOLETE] ** this paragraph is still here for a limited time, but the updated version you should use is not any more a shared configuration but data you get from the api. Get more information on [Relation Types](relationtypes.md).
+
 **Description** : defining an id for the a relation type + gender
 
 The main properties you are interested in are then:
