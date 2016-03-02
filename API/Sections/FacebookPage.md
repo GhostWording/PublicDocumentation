@@ -5,7 +5,7 @@ compatible with Facebook OpenGraph and it also carries [AppLinks](http://applink
 
 This is an exemple of this page and how it is build:
 
-[http://www.commentvousdire.com/webapp/fr/area/HumourApp/recipient/LoveInterestF/intention/2E2986/text/DA5F4D?imagePath=%2Fcvd%2Ffbfriend%2Fstockanimals%2Fsmall%2F522490_311386318972645_395720258_n.jpg](http://www.commentvousdire.com/webapp/fr/area/HumourApp/recipient/LoveInterestF/intention/2E2986/text/DA5F4D?imagePath=%2Fcvd%2Ffbfriend%2Fstockanimals%2Fsmall%2F522490_311386318972645_395720258_n.jpg)
+[http://www.commentvousdire.com/webapp/fr/area/HumourApp/recipient/LoveInterestF/intention/2E2986/text/DA5F4D?imagePath=/cvd/fbfriend/stockanimals/small/522490_311386318972645_395720258_n.jpg](http://www.commentvousdire.com/webapp/fr/area/HumourApp/recipient/LoveInterestF/intention/2E2986/text/DA5F4D?imagePath=%2Fcvd%2Ffbfriend%2Fstockanimals%2Fsmall%2F522490_311386318972645_395720258_n.jpg)
 
 The pattern and information you provide in the url are the following:
 
