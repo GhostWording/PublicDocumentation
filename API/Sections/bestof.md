@@ -10,7 +10,7 @@ These apis are hosted in [http://gw-bestof.azurewebsites.net](http://gw-bestof.a
 Get the most popular images for each intention. You get in return an array of intentions with their scoring and for each an array of images with 
 their special scoring:
       
-      --GET http://gw-bestof.azurewebsites.net/intention/67CC40/images
+      __--GET http://gw-bestof.azurewebsites.net/intention/67CC40/images
       GET http://gw-bestof.azurewebsites.net/intention/67CC40/popularimages
       [
         {
