@@ -3,6 +3,10 @@
 They provide a simple way to access usage data computed everyday
 
 These apis are hosted in [http://gw-bestof.azurewebsites.net](http://gw-bestof.azurewebsites.net).
+_-- Il faudrait changer le nom du site aussi --_
+These apis are hosted in [http://gw-popular.azurewebsites.net](http://gw-bestof.azurewebsites.net).
+
+_-- Et penser à faire l'API Quizzes qui renvoit la liste des Intentions d'une area + 0 à 5 textes par intention en fonction des textes que accompagnés d'image que l'on arrive à trouver pour une culture donnée --__
 
 ## Popular Images for Intention
 
