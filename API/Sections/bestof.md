@@ -1,16 +1,17 @@
-# Best Of Apis
+# Apis for popular texts and images
 
-Best Api provides a simple way to get best elements computed everyday on users usage statistics.
+They provide a simple way to access usage data computed everyday
 
 These apis are hosted in [http://gw-bestof.azurewebsites.net](http://gw-bestof.azurewebsites.net).
 
-## Best Images for Intention
+## Popular Images for Intention
 
 ### Description
-Get the best images for each intention. You get in return an array of intentions with their scoring and for each an array of images with 
+Get the most popular images for each intention. You get in return an array of intentions with their scoring and for each an array of images with 
 their special scoring:
       
-      GET http://gw-bestof.azurewebsites.net/intention/67CC40/images
+      --GET http://gw-bestof.azurewebsites.net/intention/67CC40/images
+      GET http://gw-bestof.azurewebsites.net/intention/67CC40/popularimages
       [
         {
           "Images": [
@@ -36,17 +37,17 @@ The scoring is actually based on the number of times an image has been displayed
 
 ### Apis
 
-You can get all intentions with their images:
+You can get all intentions with their popular images:
 
-    GET http://gw-bestof.azurewebsites.net/intentions/images
+    -- GET http://gw-bestof.azurewebsites.net/intentions/images -- we probably don't want that one
  
 ** not yet working ** Or the best images for all intentions in your area:
 
-    GET http://gw-bestof.azurewebsites.net/{area-name}/intentions/images
+    GET http://gw-bestof.azurewebsites.net/{area-name}/intentions/popularimages
     
 Or  You can get images for one intention:
 
-    GET http://gw-bestof.azurewebsites.net/intention/{intentionID}/images
+    GET http://gw-bestof.azurewebsites.net/intention/{intentionID}/popularimages
 
 ### Content:
 
@@ -55,25 +56,30 @@ The returned content has the following properties for each intention:
 * Images: the array with the best of images for the intention
   * ImageName : the name of the image for reference
   * ImageLink : a working link to the image in our images repository,
-  * TotalImageForIntention : number of times the image has been selected in a message for the texts in this intention,
-  * TotalImageDisplays : number of times an image has been displayed with the texts of this intention,
-  * ImageIntentionScore : image score related to these totals,
-  * ImageRankInIntention : the rank of the image in this intention (1 to each image, no equal ranks),
-  * ImageDenseRankInIntention : the real rank of the image in case of doubles ,
+  --* TotalImageForIntention : number of times the image has been shared in a message conveying this intention,
+  * NbSharesForIntention : number of times the image has been shared in a message conveying this intention,
+  --* TotalImageDisplays : number of times an image has been displayed with the texts of this intention,
+  * NbDisplaysForIntention : number of times an image has been displayed with the texts of this intention,
+  --* ImageIntentionScore : image score related to these totals,
+  * ScoreForIntention : image score related to these totals,
+  --* ImageRankInIntention : the rank of the image in this intention (1 to each image, no equal ranks),
+  * RankForIntention : the rank of the image in this intention (1 to each image, no equal ranks),
+  --* ImageDenseRankInIntention : the real rank of the image in case of doubles ,
+  * DenseRankForIntention : the real rank of the image in case of doubles ,
   * GlobalRank : the global rank of the image accross all intentions
-* IntentionId : id of the actual intention,
+* IntentionId : id of the intention,
 * IntentionLabel : the label of the intention for your culture,
-* TotalLinksForIntention : sum of all selections for the intention,
-* IntentionRank : the rank of the intention based on it's displays/links accross all intentions
+-- * TotalLinksForIntention : sum of all selections for the intention, -- we don't want that
+-- * IntentionRank : the rank of the intention based on it's displays/links accross all intentions -- we don't want that
 
 ### Options
 
 You can define the following parameters:
 
 * **maxrank** : setup how many images to get for each intention, by default it's `10`.
-  * exemple : http://gw-bestof.azurewebsites.net/intentions/images?maxrank=3 (get the 3 best images for each intention)
+  * exemple : http://gw-bestof.azurewebsites.net/intentions/popularimages?maxrank=3 (get the 3 best images for each intention)
 * **culture** : the culture is automatically get from the headers sent with app/browser but you can override it by passing the culture in the querystring
-  * exemple : http://gw-bestof.azurewebsites.net/intention/67CC40/images?maxrank=2&culture=es-ES (get 2 best images for each intention with intention labels in spanish)
+  * exemple : http://gw-bestof.azurewebsites.net/intention/67CC40/popularimages?maxrank=2&culture=es-ES (get 2 best images for each intention with intention labels in spanish)
   
   
 ## Best texts for Intention
