@@ -2,7 +2,7 @@
 
 They provide a simple way to access usage data computed everyday
 
-These apis are hosted in [http://gw-popular.azurewebsites.net](http://gw-bestof.azurewebsites.net).
+These apis are hosted in [http://gw-popular.azurewebsites.net](http://gw-popular.azurewebsites.net).
 
 ## Popular Images for Intention
 
@@ -10,7 +10,7 @@ These apis are hosted in [http://gw-popular.azurewebsites.net](http://gw-bestof.
 Get the most popular images for each intention. You get in return an array of intentions with their scoring and for each an array of images with 
 their special scoring:
       
-      GET http://gw-bestof.azurewebsites.net/liptip/intention/67CC40/popularimages
+      GET http://gw-popular.azurewebsites.net/liptip/intention/67CC40/popularimages
       [
         {
           "Images": [
@@ -38,11 +38,11 @@ The scoring is actually based on the number of times an image has been displayed
 
 Get the best images for all intentions in your area:
 
-    GET http://gw-bestof.azurewebsites.net/{area-name}/intentions/popularimages
+    GET http://gw-popular.azurewebsites.net/{area-name}/intentions/popularimages
     
 Or  You can get images for one intention:
 
-    GET http://gw-bestof.azurewebsites.net/intention/{intentionID}/popularimages
+    GET http://gw-popular.azurewebsites.net/{area-name}/intention/{intentionID}/popularimages
 
 ### Content:
 
@@ -65,9 +65,9 @@ The returned content has the following properties for each intention:
 You can define the following parameters:
 
 * **maxrank** : setup how many images to get for each intention, by default it's `10`.
-  * exemple : http://gw-bestof.azurewebsites.net/liptip/intentions/popularimages?maxrank=3 (get the 3 most popular images for each intention)
+  * exemple : http://gw-popular.azurewebsites.net/liptip/intentions/popularimages?maxrank=3 (get the 3 most popular images for each intention)
 * **culture** : the culture is automatically get from the headers sent with app/browser but you can override it by passing the culture in the querystring
-  * exemple : http://gw-bestof.azurewebsites.net/liptip/intention/67CC40/popularimages?maxrank=2&culture=es-ES (get 2 most popular images for each intention with intention labels in spanish)
+  * exemple : http://gw-popular.azurewebsites.net/liptip/intention/67CC40/popularimages?maxrank=2&culture=es-ES (get 2 most popular images for each intention with intention labels in spanish)
   
   
 ## Popular  texts for Intention
@@ -76,7 +76,7 @@ You can define the following parameters:
 Get the texts in your culture for the best prototypes for each intention. You get in return an array of intentions with their scoring and
 texts with the usual content and their special scoring too. The scoring is based on the number of times texts are displayed and selected in a message (internally it's an aggregate at the text protype level then the best text for the prototype is choosen):
 
-      GET http://gw-bestof.azurewebsites.net/liptip/intention/67CC40/populartexts?maxrank=2&culture=en-EN
+      GET http://gw-popular.azurewebsites.net/liptip/intention/67CC40/populartexts?maxrank=2&culture=en-EN
       [
         {
           "Texts": [
@@ -118,19 +118,19 @@ The returned content has the following properties for each intention:
 
 Get the best texts for all intentions in your area:
 
-    GET http://gw-bestof.azurewebsites.net/{area-name}/intentions/populartexts
+    GET http://gw-popular.azurewebsites.net/{area-name}/intentions/populartexts
     
 Or  You can get the texts for one intention only:
 
-    GET http://gw-bestof.azurewebsites.net/intention/{intentionID}/populartexts
+    GET http://gw-popular.azurewebsites.net/{area-name}/intention/{intentionID}/populartexts
 
 ### Options
 
 You can define the following parameters:
 
 * **maxrank** : setup how many texts to get for each intention, by default it's `10`.
-  * exemple : http://gw-bestof.azurewebsites.net/liptip/intentions/populartexts?maxrank=3 (get the 3 most popular texts for each intention)
+  * exemple : http://gw-popular.azurewebsites.net/liptip/intentions/populartexts?maxrank=3 (get the 3 most popular texts for each intention)
 * **culture** : the culture is automatically get from the headers sent with app/browser but you can override it by passing the culture in the querystring
-  * exemple : http://gw-bestof.azurewebsites.net/liptip/intention/67CC40/populartexts?maxrank=2&culture=en-EN (get 2 most popular texts in english for each intention with intention labels in English too)
+  * exemple : http://gw-popular.azurewebsites.net/liptip/intention/67CC40/populartexts?maxrank=2&culture=en-EN (get 2 most popular texts in english for each intention with intention labels in English too)
    
 
