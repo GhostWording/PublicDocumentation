@@ -29,6 +29,24 @@ Get the intention of the day:
 
 The returned content is a list of texts in their usual form for all text apis.
 
+For the `` api, the texts are grouped by intention:
+
+{
+    "IntentionId": "016E91",
+    "IntentionLabel": "I-think-of-you",
+    "Texts": [
+        {
+            "ImageUrl":"http://...",
+            "Text": {
+              "TextId": "27F3BB",
+              -- other properties --
+        },
+        -- other texts --
+    ]
+}
+
+
+
 For the intention of the day it's an information about the sorted intention:
 
       {
