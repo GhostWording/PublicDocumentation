@@ -132,5 +132,62 @@ You can define the following parameters:
   * exemple : http://gw-popular.azurewebsites.net/liptip/intentions/populartexts?maxrank=3 (get the 3 most popular texts for each intention)
 * **culture** : the culture is automatically get from the headers sent with app/browser but you can override it by passing the culture in the querystring
   * exemple : http://gw-popular.azurewebsites.net/liptip/intention/67CC40/populartexts?maxrank=2&culture=en-EN (get 2 most popular texts in english for each intention with intention labels in English too)
+  * 
+  
+
+
+
+## Popular  texts for Image
+
+### Description
+It returns the best prototypes for one image with the most appropriate realization in your culture
+
+      GET http://gw-popular.azurewebsites.net/liptip/image/0x550_2.jpg/populartexts?maxrank=3&culture=en-EN
+      {
+        "ImageName": "0x550_2.jpg",
+        "ImageLink": "http://gw-static.azurewebsites.net/canonical/0x550_2.jpg",
+        "Texts": [
+          {
+            "ImageName": "0x550_2.jpg",
+            "ImageLink": "http://gw-static.azurewebsites.net/canonical/0x550_2.jpg",
+            "Score": 0.021464851137407467,
+            "Rank": 1,
+            "TextId": "8514EF",
+            -- other usual text properties --
+          }, 
+          -- other texts --
+        ]
+      }
+
+### Content:
+
+The returned content has the following properties:
+
+* ImageName : the name of the image asked
+* ImageLink : a canonical link to the image
+* Texts: the array with the best of texts in your culture for the image
+  * Score : score based on image/text links/displays,
+  * Rank : the rank of the text realization for the image,
+  * _other properties are the usual text properties_
+
+
+### Apis
+
+Get the best texts for one image:
+
+    GET http://gw-popular.azurewebsites.net/liptip/image/{image_name}/populartexts?maxrank=5&culture=en-EN
+    
+
+### Options
+
+You can define the following parameters:
+
+* **maxrank** : setup how many texts to get for each intention, by default it's `10`.
+  * exemple : http://gw-popular.azurewebsites.net/liptip/intentions/populartexts?maxrank=3 (get the 3 most popular texts for each intention)
+* **culture** : the culture is automatically get from the headers sent with app/browser but you can override it by passing the culture in the querystring
+  * exemple : http://gw-popular.azurewebsites.net/liptip/intention/67CC40/populartexts?maxrank=2&culture=en-EN (get 2 most popular texts in english for each intention with intention labels in English too)
+   
+
+
    
 
