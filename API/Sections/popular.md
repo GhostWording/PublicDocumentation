@@ -1,20 +1,19 @@
 # Apis for popular texts and images
 
-They provide a simple way to access popular data computed everyday
+They list texts and images that are sent often for a given intention, texts that are sent often with a given image, images that are sent often with a given text. 
 
 These apis are hosted under [http://api.cvd.io/popular/](http://api.cvd.io/popular/).
 
 The following combination of elements are available within the service:
 
-* [Popular texts for all intentions in your area](#TextsForIntention):
-      * ex : http://api.cvd.io/popular/liptip/populartexts/intention/all
-* [Popular texts for intention](#TextsForIntention):
+* [Texts that are sent often to express a given intention](#TextsForIntention):
       * ex : http://api.cvd.io/popular/liptip/populartexts/intention/67CC40
-* [Popular texts for one image](#TextsForImage): 
-      * ex : http://api.cvd.io/popular/liptip/populartexts/image/shutterstock_188418881.jpg
-* [Popular images for intentions](#ImagesForIntentions):
+      * ex : http://api.cvd.io/popular/liptip/populartexts/intention/all
+* [Images that are sent often to express a given intention](#ImagesForIntentions):
       * ex : http://api.cvd.io/popular/liptip/popularimages/intention/67CC40
-* [Popular images for listed text prototypes](#ImagesForPrototypes):
+* [Texts that are sent often with a given image](#TextsForImage): 
+      * ex : http://api.cvd.io/popular/liptip/populartexts/image/shutterstock_188418881.jpg
+* [Images that are sent often with a given text](#ImagesForPrototypes):
       * ex : http://api.Cvd.io/popular/liptip/popularimages/prototypeids/686367,2D21F1,6D8D36
 
 
