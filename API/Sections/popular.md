@@ -1,82 +1,32 @@
 # Apis for popular texts and images
 
-They provide a simple way to access usage data computed everyday
+They provide a simple way to access popular data computed everyday
 
-These apis are hosted in [http://gw-popular.azurewebsites.net](http://gw-popular.azurewebsites.net).
+These apis are hosted under [http://api.cvd.io/popular/](http://api.cvd.io/popular/).
 
-## Popular Images for Intention
+The following combination of elements are available within the service:
 
-### Description
-Get the most popular images for each intention. You get in return an array of intentions with their scoring and for each an array of images with 
-their special scoring:
-      
-      GET http://gw-popular.azurewebsites.net/liptip/intention/67CC40/popularimages
-      [
-        {
-          "Images": [
-            {
-              "ImageName": "shutterstock_188418881.jpg",
-              "ImageLink": "http://gw-static.azurewebsites.net/canonical/shutterstock_188418881.jpg",
-              "NbSharesForIntention": 22,
-              "NbDisplaysForIntention": 999,
-              "ScoreForIntention": 0.022,
-              "RankForIntention": 1,
-              "DenseRankForIntention": 1,
-              "GlobalRank": 262
-            }, ...
-          ],
-          "IntentionId": "67CC40",
-          "IntentionLabel": "Pensées positives",
-          "TotalLinksForIntention": 14494,
-          "IntentionRank": 3
-        }
-      ]
+* [Popular texts prototypes for intention](#TextsForIntention):
+      * ex : http://api.cvd.io/popular/liptip/populartexts/intention/67CC40
+* Popular texts for one image: 
+      * ex : http://api.cvd.io/popular/liptip/populartexts/image/shutterstock_188418881.jpg
+* Popular images for intentions:
+      * ex : http://api.cvd.io/popular/liptip/popularimages/intention/67CC40
+* popular images for listed text prototypes:
+      * ex : http://api.Cvd.io/popular/liptip/popularimages/prototypeids/686367,2D21F1,6D8D36
 
-The scoring is actually based on the number of times an image has been displayed and selected by users to send with a message.
 
-### Apis
-
-Get the best images for all intentions in your area:
-
-    GET http://gw-popular.azurewebsites.net/{area-name}/intentions/popularimages
-    
-Or  You can get images for one intention:
-
-    GET http://gw-popular.azurewebsites.net/{area-name}/intention/{intentionID}/popularimages
-
-### Content:
-
-The returned content has the following properties for each intention:
-
-* Images: the array with the best of images for the intention
-  * ImageName : the name of the image for reference
-  * ImageLink : a working link to the image in our images repository,
-  * NbSharesForIntention : number of times the image has been shared in a message conveying this intention,
-  * NbDisplaysForIntention : number of times an image has been displayed with the texts of this intention,
-  * ScoreForIntention : image score related to these totals,
-  * RankForIntention : the rank of the image in this intention (1 to each image, no equal ranks),
-  * DenseRankForIntention : the real rank of the image in case of doubles ,
-  * GlobalRank : the global rank of the image accross all intentions
-* IntentionId : id of the intention,
-* IntentionLabel : the label of the intention for your culture,
-
-### Options
-
-You can define the following parameters:
-
-* **maxrank** : setup how many images to get for each intention, by default it's `10`.
-  * exemple : http://gw-popular.azurewebsites.net/liptip/intentions/popularimages?maxrank=3 (get the 3 most popular images for each intention)
-* **culture** : the culture is automatically get from the headers sent with app/browser but you can override it by passing the culture in the querystring
-  * exemple : http://gw-popular.azurewebsites.net/liptip/intention/67CC40/popularimages?maxrank=2&culture=es-ES (get 2 most popular images for each intention with intention labels in spanish)
-  
-  
-## Popular  texts for Intention
+<a name="TextsForIntention">
+Popular  texts for Intention
+----------------------------
 
 ### Description
-Get the texts in your culture for the best prototypes for each intention. You get in return an array of intentions with their scoring and
-texts with the usual content and their special scoring too. The scoring is based on the number of times texts are displayed and selected in a message (internally it's an aggregate at the text protype level then the best text for the prototype is choosen):
+Get the texts in your culture for the best prototypes for each intention. 
+You get in return an array of intentions with their scoring and texts scoring. 
 
-      GET http://gw-popular.azurewebsites.net/liptip/intention/67CC40/populartexts?maxrank=2&culture=en-EN
+The scoring is based on the number of times texts are displayed and selected in a message (internally it's an aggregate at the text protype level then the best text for the prototype is choosen):
+
+      GET http://api.cvd.io/popular/liptip/intention/67CC40/populartexts?maxrank=2&culture=en-EN
       [
         {
           "Texts": [
@@ -118,11 +68,11 @@ The returned content has the following properties for each intention:
 
 Get the best texts for all intentions in your area:
 
-    GET http://gw-popular.azurewebsites.net/{area-name}/intentions/populartexts
+    GET http://api.cvd.io/popula/{area-name}/intentions/populartexts
     
 Or  You can get the texts for one intention only:
 
-    GET http://gw-popular.azurewebsites.net/{area-name}/intention/{intentionID}/populartexts
+    GET http://api.cvd.io/popular/{area-name}/intention/{intentionID}/populartexts
 
 ### Options
 
@@ -137,12 +87,84 @@ You can define the following parameters:
 
 
 
-## Popular  texts for Image
+
+Popular Images for Intention
+----------------------------
+
+### Description
+Get the most popular images for each intention. You get in return an array of intentions with their scoring and for each an array of images with 
+their special scoring:
+      
+      GET http://api.cvd.io/popular/liptip/intention/67CC40/popularimages
+      [
+        {
+          "Images": [
+            {
+              "ImageName": "shutterstock_188418881.jpg",
+              "ImageLink": "http://gw-static.azurewebsites.net/canonical/shutterstock_188418881.jpg",
+              "NbSharesForIntention": 22,
+              "NbDisplaysForIntention": 999,
+              "ScoreForIntention": 0.022,
+              "RankForIntention": 1,
+              "DenseRankForIntention": 1,
+              "GlobalRank": 262
+            }, ...
+          ],
+          "IntentionId": "67CC40",
+          "IntentionLabel": "Pensées positives",
+          "TotalLinksForIntention": 14494,
+          "IntentionRank": 3
+        }
+      ]
+
+The scoring is actually based on the number of times an image has been displayed and selected by users to send with a message.
+
+### Apis
+
+Get the best images for all intentions in your area:
+
+    GET http://api.cvd.io/popular/{area-name}/intentions/popularimages
+    
+Or  You can get images for one intention:
+
+    GET http://api.cvd.io/popular/{area-name}/intention/{intentionID}/popularimages
+
+### Content:
+
+The returned content has the following properties for each intention:
+
+* Images: the array with the best of images for the intention
+  * ImageName : the name of the image for reference
+  * ImageLink : a working link to the image in our images repository,
+  * NbSharesForIntention : number of times the image has been shared in a message conveying this intention,
+  * NbDisplaysForIntention : number of times an image has been displayed with the texts of this intention,
+  * ScoreForIntention : image score related to these totals,
+  * RankForIntention : the rank of the image in this intention (1 to each image, no equal ranks),
+  * DenseRankForIntention : the real rank of the image in case of doubles ,
+  * GlobalRank : the global rank of the image accross all intentions
+* IntentionId : id of the intention,
+* IntentionLabel : the label of the intention for your culture,
+
+### Options
+
+You can define the following parameters:
+
+* **maxrank** : setup how many images to get for each intention, by default it's `10`.
+  * exemple : http://gw-popular.azurewebsites.net/liptip/intentions/popularimages?maxrank=3 (get the 3 most popular images for each intention)
+* **culture** : the culture is automatically get from the headers sent with app/browser but you can override it by passing the culture in the querystring
+  * exemple : http://gw-popular.azurewebsites.net/liptip/intention/67CC40/popularimages?maxrank=2&culture=es-ES (get 2 most popular images for each intention with intention labels in spanish)
+  
+  
+
+
+
+Popular  texts for Image
+------------------------
 
 ### Description
 It returns the best prototypes for one image with the most appropriate realization in your culture
 
-      GET http://gw-popular.azurewebsites.net/liptip/image/0x550_2.jpg/populartexts?maxrank=3&culture=en-EN
+      GET http://api.cvd.io/popular/liptip/image/0x550_2.jpg/populartexts?maxrank=3&culture=en-EN
       {
         "ImageName": "0x550_2.jpg",
         "ImageLink": "http://gw-static.azurewebsites.net/canonical/0x550_2.jpg",
@@ -175,7 +197,7 @@ The returned content has the following properties:
 
 Get the best texts for one image:
 
-    GET http://gw-popular.azurewebsites.net/liptip/image/{image_name}/populartexts?maxrank=5&culture=en-EN
+    GET http://api.cvd.io/popular/liptip/image/{image_name}/populartexts?maxrank=5&culture=en-EN
     
 
 ### Options
