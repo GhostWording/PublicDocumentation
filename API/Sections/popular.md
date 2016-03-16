@@ -6,15 +6,37 @@ These apis are hosted under [http://api.cvd.io/popular/](http://api.cvd.io/popul
 
 The following combination of elements are available within the service:
 
+<!-- 
+Texts:
+* [Texts that are sent often to express a given intention](#TextsForIntention):
+      * ex : http://api.cvd.io/popular/liptip/populartexts/intention/67CC40
+      * ex : http://api.cvd.io/popular/liptip/populartexts/intention/all
+* [Texts that are sent often with a given image](#MatchinTextsForImage): 
+      * ex : http://api.cvd.io/popular/liptip/matchingtexts/image/shutterstock_188418881.jpg
+      
+Images:
+* [Images that are sent often to express a given intention](#ImagesForIntentions):
+      * ex : http://api.cvd.io/popular/liptip/popularimages/intention/67CC40
+* [Images that are sent often with a given text](#ImagesForPrototypes):
+      * ex : http://api.cvd.io/popular/liptip/matchingimages/intention/67CC40
+      * ex : http://api.cvd.io/popular/liptip/matchingimages/intention/all
+      * ex : http://api.cvd.io/popular/liptip/matchingimages/prototypeids/686367,2D21F1,6D8D36
+-->
+Popular (in intention):
 * [Texts that are sent often to express a given intention](#TextsForIntention):
       * ex : http://api.cvd.io/popular/liptip/populartexts/intention/67CC40
       * ex : http://api.cvd.io/popular/liptip/populartexts/intention/all
 * [Images that are sent often to express a given intention](#ImagesForIntentions):
       * ex : http://api.cvd.io/popular/liptip/popularimages/intention/67CC40
-* [Texts that are sent often with a given image](#TextsForImage): 
-      * ex : http://api.cvd.io/popular/liptip/populartexts/image/shutterstock_188418881.jpg
-* [Images that are sent often with a given text](#ImagesForPrototypes):
-      * ex : http://api.Cvd.io/popular/liptip/popularimages/prototypeids/686367,2D21F1,6D8D36
+
+      
+Matching (between texts/images):
+* [Texts that are sent often with a given image](#MatchingTextsForImage): 
+      * ex : http://api.cvd.io/popular/liptip/matchingtexts/image/shutterstock_188418881.jpg
+* [Images that are sent often with a given text](#MatchingImagesForPrototypes):
+      * ex : http://api.cvd.io/popular/liptip/matchingimages/intention/67CC40
+      * ex : http://api.cvd.io/popular/liptip/matchingimages/intention/all
+      * ex : http://api.cvd.io/popular/liptip/matchingimages/prototypeids/686367,2D21F1,6D8D36
 
 
 <a name="TextsForIntention">
@@ -96,9 +118,9 @@ You can add to your query the following parameters:
 
   
 
-<a name="TextsForImage">
-Popular  texts for Image
-------------------------
+<a name="MatchingTextsForImage">
+Matching  texts for Image
+-------------------------
 
 ### Description
 It returns the best prototypes for one image with the most appropriate realization in your culture
@@ -229,12 +251,13 @@ You can define the following parameters:
 
   
 
-<a name="#ImagesForPrototypes">
-Popular Images for a List of text Prototypes
+<a name="#MatchingImagesForPrototypes">
+Matching Images for a text Prototypes
 --------------------------------------------
 
 ### Description
-Get the most popular images for each text prototype in the list. You get in return an array of intentions with their scoring and for each an array of images with their special scoring:
+Get the best matching images for each text prototype (for one, for all in a list or for all in an intention). 
+You get in return an array of texts with their scoring and for each an array of images with their special scoring:
       
       GET http://api.cvd.io/popular/liptip/popularimages/prototypeIds/686367,2D21F1,6D8D36
       [
@@ -260,13 +283,34 @@ The scoring is actually based on the number of times an image has been displayed
 
 ### Apis
 
-Get the best images for all text prototype ids:
+Get the best images for all text prototype ids provided as argument:
 
-     GET http://api.cvd.io/popular/{area-name}/popularimages/prototypeIds/{prototype-ids}
+     GET http://api.cvd.io/popular/{area-name}/matchingimages/prototypeIds/{prototype-ids}
     
      With : 
           - area-name   = identifier name of your area
           - prototype-ids = comma separated list of prototype identifiers
+          
+     Returns an array of `image with score`
+ 
+Get the best images for all text prototype ids in one intention:
+
+     GET http://api.cvd.io/popular/{area-name}/matchingimages/intention/{intentionid}
+    
+     With : 
+          - area-name   = identifier name of your area
+          - intentionid = id of the intention where the texts you want belongs to
+          
+     Returns an array of `image with score`
+
+Get the best images for all text prototype ids in all intentions in your area:
+
+     GET http://api.cvd.io/popular/{area-name}/matchingimages/intention/all
+    
+     With : 
+          - area-name   = identifier name of your area
+          
+     Returns an array of `intentions with for each an array of image with score`
           
 ### Content:
 
