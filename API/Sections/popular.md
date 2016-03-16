@@ -118,66 +118,6 @@ You can add to your query the following parameters:
 
   
 
-<a name="MatchingTextsForImage">
-Matching  texts for Image
--------------------------
-
-### Description
-It returns the best prototypes for one image with the most appropriate realization in your culture
-      GET http://api.cvd.io/popular/liptip/populartexts/image/0x550_2.jpg?maxrank=3&culture=en-EN
-      {
-        "ImageName": "0x550_2.jpg",
-        "ImageLink": "http://gw-static.azurewebsites.net/canonical/0x550_2.jpg",
-        "Texts": [
-          {
-            "TextId": "8514EF",
-            "PrototypeId":"432233",
-            "Scoring": {
-                   "NbShares": 22,
-                   "NbDisplays": 999,
-                   "Score": 0.022,
-                   "Rank": 1,
-                   "DenseRank": 1
-               }
-          }, // -- other texts --
-        ]
-      }
-
-### Content:
-
-The returned content has the following properties:
-
-* ImageName : the name of the image asked
-* ImageLink : a canonical link to the image
-* Texts: the array with the best of texts in your culture for the image
-     * Scoring : the scoring properties of the text:
-       * NbShares : number of times the text has been selected in a message with this image,
-       * NbDisplays : number of times the text prototype has been displayed with this image,
-       * Score : score calculated from the number of shares and of displays,
-       * Rank : the rank of the text prototype within this image (1 to each text, no equal ranks),
-       * DenseRank : the real rank of the text prototype within this image (doubles appear with the same rank),
-  * PrototypeId : identifier of the text prototype
-  * TextId : identifier of the best matching text in your culture for the prototype
-
-### Apis
-
-Get the best texts for one image:
-
-    GET http://api.cvd.io/popular/{area-name}/populartexts/image/{image_name}
-    
-    With:
-          - area-name   = identifier name of your area
-          - image_name = the name of the selected image (with extention, without path)
-
-### Options
-
-You can define the following parameters:
-
-* **maxrank** : setup how many texts to get for each intention, by default it's `10`.
-* **culture** : the culture is automatically get from the headers sent with app/browser but you can override it by passing the culture in the querystring
-
-
-
 
 <a name="#ImagesForIntentions">
 Popular Images for Intention
@@ -250,6 +190,67 @@ You can define the following parameters:
 * **culture** : the culture is automatically get from the headers sent with app/browser but you can override it by passing the culture in the querystring
 
   
+
+<a name="MatchingTextsForImage">
+Matching  texts for Image
+-------------------------
+
+### Description
+It returns the best prototypes for one image with the most appropriate realization in your culture
+      
+      GET http://api.cvd.io/popular/liptip/populartexts/image/0x550_2.jpg?maxrank=3&culture=en-EN
+      {
+        "ImageName": "0x550_2.jpg",
+        "ImageLink": "http://gw-static.azurewebsites.net/canonical/0x550_2.jpg",
+        "Texts": [
+          {
+            "TextId": "8514EF",
+            "PrototypeId":"432233",
+            "Scoring": {
+                   "NbShares": 22,
+                   "NbDisplays": 999,
+                   "Score": 0.022,
+                   "Rank": 1,
+                   "DenseRank": 1
+               }
+          }, // -- other texts --
+        ]
+      }
+
+### Content:
+
+The returned content has the following properties:
+
+* ImageName : the name of the image asked
+* ImageLink : a canonical link to the image
+* Texts: the array with the best of texts in your culture for the image
+     * Scoring : the scoring properties of the text:
+       * NbShares : number of times the text has been selected in a message with this image,
+       * NbDisplays : number of times the text prototype has been displayed with this image,
+       * Score : score calculated from the number of shares and of displays,
+       * Rank : the rank of the text prototype within this image (1 to each text, no equal ranks),
+       * DenseRank : the real rank of the text prototype within this image (doubles appear with the same rank),
+  * PrototypeId : identifier of the text prototype
+  * TextId : identifier of the best matching text in your culture for the prototype
+
+### Apis
+
+Get the best texts for one image:
+
+    GET http://api.cvd.io/popular/{area-name}/populartexts/image/{image_name}
+    
+    With:
+          - area-name   = identifier name of your area
+          - image_name = the name of the selected image (with extention, without path)
+
+### Options
+
+You can define the following parameters:
+
+* **maxrank** : setup how many texts to get for each intention, by default it's `10`.
+* **culture** : the culture is automatically get from the headers sent with app/browser but you can override it by passing the culture in the querystring
+
+
 
 <a name="#MatchingImagesForPrototypes">
 Matching Images for a text Prototypes
