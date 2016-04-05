@@ -24,19 +24,19 @@ Images:
 -->
 Popular (in intention):
 * [x] [Texts that are sent often to express a given intention](#TextsForIntention):
-      * [x] ex : http://api.cvd.io/popular/liptip/populartexts/intention/67CC40
-      * [x] ex : http://api.cvd.io/popular/liptip/populartexts/intention/all
+      * [x] ex : http://api.cvd.io/popular/yourapp/populartexts/intention/67CC40
+      * [x] ex : http://api.cvd.io/popular/yourapp/populartexts/intention/all/liptipspecial
 * [x] [Images that are sent often to express a given intention](#ImagesForIntentions):
-      * [x] ex : http://api.cvd.io/popular/liptip/popularimages/intention/67CC40
+      * [x] ex : http://api.cvd.io/popular/yourapp/popularimages/intention/67CC40
 
       
 Matching (between texts/images):
 * [x] [Texts that are sent often with a given image](#MatchingTextsForImage): 
       * [x] ex : http://api.cvd.io/popular/liptip/matchingtexts/image/shutterstock_188418881.jpg
 * [ ] [Images that are sent often with a given text](#MatchingImagesForPrototypes):
-      * [x]  ex : http://api.cvd.io/popular/liptip/matchingimages/intention/67CC40
-      * [x] ex : http://api.cvd.io/popular/liptip/matchingimages/intention/all
-      * [ ] ex : http://api.cvd.io/popular/liptip/matchingimages/prototypeids/686367,2D21F1,6D8D36
+      * [x]  ex : http://api.cvd.io/popular/yourapp/matchingimages/intention/67CC40
+      * [x] ex : http://api.cvd.io/popular/yourapp/matchingimages/intention/all/liptip
+      * [x] ex : http://api.cvd.io/popular/yourapp/matchingimages/prototypeids/686367,2D21F1,6D8D36
 
 
 <a name="TextsForIntention">
