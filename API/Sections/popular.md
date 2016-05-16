@@ -197,8 +197,8 @@ Matching  texts for Image
 
 ### Description
 It returns the best prototypes for one image with the most appropriate realization in your culture
-      
-      GET http://api.cvd.io/popular/liptip/populartexts/image/0x550_2.jpg?maxrank=3&culture=en-EN
+
+      GET http://api.cvd.io/popular/liptip/matchingtexts/image/0x550_2.jpg?maxrank=3&culture=en-EN
       {
         "ImageName": "0x550_2.jpg",
         "ImageLink": "http://gw-static.azurewebsites.net/canonical/0x550_2.jpg",
@@ -237,7 +237,7 @@ The returned content has the following properties:
 
 Get the best texts for one image:
 
-    GET http://api.cvd.io/popular/{area-name}/populartexts/image/{image_name}
+    GET http://api.cvd.io/popular/{area-name}/matchingtexts/image/{image_name}
     
     With:
           - area-name   = identifier name of your area
@@ -260,7 +260,7 @@ Matching Images for a text Prototypes
 Get the best matching images for each text prototype (for one, for all in a list or for all in an intention). 
 You get in return an array of texts with their scoring and for each an array of images with their special scoring:
       
-      GET http://api.cvd.io/popular/liptip/popularimages/prototypeIds/686367,2D21F1,6D8D36
+      GET http://api.cvd.io/popular/liptip/matchingimages/prototypeIds/686367,2D21F1,6D8D36
       [
         {
           "PrototypeId": "686367",
