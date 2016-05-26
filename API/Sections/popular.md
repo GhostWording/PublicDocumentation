@@ -29,11 +29,17 @@ Popular (in intention):
 * [x] [Images that are sent often to express a given intention](#ImagesForIntentions):
       * [x] ex : http://api.cvd.io/popular/yourapp/popularimages/intention/67CC40
 
+Popular (for user properties):
+* [x] [Texts that are often send by a MBTI profile](#TextsForMbtiProfile):
+      * [x] ex : http://api.cvd.io/popular/yourapp/populartexts/UserProperty/MBTISelected/INTP?maxrank=3&culture=fr-FR
+* [x] [Images that are often selected and send by a MBTI profile](#ImagesForMbtiProfile)
+      * [x] ex : http://api.cvd.io/popular/yourapp/matchingimages/UserProperty/MBTISelected/ENTP?maxrank=3&culture=fr-FR
       
+
 Matching (between texts/images):
 * [x] [Texts that are sent often with a given image](#MatchingTextsForImage): 
       * [x] ex : http://api.cvd.io/popular/liptip/matchingtexts/image/shutterstock_188418881.jpg
-* [ ] [Images that are sent often with a given text](#MatchingImagesForPrototypes):
+* [x] [Images that are sent often with a given text](#MatchingImagesForPrototypes):
       * [x]  ex : http://api.cvd.io/popular/yourapp/matchingimages/intention/67CC40
       * [x] ex : http://api.cvd.io/popular/yourapp/matchingimages/intention/all/liptip
       * [x] ex : http://api.cvd.io/popular/yourapp/matchingimages/prototypeids/686367,2D21F1,6D8D36
