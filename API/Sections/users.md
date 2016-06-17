@@ -11,11 +11,13 @@ The following endpoints are actually available within the service:
            * [x] ex : http://api.cvd.io/liptip/users/count?country=Algeria&gender=*
      * [X] [Get the list of facebookids of the users corresponding to the provided properties in querystring](#facebookidsforproperties)
            * [x]  ex : http://api.cvd.io/liptip/users/facebookids?country=*&gender=female&conjugalsituation=InACouple
-     * [ ] [Get a list of users with their properties] (#userlistwithproperties)
-           * [ ] get the properties for the users that I provided facebook ids
+     * [X] [Get a list of users with their properties] (#userlistwithproperties)
+           * [X] get the properties for the users that I provided facebook ids
                * ex : http://api.cvd.io/liptip/users/list/facebookids/10154292021876564,10154292021876563,10154292021876569
-           * [ ] get the properties for the users matching the search criteria
+           * [X] get the properties for the users matching the search criteria
                * ex : http://api.cvd.io/liptip/users/list?contry=Tunisia&MBTISelected=*
+           * [X] get the properties for the users matching the search criteria for one area only
+               * ex : http://api.cvd.io/justforinfo/users/list/stickers?contry=Tunisia&MBTISelected=*
 * One User :
      * [X] [Get all the properties of a user by it's id](#userproperties)
            * [x] ex with Facebook id : http://api.cvd.io/liptip/users/withfacebookid/10154292021876564
@@ -168,6 +170,10 @@ Get the properties for the user by device id (as identifier of the device)
 
      GET http://api.cvd.io/{area}/users/withdeviceid/{deviceid}
      
-     
-     
+<a name="userlistwithproperties  ">
+Properties for a user by id
+----------------------------   
+
+to complete ...
+   
      
