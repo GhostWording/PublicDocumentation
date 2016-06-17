@@ -6,13 +6,21 @@ These apis are hosted under [http://api.cvd.io/{area}/users/](http://api.cvd.io/
 
 The following endpoints are actually available within the service:
 
-* [X] [Count users corresponding to the provided properties in querystring](#countforproperties)
-      * [x] ex : http://api.cvd.io/liptip/users/count?country=Algeria&gender=male
-* [X] [Get the list of facebookids of the users corresponding to the provided properties in querystring](#facebookidsforproperties)
-      * [x]  ex : http://api.cvd.io/liptip/users/facebookids?country=Algeria&gender=female&conjugalsituation=InACouple
-* [X] [Get all the properties of a user by it's id](#userproperties)
-      * [x] ex : http://api.cvd.io/liptip/users/withfacebookid/10154292021876564
-      
+* List of users:
+     * [X] [Count users corresponding to the provided properties in querystring](#countforproperties)
+           * [x] ex : http://api.cvd.io/liptip/users/count?country=Algeria&gender=*
+     * [X] [Get the list of facebookids of the users corresponding to the provided properties in querystring](#facebookidsforproperties)
+           * [x]  ex : http://api.cvd.io/liptip/users/facebookids?country=*&gender=female&conjugalsituation=InACouple
+     * [ ] [Get a list of users with their properties] (#userlistwithproperties)
+           * [ ] get the properties for the users that I provided facebook ids
+               * ex : http://api.cvd.io/liptip/users/list/facebookids/10154292021876564,10154292021876563,10154292021876569
+           * [ ] get the properties for the users matching the search criteria
+               * ex : http://api.cvd.io/liptip/users/list?contry=Tunisia&MBTISelected=*
+* One User :
+     * [X] [Get all the properties of a user by it's id](#userproperties)
+           * [x] ex with Facebook id : http://api.cvd.io/liptip/users/withfacebookid/10154292021876564
+           * [x] ex with Device Id   : http://api.cvd.io/liptip/users/withdeviceid/c91df9b2e0620bcb
+           
 
 Notes:
 * this service is hosted by the http://gw-usersproperties.azurewebsites.net/ app service in isolation
@@ -25,7 +33,7 @@ Count users for properties
 ----------------------------
 
 ### Description
-return the number of users corresponding to some properties
+return the number of users corresponding to the searched properties
 
 ### Content:
 
@@ -37,7 +45,7 @@ The api is available as a webpage and in json the format returned is the followi
 
 ### Api
 
-Get the best texts for all intentions in your area:
+It returns the user count for the search.
 
      GET http://api.cvd.io/{areaId}/users/count?{querystring}
      
@@ -49,8 +57,19 @@ Get the best texts for all intentions in your area:
           - country
           - setlanguage
           - conjugalsituation
+          - ...
     
-   The values for each parameter are the ones used in the apps
+The values for each parameter are the exact same ones used in the apps.
+
+**Catch all search**:
+If you want to search for a property and don't care about the value but only want to know if there is a value, you can use `*` as search value.
+
+ex:
+     
+     country=*&gender=Female&setLanguage=fr
+     
+This means : give me all female speaking french that I know the country, whatever the contry is.
+
      
 <a name="facebookidsforproperties">
 Get FacebookId of users for properties
@@ -83,41 +102,72 @@ Get the best texts for all intentions in your area:
           - country
           - setlanguage
           - conjugalsituation
+          - ...
     
-   The values for each parameter are the ones used in the apps
+The values for each parameter are the exact ones used in the apps
 
+**Catch all search**:
+If you want to search for a property and don't care about the value but only want to know if there is a value, you can use `*` as search value.
 
+ex:
+     
+     country=*&gender=Female&setLanguage=fr
+     
+This means : give me all female speaking french that I know the country, whatever the contry is.
+
+   
 
 <a name="userproperties">
 Properties for a user by id
 ----------------------------
 
 ### Description
-return all existing properties for a user by it's facebook id (actual only user auth available)
+return all existing properties for a user by an id. That id is something that allows us to identify an user like the `facebookId` if the user is authentified with Facebook or the `deviceId` that identifies the device where the app is running if you don't have anything else.
 
 ### Content:
 
 The api is available as a webpage and in json the format returned is the following:
 
           {
-            "UserId": "10154292021876564",
-            "Properties": {
-              "Age": "18–39",
-              "ConjugalSituation": "Single",
-              "Country": "United Kingdom",
-              "Gender": "male",
-              "InitialMBTIKnowledge": "No",
-              "MBTISelected": "INTP",
-              "MBTIYesOrNo": "Yes",
-              "SetLanguage": "fr"
-            }
-          }
+                "UserId": "1045848478801118",
+                "DeviceId": "c91df9b2e0620bcb",
+                "FacebookId": "1045848478801118",
+                "Properties": {
+                  "DeviceId": "c91df9b2e0620bcb",
+                  "FacebookId": "1045848478801118",
+                  "Age": "18–39",
+                  "ConjugalSituation": "InACouple",
+                  "Country": "Ukraine",
+                  "FacebookFirstName": null,
+                  "Gender": "male",
+                  "InitialMBTIKnowledge": "Yes",
+                  "MBTISelected": "????",
+                  "MBTIYesOrNo": "Yes",
+                  "SetLanguage": "en",
+                  "UserAnimal": "10623538_924399740908222_584042635526052415_o.jpg",
+                  "UserFlower": "shutterstock_119283466.jpg",
+                  "UserLandscape": "10987377_662955520525947_5015081769844664549_n.jpg",
+                  "UserPresentation": "F641BB",
+                  ... (other properties defined in the future)...
+                }
+              }
 
-Note that some properties may be null if the user didn't set them before.
+Note that some properties may be null if the user didn't set them before, we return all the known properties defined for a user.
+
+Actually the `UserId` field is kept for compatibility, it contains the id you used to query the api. In the returned content, you'll get the facebookid and the deviceid also. 
+
 ### Api
+All the apis return the same content defined before.
 
 Get the properties for the user by facebook id (as identifier of the user)
 
      GET http://api.cvd.io/{area}/users/withfacebookid/{facebookid}
+     
+ 
+Get the properties for the user by device id (as identifier of the device)
+
+     GET http://api.cvd.io/{area}/users/withdeviceid/{deviceid}
+     
+     
      
      
