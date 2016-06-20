@@ -28,7 +28,6 @@ Notes:
 * this service is hosted by the http://gw-usersproperties.azurewebsites.net/ app service in isolation
 * an url rewrite is used to provide the host under api.cvd.io
 * queries are cached
-* __actually there is no automated job to compute these data !!!__
 
 <a name="countforproperties">
 Count users for properties
