@@ -11,7 +11,7 @@ The following endpoints are actually available within the service:
            * [x] ex : http://api.cvd.io/liptip/users/count?country=Algeria&gender=*
      * [X] [Get the list of facebookids of the users corresponding to the provided properties in querystring](#facebookidsforproperties)
            * [x]  ex : http://api.cvd.io/liptip/users/facebookids?country=*&gender=female&conjugalsituation=InACouple
-     * [X] [Get a list of users with their properties] (#userlistwithproperties)
+     * [X] [Get a list of users with their properties](#userlistwithproperties)
            * [X] get the properties for the users that I provided facebook ids
                * ex : http://api.cvd.io/liptip/users/list/facebookids/10154292021876564,10154292021876563,10154292021876569
            * [X] get the properties for the users matching the search criteria
@@ -174,6 +174,98 @@ Get the properties for the user by device id (as identifier of the device)
 Properties for a user by id
 ----------------------------   
 
-to complete ...
-   
+### Description
+return all existing properties for a list of users. The list of users can be defined either by providing a list of facebook ids or by searching the properties
+
+### Content:
+
+The api is returning a json array with users and properties, the format  is the following:
+
+          [
+            {
+                "DeviceId": "c91df9b2e0620bcb",
+                "FacebookId": "1045848478801118",
+                "Properties": {
+                  "DeviceId": "c91df9b2e0620bcb",
+                  "FacebookId": "1045848478801118",
+                  "Age": "18–39",
+                  "ConjugalSituation": "InACouple",
+                  "Country": "Ukraine",
+                  "FacebookFirstName": null,
+                  "Gender": "male",
+                  "InitialMBTIKnowledge": "Yes",
+                  "MBTISelected": "????",
+                  "MBTIYesOrNo": "Yes",
+                  "SetLanguage": "en",
+                  "UserAnimal": "10623538_924399740908222_584042635526052415_o.jpg",
+                  "UserFlower": "shutterstock_119283466.jpg",
+                  "UserLandscape": "10987377_662955520525947_5015081769844664549_n.jpg",
+                  "UserPresentation": "F641BB",
+                  ... (other properties defined in the future)...
+                }
+            },
+            {
+                "DeviceId": "c91df9b2e0620bcb",
+                "FacebookId": "1045848478801118",
+                "Properties": {
+                  "DeviceId": "c91df9b2e0620bcb",
+                  "FacebookId": "1045848478801118",
+                  "Age": "18–39",
+                  "ConjugalSituation": "InACouple",
+                  "Country": "Ukraine",
+                  "FacebookFirstName": null,
+                  "Gender": "male",
+                  "InitialMBTIKnowledge": "Yes",
+                  "MBTISelected": "????",
+                  "MBTIYesOrNo": "Yes",
+                  "SetLanguage": "en",
+                  "UserAnimal": "10623538_924399740908222_584042635526052415_o.jpg",
+                  "UserFlower": "shutterstock_119283466.jpg",
+                  "UserLandscape": "10987377_662955520525947_5015081769844664549_n.jpg",
+                  "UserPresentation": "F641BB",
+                  ... (other properties defined in the future)...
+                }
+            },... other users
+        ]
+
+Note that some properties may be null if the user didn't set them before, we return all the known properties defined for a user.
+
+Actually the `UserId` field is kept for compatibility, it contains the id you used to query the api. In the returned content, you'll get the facebookid and the deviceid also. 
+
+### Api
+All the apis endpoints return the same content defined above.
+
+1. Get the properties for the users by providing the list of facebook id for the users you want to have the properties:
+
+     GET http://api.cvd.io/{area}/users/list/facebookids/{facebookids}
      
+* Where:
+    * {facebookids} : list of comma separated values of facebook ids
+* Exemple:
+    * http://api.cvd.io/liptip/users/list/facebookids/10154292021876564,10154292021876563,10154292021876569
+    
+
+2. Get the user list by searching the properties
+By providing a list of search criterias in the query string, you'll get in return a list of matching users with their properties.
+
+**Note:_take care of the volume of data! you can have a huge list of users if your search is not precise enough and with a full list of properties for each user, it can be huge. Please as for a count for your search before_.**
+
+    GET http://api.cvd.io/{area}/users/list?{queryString}
+
+* Where :
+    * area : this first area in the path is NOT used to filter the results, it's just an information to identify your app
+    * queryString:
+        * key value pairs to search for (ex: country=Tunisia)
+        * catch all operator applies: to get all users with a property set regardless of the value (ex : country=*)
+
+3. Get the user list by searching the properties with area filter
+this Api work the same way as (2) but it only returns the users of one area:
+
+    GET http://api.cvd.io/{area}/users/list/{filterArea}?{queryString}
+     
+* Where :
+    * area : informative
+    * filterArea : app area to filter users
+    * queryString : search terms
+    
+
