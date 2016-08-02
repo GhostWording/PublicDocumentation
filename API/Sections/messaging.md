@@ -58,7 +58,7 @@ A user (man) send a selected card (text+image couple) as a message to an other u
 exemple:
 
     POST http://api.cvd.io/messaging/stikers/usertouser/message
-        {
+    {
       "sender": {
         "deviceId":"30a2af95828b0eb2",
         "facebookId":"10153830470651564"
@@ -155,6 +155,97 @@ the http status is anything but OK and the result should contain the error messa
 <a name="GetUserToUserMessages">
 Get all messages for a user (woman)
 ----------------------------
+
+### Description
+A user (woman) get all messages sent by real users.
+* [User (woman) get all her messages](#GetUserToUserMessages):
+  * [ ] GET http://api.cvd.io/messaging/{area}/usertouser/messages/forDevice/{deviceId}
+    - ex: http://api.cvd.io/messaging/stikers/usertouser/messages/forDevice/f659161979f91172
+  * [ ] GET http://api.cvd.io/messaging/{area}/usertouser/messages/forFacebookid/{facebookId}
+    - ex: http://api.cvd.io/messaging/stikers/usertouser/messages/forFacebookid/952942371481416
+
+exemple:
+
+    GET http://api.cvd.io/messaging/stikers/usertouser/messages/forDevice/f659161979f91172
+    
+    result:
+    HTTP 200 OK
+    [
+      {
+       "sender": {
+         "deviceId":"30a2af95828b0eb2",
+         "facebookId":"10153830470651564"
+       },
+       "message": {
+         "textId":"9BC6CA",
+         "isUserMessage":false,
+         "content":"",
+         "imageName":306043_10151330260424252_2113533977_n.jpg,
+         "localTimestamp":1470150873
+       }
+      },
+      {
+       "sender": {
+         "deviceId":"30a2af95828b0eb2",
+         "facebookId":"10153830470651564"
+       },
+       "message": {
+         "textId":"",
+         "isUserMessage":true,
+         "content":"hello world",
+         "imageName":306043_10151330260424252_2113533977_n.jpg,
+         "localTimestamp":1470150800
+       }
+      }
+    ]
+  
+notes:
+  
+### Interface 
+
+    GET http://api.cvd.io/messaging/{area}/usertouser/messages/forDevice/{deviceId}
+    
+### Inputs
+
+Path : 
+
+* {area} : area name of the current application doing the call
+* {deviceId} : device id of the current user doing the call
+
+
+### Output
+
+The result can be a success or a failure:
+
+__success__:
+the result sould be `OK` and contain an array of messages for user
+
+    HTTP 200 OK
+    [
+      {
+        "sender": {
+          "deviceId":string,
+          "facebookId":string
+        },
+        "message": {
+          "textId":string,
+          "isUserMessage":boolean,
+          "content":string,
+          "imageName":string,
+          "localTimestamp":long
+        }
+      }
+    ]
+
+    
+__failure__:
+if the http status is anything but OK then the result should contain the error message:
+
+    HTTP 400 BadRequest
+    {
+      "error":string
+    }
+  
 
 
 
