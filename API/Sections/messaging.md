@@ -135,20 +135,23 @@ properties:
 
 The result can be a success or a failure:
 
-* success: the result sould be `OK` and contain the status `saved` and the Id of the saved message:
-    
-    HTTP 200 OK
-    {
-      "status": string,
-      "messageId: string guid,
-    }
-    
-* failure: the http status is anything but OK and the result should contain the error message:
+__success__:
+the result sould be `OK` and contain the status `saved` and the Id of the saved message:
 
-  HTTP 400 BadRequest
-  {
-    "error":string
-  }
+    HTTP 200 OK
+     {
+       "status": string,
+       "messageId: string guid,
+     }
+
+    
+__failure__:
+the http status is anything but OK and the result should contain the error message:
+
+    HTTP 400 BadRequest
+    {
+      "error":string
+    }
   
 
 
