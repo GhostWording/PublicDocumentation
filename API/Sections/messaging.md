@@ -24,15 +24,12 @@ Index of end points:
     
 * [When a real user message is presented with a bot message](#GetBotUserChallengeAction):
   * [ ] POST http://api.cvd.io/messaging/{area}/BotUserChallengeMessage/{action}/fordevice/{deviceId}
-    * the message is shown to the user:
-      * [ ] POST http://api.cvd.io/messaging/{area}/BotUserChallengeMessage/viewed/fordevice/{deviceId}
-        - ex: http://api.cvd.io/messaging/stikers/BotUserChallengeMessage/viewed/fordevice/f659161979f91172
-    * user choose her preferred message:
-      * [ ] POST http://api.cvd.io/messaging/{area}/BotUserChallengeMessage/preferredMessage/fordevice/{deviceId}
-        - ex: http://api.cvd.io/messaging/stikers/BotUserChallengeMessage/preferredMessage/fordevice/f659161979f91172
-    * user guess which one is the bot message:
-      * [ ] POST http://api.cvd.io/messaging/{area}/BotUserChallengeMessage/isBotMessage/fordevice/{deviceId}
-        - ex: http://api.cvd.io/messaging/stikers/BotUserChallengeMessage/isBotMessage/fordevice/f659161979f91172
+    * the message is shown to the user (action=viewed):
+      - ex: POST http://api.cvd.io/messaging/stikers/BotUserChallengeMessage/viewed/fordevice/f659161979f91172
+    * user choose her preferred message (action=preferredMessage):
+      - ex: POST http://api.cvd.io/messaging/stikers/BotUserChallengeMessage/preferredMessage/fordevice/f659161979f91172
+    * user guess which one is the bot message (action=isBotMessage):
+      - ex: POST http://api.cvd.io/messaging/stikers/BotUserChallengeMessage/isBotMessage/fordevice/f659161979f91172
         
 
 * [Get matching women list for a user](#GetMatchingWomen)
