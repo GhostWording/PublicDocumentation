@@ -9,8 +9,46 @@ Index of end points:
 * [User (man) send a message to other user (woman)](#PostUserToUserMessage):
   * [ ] POST http://api.cvd.io/messaging/{area}/usertouser/message
     - ex: http://api.cvd.io/messaging/stikers/usertouser/message
+
+* [User (woman) get all her messages](#GetUserToUserMessages):
+  * [ ] GET http://api.cvd.io/messaging/{area}/usertouser/messages/forDevice/{deviceId}
+    - ex: http://api.cvd.io/messaging/stikers/usertouser/messages/forDevice/f659161979f91172
+  * [ ] GET http://api.cvd.io/messaging/{area}/usertouser/messages/forFacebookid/{facebookId}
+    - ex: http://api.cvd.io/messaging/stikers/usertouser/messages/forFacebookid/952942371481416
+
+* [User (woman) get messages from bot to show along real messages](#GetBotToUserMessages):
+  * [ ] GET http://api.cvd.io/messaging/{area}/bottouser/messages/forDevice/{deviceId}
+     - ex: http://api.cvd.io/messaging/stikers/bottouser/messages/forDevice/f659161979f91172
+  * [ ] GET http://api.cvd.io/messaging/{area}/bottouser/messages/forFacebookid/{facebookId}
+    - ex: http://api.cvd.io/messaging/stikers/bottouser/messages/forFacebookid/952942371481416
     
+* [When a real user message is presented with a bot message](#GetBotUserChallengeAction):
+  * [ ] POST http://api.cvd.io/messaging/{area}/BotUserChallengeMessage/{action}/fordevice/{deviceId}
+    * the message is shown to the user:
+      * [ ] POST http://api.cvd.io/messaging/{area}/BotUserChallengeMessage/viewed/fordevice/{deviceId}
+        - ex: http://api.cvd.io/messaging/stikers/BotUserChallengeMessage/viewed/fordevice/f659161979f91172
+    * user choose her preferred message:
+      * [ ] POST http://api.cvd.io/messaging/{area}/BotUserChallengeMessage/preferredMessage/fordevice/{deviceId}
+        - ex: http://api.cvd.io/messaging/stikers/BotUserChallengeMessage/preferredMessage/fordevice/f659161979f91172
+    * user guess which one is the bot message:
+      * [ ] POST http://api.cvd.io/messaging/{area}/BotUserChallengeMessage/isBotMessage/fordevice/{deviceId}
+        - ex: http://api.cvd.io/messaging/stikers/BotUserChallengeMessage/isBotMessage/fordevice/f659161979f91172
+        
+
+* [Get matching women list for a user](#GetMatchingWomen)
+  * [ ] GET http://api.cvd.io/messaging/{area}/MatchingWomen/fordevice/{deviceId}?max={number}
+    - ex: http://api.cvd.io/messaging/stickers/MatchingWomen/fordevice/30a2af95828b0eb2?max=10
     
+ 
+* [Get popular men leaderboards](#GetPopularMenLeaderBoards)
+  * [ ] GET http://api.cvd.io/messaging/{area}/LeaderBoards/popular/men/fordevice/{deviceId}?max={number}
+    - ex: http://api.cvd.io/messaging/stickers/LeaderBoards/popular/men/fordevice/30a2af95828b0eb2?max=10
+    
+* [Get popular women leaderboards](#GetPopularWomenLeaderBoards)
+  * [ ] GET http://api.cvd.io/messaging/{area}/LeaderBoards/popular/women/fordevice/{deviceId}?max={number}
+    - ex: http://api.cvd.io/messaging/stickers/LeaderBoards/popular/women/fordevice/30a2af95828b0eb2?max=10
+    
+     
     
 
 <a name="PostUserToUserMessage">
@@ -112,3 +150,43 @@ The result can be a success or a failure:
     "error":string
   }
   
+
+
+<a name="GetUserToUserMessages">
+Get all messages for a user (woman)
+----------------------------
+
+
+
+
+<a name="GetBotToUserMessages">
+Get bot messages for a user (woman)
+----------------------------
+
+
+<a name="GetBotUserChallengeAction">
+When a real user message is presented with a bot message
+----------------------------
+
+
+
+<a name="GetMatchingWomen">
+Get matching women list for a user
+----------------------------
+
+
+
+
+<a name="GetPopularMenLeaderBoards">
+Get popular men leaderboards
+----------------------------
+
+
+
+<a name="GetPopularWomenLeaderBoards">
+Get popular women leaderboards
+----------------------------
+
+
+
+
