@@ -158,11 +158,6 @@ Get all messages for a user (woman)
 
 ### Description
 A user (woman) get all messages sent by real users.
-* [User (woman) get all her messages](#GetUserToUserMessages):
-  * [ ] GET http://api.cvd.io/messaging/{area}/usertouser/messages/forDevice/{deviceId}
-    - ex: http://api.cvd.io/messaging/stikers/usertouser/messages/forDevice/f659161979f91172
-  * [ ] GET http://api.cvd.io/messaging/{area}/usertouser/messages/forFacebookid/{facebookId}
-    - ex: http://api.cvd.io/messaging/stikers/usertouser/messages/forFacebookid/952942371481416
 
 exemple:
 
@@ -177,11 +172,12 @@ exemple:
          "facebookId":"10153830470651564"
        },
        "message": {
+         "messageId":"1C318DA2-01F6-4ADF-A599-08DC129B92D6"
          "textId":"9BC6CA",
          "isUserMessage":false,
-         "content":"",
+         "content":"bla bla bla",
          "imageName":306043_10151330260424252_2113533977_n.jpg,
-         "localTimestamp":1470150873
+         "timestamp":1470150873
        }
       },
       {
@@ -190,27 +186,38 @@ exemple:
          "facebookId":"10153830470651564"
        },
        "message": {
+         "messageId":"8D8D193E-C13D-4B76-8AA5-8744C23FDD39",
          "textId":"",
          "isUserMessage":true,
          "content":"hello world",
          "imageName":306043_10151330260424252_2113533977_n.jpg,
-         "localTimestamp":1470150800
+         "timestamp":1470150800
        }
       }
     ]
   
-notes:
+
   
 ### Interface 
 
+Get messages for a device:
+
     GET http://api.cvd.io/messaging/{area}/usertouser/messages/forDevice/{deviceId}
-    
+
+Get messages for a facebook id:
+
+    GET http://api.cvd.io/messaging/{area}/usertouser/messages/forFacebookId/{facebookId}
+ 
+these interface are equivalents, they only differ on the id used.
+
+
 ### Inputs
 
 Path : 
 
 * {area} : area name of the current application doing the call
 * {deviceId} : device id of the current user doing the call
+* {facebookId} : facebook id of the current user doing the call
 
 
 ### Output
@@ -228,15 +235,26 @@ the result sould be `OK` and contain an array of messages for user
           "facebookId":string
         },
         "message": {
+          "messageId":string,
           "textId":string,
           "isUserMessage":boolean,
           "content":string,
           "imageName":string,
-          "localTimestamp":long
+          "timestamp":long
         }
       }
     ]
 
+properties:
+
+* __sender__ : it should have at least the deviceId and if exists the facebook id (which should always be the case)
+* __message__ : 
+  * __messageId__ : the id of the message, this must be used for any communications involving the message (like [When a real user message is presented with a bot message apis](#GetBotUserChallengeAction))
+  * __textId__ : id of the original text if it's not a user creation
+  * __isUserMessage__ : indicates if the user changed the content
+  * __content__ : it always have the content of the message to avoid you to load the message by yourself with other api (while on POST interface you don't need it)
+  * __imageName__ : name of the image used (you have to recompose the path by your self from static repository)
+  * __timestamp__ : this is the timestamp from the server when saved
     
 __failure__:
 if the http status is anything but OK then the result should contain the error message:
@@ -253,6 +271,107 @@ if the http status is anything but OK then the result should contain the error m
 <a name="GetBotToUserMessages">
 Get bot messages for a user (woman)
 ----------------------------
+
+### Description
+A user (woman) get computed messages from the bot Huggy to present along the real user messages.
+
+exemple:
+
+    GET http://api.cvd.io/messaging/stikers/bottouser/messages/forDevice/f659161979f91172
+    
+    result:
+    HTTP 200 OK
+    [
+      {
+       "message": {
+         "messageId":"1C318DA2-01F6-4ADF-A599-08DC129B92D6"
+         "textId":"9BC6CA",
+         "isBotGenerated":true,
+         "content":"bla bla bla",
+         "imageName":306043_10151330260424252_2113533977_n.jpg,
+         "timestamp":1470150873
+       }
+      },
+      {
+       "message": {
+         "messageId":"1C318DA2-01F6-4ADF-A599-08DC129B92D6"
+         "textId":"9BC6CA",
+         "isBotGenerated":true,
+         "content":"bla bla bla",
+         "imageName":306043_10151330260424252_2113533977_n.jpg,
+         "timestamp":1470150873
+       }
+      }
+    ]
+  
+
+  
+### Interface 
+
+Get messages for a device:
+
+    GET http://api.cvd.io/messaging/{area}/bottouser/messages/forDevice/{deviceId}
+
+Get messages for a facebook id:
+
+    GET http://api.cvd.io/messaging/{area}/bottouser/messages/forFacebookId/{facebookId}
+ 
+these interface are equivalents, they only differ on the id used.
+
+
+### Inputs
+
+Path : 
+
+* {area} : area name of the current application doing the call
+* {deviceId} : device id of the current user doing the call
+* {facebookId} : facebook id of the current user doing the call
+
+
+### Output
+
+The result can be a success or a failure:
+
+__success__:
+the result sould be `OK` and contain an array of messages for user
+
+    HTTP 200 OK
+    [
+      {
+        "message": {
+          "messageId":string,
+          "textId":string,
+          "isBotGenerated":boolean,
+          "content":string,
+          "imageName":string,
+          "timestamp":long
+        }
+      }
+    ]
+
+Notes:
+
+* there is no `Sender` property because it's always the same for the bot.
+
+properties:
+
+* __message__ : 
+  * __messageId__ : the id of the message, this must be used for any communications involving the message (like [When a real user message is presented with a bot message apis](#GetBotUserChallengeAction))
+  * __textId__ : id of the original text if it's not a user creation
+  * __isBotGenerated__ : indicates that the message has been created by the bot
+  * __content__ : it always have the content of the message to avoid you to load the message by yourself with other api (while on POST interface you don't need it)
+  * __imageName__ : name of the image used (you have to recompose the path by your self from static repository)
+  * __timestamp__ : this is the timestamp from the server when saved
+    
+__failure__:
+if the http status is anything but OK then the result should contain the error message:
+
+    HTTP 400 BadRequest
+    {
+      "error":string
+    }
+  
+
 
 
 <a name="GetBotUserChallengeAction">
