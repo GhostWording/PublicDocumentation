@@ -382,7 +382,8 @@ When a real user message is presented with a bot message
 This interface is a generic endpoint for the actions you can do when you present the messages to the users. The challenge message is always a combination of two messages shown to the user
 
 exemple:
-    "the user saw the user and bot messages:"
+"the user saw the user and bot messages:"
+
     POST POST http://api.cvd.io/messaging/stikers/UserChallengeMessages/viewed/fordevice/f659161979f91172
     {
       "facebookId":"952942371481416",
@@ -393,7 +394,8 @@ exemple:
     result:
     HTTP 200 OK {}
   
-    "then user choose it's prefered message:"
+"then user choose it's prefered message:"
+
     POST http://api.cvd.io/messaging/stikers/UserChallengeMessages/preferredMessage/fordevice/f659161979f91172
     {
       "facebookId":"952942371481416",
@@ -405,7 +407,8 @@ exemple:
     result:
     HTTP 200 OK {} 
   
-   "and finally try to guess which is from a bot"
+"and finally try to guess which is from a bot:"
+
     POST http://api.cvd.io/messaging/stikers/UserChallengeMessages/isBotMessage/fordevice/f659161979f91172
     {
       "facebookId":"952942371481416",
@@ -498,20 +501,177 @@ if the http status is anything but OK then the result should contain the error m
 <a name="GetMatchingWomen">
 Get matching women list for a user
 ----------------------------
+   
+### Description
+A user (man) get selected (women) profiles to communicate with.
 
+exemple:
+
+    GET http://api.cvd.io/messaging/stickers/MatchingWomen/fordevice/30a2af95828b0eb2?max=10
+    
+    result:
+    HTTP 200 OK
+    [
+        { "facebookId":"952942371481416", "score":8},
+        { "facebookId":"10209947279466450", "score":6},
+        { "facebookId":"1037267389698761", "score":3},...
+    ]
+  
+
+  
+### Interface 
+
+Get profiles for a device:
+
+    GET http://api.cvd.io/messaging/{area}/MatchingWomen/forDevice/{deviceId}?maxItems={maxItems}
+
+
+
+### Inputs
+
+Path : 
+
+* {area} : area name of the current application doing the call
+* {deviceId} : device id of the current user doing the call
+* {maxItems} : number max of profiles to return, 20 by default.
+
+### Output
+
+The result can be a success or a failure:
+
+__success__:
+the result sould be `OK` and contain an array of profiles with scoring. the profile is defined by a facebookid or deviceId or both.
+
+    HTTP 200 OK
+    [
+      { "facebookId":string, "score":float},...
+    ]
+
+
+__failure__:
+if the http status is anything but OK then the result should contain the error message:
+
+    HTTP 400 BadRequest
+    {
+      "error":string
+    }
+   
 
 
 
 <a name="GetPopularMenLeaderBoards">
 Get popular men leaderboards
 ----------------------------
+### Description
+A men leaderboard based on popularity. This board is computed for your profile, that means the leaderboard is not an absolute one but can be different depending on your country for exemple. 
+_note: the definition of popularity is not yet defined and can change in time_
+
+exemple:
+
+    GET http://api.cvd.io/messaging/stickers/LeaderBoards/popular/men/fordevice/30a2af95828b0eb2?max=10
+    
+    result:
+    HTTP 200 OK
+    [
+        { "facebookId":"10154168878366564", "score":9},
+        { "facebookId":"1208267635874542", "score":4},
+        { "facebookId":"10206903354925671", "score":3},...
+    ]
+  
+
+### Interface 
+
+Get board for a device:
+
+    GET http://api.cvd.io/messaging/{area}/LeaderBoards/popular/men/fordevice/{deviceId}?maxItems={maxItems}
+
+
+### Inputs
+
+Path : 
+
+* {area} : area name of the current application doing the call
+* {deviceId} : device id of the current user doing the call
+* {maxItems} : number max of profiles to return, 20 by default.
+
+### Output
+
+The result can be a success or a failure:
+
+__success__:
+the result sould be `OK` and contain an array of profiles with scoring. the profile is defined by a facebookid or deviceId or both.
+
+    HTTP 200 OK
+    [
+      { "facebookId":string, "score":float},...
+    ]
+
+
+__failure__:
+if the http status is anything but OK then the result should contain the error message:
+
+    HTTP 400 BadRequest
+    {
+      "error":string
+    }
+   
 
 
 
 <a name="GetPopularWomenLeaderBoards">
 Get popular women leaderboards
 ----------------------------
+  
+### Description
+A women leaderboard based on popularity. This board is computed for your profile, that means the leaderboard is not an absolute one but can be different depending on your country for exemple. 
+_note: the definition of popularity is not yet defined and can change in time_
+
+exemple:
+
+    GET http://api.cvd.io/messaging/stickers/LeaderBoards/popular/women/fordevice/30a2af95828b0eb2?max=10
+    
+    result:
+    HTTP 200 OK
+    [
+        { "facebookId":"1037267389698761", "score":9},
+        { "facebookId":"1044828568936873", "score":4},
+        { "facebookId":"10209947279466450", "score":3},...
+    ]
+  
+
+### Interface 
+
+Get board for a device:
+
+    GET http://api.cvd.io/messaging/{area}/LeaderBoards/popular/women/fordevice/{deviceId}?maxItems={maxItems}
 
 
+### Inputs
+
+Path : 
+
+* {area} : area name of the current application doing the call
+* {deviceId} : device id of the current user doing the call
+* {maxItems} : number max of profiles to return, 20 by default.
+
+### Output
+
+The result can be a success or a failure:
+
+__success__:
+the result sould be `OK` and contain an array of profiles with scoring. the profile is defined by a facebookid or deviceId or both.
+
+    HTTP 200 OK
+    [
+      { "facebookId":string, "score":float},...
+    ]
 
 
+__failure__:
+if the http status is anything but OK then the result should contain the error message:
+
+    HTTP 400 BadRequest
+    {
+      "error":string
+    }
+   
