@@ -191,7 +191,8 @@ exemple:
          "isUserMessage":true,
          "content":"hello world",
          "imageName":306043_10151330260424252_2113533977_n.jpg,
-         "timestamp":1470150800
+         "timestamp":1470150800,
+         "actions":["viewed","preferred"]
        }
       }
     ]
@@ -240,7 +241,8 @@ the result sould be `OK` and contain an array of messages for user
           "isUserMessage":boolean,
           "content":string,
           "imageName":string,
-          "timestamp":long
+          "timestamp":long,
+          "actions":string array
         }
       }
     ]
@@ -255,7 +257,9 @@ properties:
   * __content__ : it always have the content of the message to avoid you to load the message by yourself with other api (while on POST interface you don't need it)
   * __imageName__ : name of the image used (you have to recompose the path by your self from static repository)
   * __timestamp__ : this is the timestamp from the server when saved
-    
+  * __actions__ : list of actions already done with the message (from the [challenge actions](#GetUserChallengeMessagesAction)), this can be actually ["viewed","setPreferred","setIsBot"]
+  
+
 __failure__:
 if the http status is anything but OK then the result should contain the error message:
 
