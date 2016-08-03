@@ -22,14 +22,14 @@ Index of end points:
   * [ ] GET http://api.cvd.io/messaging/{area}/bottouser/messages/forFacebookid/{facebookId}
     - ex: http://api.cvd.io/messaging/stikers/bottouser/messages/forFacebookid/952942371481416
     
-* [When a real user message is presented with a bot message](#GetBotUserChallengeAction):
-  * [ ] POST http://api.cvd.io/messaging/{area}/BotUserChallengeMessage/{action}/fordevice/{deviceId}
+* [When a real user message is presented with a bot message](#GetUserChallengeMessagesAction):
+  * [ ] POST http://api.cvd.io/messaging/{area}/UserChallengeMessages/{action}/fordevice/{deviceId}
     * the message is shown to the user (action=viewed):
-      - ex: POST http://api.cvd.io/messaging/stikers/BotUserChallengeMessage/viewed/fordevice/f659161979f91172
+      - ex: POST http://api.cvd.io/messaging/stikers/UserChallengeMessages/viewed/fordevice/f659161979f91172
     * user choose her preferred message (action=preferredMessage):
-      - ex: POST http://api.cvd.io/messaging/stikers/BotUserChallengeMessage/preferredMessage/fordevice/f659161979f91172
+      - ex: POST http://api.cvd.io/messaging/stikers/UserChallengeMessages/preferredMessage/fordevice/f659161979f91172
     * user guess which one is the bot message (action=isBotMessage):
-      - ex: POST http://api.cvd.io/messaging/stikers/BotUserChallengeMessage/isBotMessage/fordevice/f659161979f91172
+      - ex: POST http://api.cvd.io/messaging/stikers/UserChallengeMessages/isBotMessage/fordevice/f659161979f91172
         
 
 * [Get matching women list for a user](#GetMatchingWomen)
@@ -374,9 +374,124 @@ if the http status is anything but OK then the result should contain the error m
 
 
 
-<a name="GetBotUserChallengeAction">
+<a name="GetUserChallengeMessagesAction">
 When a real user message is presented with a bot message
 ----------------------------
+
+### Description
+This interface is a generic endpoint for the actions you can do when you present the messages to the users. The challenge message is always a combination of two messages shown to the user
+
+exemple:
+    "the user saw the user and bot messages:"
+    POST POST http://api.cvd.io/messaging/stikers/UserChallengeMessages/viewed/fordevice/f659161979f91172
+    {
+      "facebookId":"952942371481416",
+      "firstMessage":"1C318DA2-01F6-4ADF-A599-08DC129B92D6",
+      "secondMessage":"1C318DA2-01F6-4ADF-A599-08DC129B92D6"
+    }
+    
+    result:
+    HTTP 200 OK {}
+  
+    "then user choose it's prefered message:"
+    POST http://api.cvd.io/messaging/stikers/UserChallengeMessages/preferredMessage/fordevice/f659161979f91172
+    {
+      "facebookId":"952942371481416",
+      "firstMessage":"1C318DA2-01F6-4ADF-A599-08DC129B92D6",
+      "secondMessage":"1C318DA2-01F6-4ADF-A599-08DC129B92D6",
+      "preferred":"1C318DA2-01F6-4ADF-A599-08DC129B92D6"
+    }
+    
+    result:
+    HTTP 200 OK {} 
+  
+   "and finally try to guess which is from a bot"
+    POST http://api.cvd.io/messaging/stikers/UserChallengeMessages/isBotMessage/fordevice/f659161979f91172
+    {
+      "facebookId":"952942371481416",
+      "firstMessage":"1C318DA2-01F6-4ADF-A599-08DC129B92D6",
+      "secondMessage":"1C318DA2-01F6-4ADF-A599-08DC129B92D6",
+      "isBot":"1C318DA2-01F6-4ADF-A599-08DC129B92D6"
+    }
+    
+    result:
+    HTTP 200 OK {} 
+    
+    
+### Interface 
+
+View messages:
+
+    POST http://api.cvd.io/messaging/{area}/BotUserChallengeMessage/viewed/fordevice/{deviceId}
+    BODY application/json
+    BODY application/json
+    {
+      "facebookId":string,
+      "firstMessage":string,
+      "secondMessage":string
+    }
+    
+Set preferred message:
+
+    POST http://api.cvd.io/messaging/{area}/BotUserChallengeMessage/preferredMessage/fordevice/{deviceId}
+    BODY application/json
+    {
+      "facebookId":string,
+      "firstMessage":string,
+      "secondMessage":string,
+      "preferred":string
+    }
+    
+Guess bot message:
+
+    POST http://api.cvd.io/messaging/{area}/BotUserChallengeMessage/isBotMessage/fordevice/{deviceId}
+    BODY application/json
+    BODY application/json
+    {
+      "facebookId":string,
+      "firstMessage":string,
+      "secondMessage":string,
+      "isBot":string
+    }
+
+### Inputs
+
+Path : 
+
+* {area} : area name of the current application doing the call
+* {deviceId} : device id of the current user doing the call
+
+Posted Body:
+
+expected format is `application/json`, the properties could be the following:
+
+* __facebookId__ : facebook id of the current userd doing the call
+* __firstMessage__: the id of the first message presented to the user (order is from top to bottom and left to right)
+* __secondMessage__: the id of the second message
+* __preferredMessage__ : the id of the message the user prefer
+* __isBot__ : the id of the message considered to be a bot
+
+
+
+### Output
+
+The result can be a success or a failure:
+
+__success__:
+the result sould be `OK` and contains nothing else than an empty object
+
+    HTTP 200 OK
+    {}
+
+__failure__:
+if the http status is anything but OK then the result should contain the error message:
+
+    HTTP 400 BadRequest
+    {
+      "error":string
+    }
+  
+
 
 
 
