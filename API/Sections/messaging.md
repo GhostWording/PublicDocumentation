@@ -122,7 +122,7 @@ expected format is `application/json` with the folling form:
         "textId":string,
         "gender":"male"|"female",
         "type":"game"|"direct",
-        "isUserMessage":boolean,
+        "isUserCustom":boolean,
         "content":string,
         "imageName":string,
         "localTimestamp":long
