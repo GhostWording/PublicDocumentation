@@ -6,22 +6,24 @@ these apis provide interfaces for users to send message cards (text+image) to ot
 
 Index of end points:
 
-* [User (man) send a message to other user (woman)](#PostUserToUserMessage):
+* [User (man|woman) send a message to other user (woman)](#PostUserToUserMessage):
   * [ ] POST http://api.cvd.io/messaging/{area}/usertouser/message
     - ex: http://api.cvd.io/messaging/stikers/usertouser/message
 
-* [User (woman) get all her messages](#GetUserToUserMessages):
+* [User (woman|woman) get all her messages](#GetUserToUserMessages):
   * [ ] GET http://api.cvd.io/messaging/{area}/usertouser/messages/forDevice/{deviceId}
     - ex: http://api.cvd.io/messaging/stikers/usertouser/messages/forDevice/f659161979f91172
   * [ ] GET http://api.cvd.io/messaging/{area}/usertouser/messages/forFacebookid/{facebookId}
     - ex: http://api.cvd.io/messaging/stikers/usertouser/messages/forFacebookid/952942371481416
 
+<!--
 * [User (woman) get messages from bot to show along real messages](#GetBotToUserMessages):
   * [ ] GET http://api.cvd.io/messaging/{area}/bottouser/messages/forDevice/{deviceId}
      - ex: http://api.cvd.io/messaging/stikers/bottouser/messages/forDevice/f659161979f91172
   * [ ] GET http://api.cvd.io/messaging/{area}/bottouser/messages/forFacebookid/{facebookId}
     - ex: http://api.cvd.io/messaging/stikers/bottouser/messages/forFacebookid/952942371481416
-    
+-->
+
 * [When a real user message is presented with a bot message](#GetUserChallengeMessagesAction):
   * [ ] POST http://api.cvd.io/messaging/{area}/UserChallengeMessages/{action}/fordevice/{deviceId}
     * the message is shown to the user (action=viewed):
@@ -36,6 +38,10 @@ Index of end points:
   * [ ] GET http://api.cvd.io/messaging/{area}/MatchingWomen/fordevice/{deviceId}?max={number}
     - ex: http://api.cvd.io/messaging/stickers/MatchingWomen/fordevice/30a2af95828b0eb2?max=10
     
+* [Get matching man list for a user](#GetMatchingMen)
+  * [ ] GET http://api.cvd.io/messaging/{area}/MatchingMen/fordevice/{deviceId}?max={number}
+    - ex: http://api.cvd.io/messaging/stickers/MatchingMen/fordevice/30a2af95828b0eb2?max=10
+    
  
 * [Get popular men leaderboards](#GetPopularMenLeaderBoards)
   * [ ] GET http://api.cvd.io/messaging/{area}/LeaderBoards/popular/men/fordevice/{deviceId}?max={number}
@@ -45,7 +51,10 @@ Index of end points:
   * [ ] GET http://api.cvd.io/messaging/{area}/LeaderBoards/popular/women/fordevice/{deviceId}?max={number}
     - ex: http://api.cvd.io/messaging/stickers/LeaderBoards/popular/women/fordevice/30a2af95828b0eb2?max=10
     
-     
+* [Get status of my messages](#GetMyMessagesStatuses)
+  * [ ] GET http://api.cvd.io/messaging/{area}/MyMessagesStatuses/{deviceId}?maxItems={maxItems}
+    - ex : http://api.cvd.io/messaging/stickers/MyMessagesStatuses/fordevice/30a2af95828b0eb2?max=10
+
     
 
 <a name="PostUserToUserMessage">
@@ -69,7 +78,9 @@ exemple:
       },
       "message": {
         "textId":"9BC6CA",
-        "isUserMessage":false,
+        "gender":"male",
+        "type":"direct",
+        "isUserCustom":false,
         "content":"",
         "imageName":306043_10151330260424252_2113533977_n.jpg,
         "localTimestamp":1470150873
@@ -109,6 +120,8 @@ expected format is `application/json` with the folling form:
       },
       "message": {
         "textId":string,
+        "gender":"male"|"female",
+        "type":"game"|"direct",
         "isUserMessage":boolean,
         "content":string,
         "imageName":string,
@@ -122,8 +135,9 @@ properties:
 * __recipient__ : id of the womand recipient of the message. facebook id should be provided, deviceid if known.
 * __message__ : definition of the message to send.
   * __textid__: id of the choosen text (this must be the text id, not the prototypeid). if the message is completely created by the user (without a source text as a base of the message) then this can be left empty. 
-  * __content__ : if the text is the original one, this can be empty. If the message was customized by the user then the new content must be specified here.
-  * __isUserMessage__ : if the message was customized by the user then this should be set to `true`.
+  * __gender__ : gender of message sender, "male" or "female"
+  * __type__ : context type of the message, can be "direct" for messages sent directly from one user to another or "game" if the message * __content__ : if the text is the original one, this can be empty. If the message was customized by the user then the new content must be specified here.
+  * __isUserCustom__ : if the message was customized by the user then this should be set to `true`.
   * __imageName__ : the name of the image to send (only the name, not full path). If the image is a personal user picture then "UserImage" should be provided instead.
   * __localTimestamp__ : the datetime of the creation of the message
 
@@ -153,11 +167,11 @@ the http status is anything but OK and the result should contain the error messa
 
 
 <a name="GetUserToUserMessages">
-Get all messages for a user (woman)
+Get all messages for a user 
 ----------------------------
 
 ### Description
-A user (woman) get all messages sent by real users.
+A user (woman/man) get all messages sent by real users. Messages are typed as "direct" for the ones sent directly or "game" for the ones involved in the game. For each user message where type="game", there is also a bot message.
 
 exemple:
 
@@ -174,10 +188,19 @@ exemple:
        "message": {
          "messageId":"1C318DA2-01F6-4ADF-A599-08DC129B92D6"
          "textId":"9BC6CA",
-         "isUserMessage":false,
+         "gender":"male",
+         "type":"game",
+         "isUserCustom":false,
          "content":"bla bla bla",
          "imageName":306043_10151330260424252_2113533977_n.jpg,
-         "timestamp":1470150873
+         "timestamp":1470150873,
+         "actions":[]
+       },
+       "botMessage": {
+         "messageId":"1C318DA2-01F6-4ADF-A599-08DC129B92D6"
+         "textId":"AZERT",
+         "content":"bla bla bla",
+         "imageName":306043_10151330260424252_2113533977_n.jpg
        }
       },
       {
@@ -188,7 +211,9 @@ exemple:
        "message": {
          "messageId":"8D8D193E-C13D-4B76-8AA5-8744C23FDD39",
          "textId":"",
-         "isUserMessage":true,
+         "gender":"male",
+         "type":"direct",
+         "isUserCustom":true,
          "content":"hello world",
          "imageName":306043_10151330260424252_2113533977_n.jpg,
          "timestamp":1470150800,
@@ -238,11 +263,20 @@ the result sould be `OK` and contain an array of messages for user
         "message": {
           "messageId":string,
           "textId":string,
-          "isUserMessage":boolean,
+          "gender":"male"|"female",
+          "type":"game"|"direct",
+          "isUserCustom":boolean,
           "content":string,
           "imageName":string,
           "timestamp":long,
           "actions":string array
+        },
+        "botMessage": {
+          "messageId":string,
+          "textId":string,
+          "content":string,
+          "imageName":string,
+          "timestamp":long
         }
       }
     ]
@@ -253,12 +287,15 @@ properties:
 * __message__ : 
   * __messageId__ : the id of the message, this must be used for any communications involving the message (like [When a real user message is presented with a bot message apis](#GetBotUserChallengeAction))
   * __textId__ : id of the original text if it's not a user creation
-  * __isUserMessage__ : indicates if the user changed the content
+  * __gender__ : gender of message sender, "male" or "female"
+  * __type__ : context type of the message, can be "direct" for messages sent directly from one user to another or "game" if the message is sent in the context of the game
+  * __isUserCustom__ : indicates if the user changed the content
   * __content__ : it always have the content of the message to avoid you to load the message by yourself with other api (while on POST interface you don't need it)
   * __imageName__ : name of the image used (you have to recompose the path by your self from static repository)
   * __timestamp__ : this is the timestamp from the server when saved
   * __actions__ : list of actions already done with the message (from the [challenge actions](#GetUserChallengeMessagesAction)), this can be actually ["viewed","setPreferred","setIsBot"]
-  
+* __botMessage__ : when message is typed as "game", then there is a bot message generated to be presented along the original user message for the game (only one always the same, generated when the user message is saved)
+  * properties : they are the same as the `message` minus the ones specific to the user not needed.
 
 __failure__:
 if the http status is anything but OK then the result should contain the error message:
@@ -271,7 +308,7 @@ if the http status is anything but OK then the result should contain the error m
 
 
 
-
+<!-- 
 <a name="GetBotToUserMessages">
 Get bot messages for a user (woman)
 ----------------------------
@@ -375,7 +412,7 @@ if the http status is anything but OK then the result should contain the error m
       "error":string
     }
   
-
+-->
 
 
 <a name="GetUserChallengeMessagesAction">
@@ -561,6 +598,65 @@ if the http status is anything but OK then the result should contain the error m
     }
    
 
+<a name="GetMatchingMen">
+Get matching Men list for a user
+----------------------------
+   
+### Description
+A user (woman) get selected (men) profiles to communicate with.
+
+exemple:
+
+    GET http://api.cvd.io/messaging/stickers/MatchingMen/fordevice/30a2af95828b0eb2?max=10
+    
+    result:
+    HTTP 200 OK
+    [
+        { "facebookId":"952942371481416", "score":8},
+        { "facebookId":"10209947279466450", "score":6},
+        { "facebookId":"1037267389698761", "score":3},...
+    ]
+  
+
+  
+### Interface 
+
+Get profiles for a device:
+
+    GET http://api.cvd.io/messaging/{area}/MatchingMen/forDevice/{deviceId}?maxItems={maxItems}
+
+
+
+### Inputs
+
+Path : 
+
+* {area} : area name of the current application doing the call
+* {deviceId} : device id of the current user doing the call
+* {maxItems} : number max of profiles to return, 20 by default.
+
+### Output
+
+The result can be a success or a failure:
+
+__success__:
+the result sould be `OK` and contain an array of profiles with scoring. the profile is defined by a facebookid or deviceId or both.
+
+    HTTP 200 OK
+    [
+      { "facebookId":string, "score":float},...
+    ]
+
+
+__failure__:
+if the http status is anything but OK then the result should contain the error message:
+
+    HTTP 400 BadRequest
+    {
+      "error":string
+    }
+   
+
 
 
 <a name="GetPopularMenLeaderBoards">
@@ -679,3 +775,72 @@ if the http status is anything but OK then the result should contain the error m
       "error":string
     }
    
+
+
+<a name="GetMyMessagesStatuses">
+Get my messages statuses
+----------------------------
+   
+### Description
+A user gets the statuses of it's messages (actions applied to). He get the full list of it's messages with an array of actions applied to each message.
+
+exemple:
+
+    GET http://api.cvd.io/messaging/stickers/MyMessagesStatuses/fordevice/30a2af95828b0eb2?max=10
+    
+    result:
+    HTTP 200 OK
+    [
+        { "messageId":"1C318DA2-01F6-4ADF-A599-08DC129B92D6", "actions":["viewed","preferred","setIsBot"] },
+        { "messageId":"8D8D193E-C13D-4B76-8AA5-8744C23FDD39", "actions":["viewed",] },...
+    ]
+  
+here, message `"1C318DA2-01F6-4ADF-A599-08DC129B92D6"` was shown to the user (`viewed`), user set it's preferrence between this message and the bot message (`preferred`) and user played to guess which one was the bot message (`setIsBot`).
+
+  
+### Interface 
+
+Get profiles for a device:
+
+    GET http://api.cvd.io/messaging/{area}/MyMessagesStatuses/{deviceId}?maxItems={maxItems}
+
+
+
+### Inputs
+
+Path : 
+
+* {area} : area name of the current application doing the call
+* {deviceId} : device id of the current user doing the call
+* {maxItems} : number max of profiles to return, 20 by default.
+
+### Output
+
+The result can be a success or a failure:
+
+__success__:
+the result sould be `OK` and contain an array of messages with action statuses. 
+
+    HTTP 200 OK
+    [
+      { 
+        "messageId":string guid, 
+        "actions": string array },
+    ]
+
+properties:
+
+* __messageId__ : id of the message (received from api when the message was sent)
+* __actions__ : an array with all the actions applied. 
+
+
+
+__failure__:
+if the http status is anything but OK then the result should contain the error message:
+
+    HTTP 400 BadRequest
+    {
+      "error":string
+    }
+   
+
