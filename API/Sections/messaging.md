@@ -6,11 +6,11 @@ these apis provide interfaces for users to send message cards (text+image) to ot
 
 Index of end points:
 
-* [User (man|woman) send a message to other user (woman)](#PostUserToUserMessage):
+* [User (woman|man) send a message to other user (woman)](#PostUserToUserMessage):
   * [ ] POST http://api.cvd.io/messaging/{area}/usertouser/message
     - ex: http://api.cvd.io/messaging/stikers/usertouser/message
 
-* [User (woman|woman) get all her messages](#GetUserToUserMessages):
+* [User (woman|man) get all her messages](#GetUserToUserMessages):
   * [ ] GET http://api.cvd.io/messaging/{area}/usertouser/messages/forDevice/{deviceId}
     - ex: http://api.cvd.io/messaging/stikers/usertouser/messages/forDevice/f659161979f91172
   * [ ] GET http://api.cvd.io/messaging/{area}/usertouser/messages/forFacebookid/{facebookId}
@@ -25,13 +25,13 @@ Index of end points:
 -->
 
 * [When a real user message is presented with a bot message](#GetUserChallengeMessagesAction):
-  * [ ] POST http://api.cvd.io/messaging/{area}/UserChallengeMessages/{action}/fordevice/{deviceId}
+  * [ ] POST http://api.cvd.io/messaging/{area}/MessageAction/{action}/fordevice/{deviceId}
     * the message is shown to the user (action=viewed):
-      - ex: POST http://api.cvd.io/messaging/stikers/UserChallengeMessages/viewed/fordevice/f659161979f91172
+      - ex: POST http://api.cvd.io/messaging/stikers/MessageAction/viewed/fordevice/f659161979f91172
     * user choose her preferred message (action=preferredMessage):
-      - ex: POST http://api.cvd.io/messaging/stikers/UserChallengeMessages/preferredMessage/fordevice/f659161979f91172
+      - ex: POST http://api.cvd.io/messaging/stikers/MessageAction/preferredMessage/fordevice/f659161979f91172
     * user guess which one is the bot message (action=isBotMessage):
-      - ex: POST http://api.cvd.io/messaging/stikers/UserChallengeMessages/isBotMessage/fordevice/f659161979f91172
+      - ex: POST http://api.cvd.io/messaging/stikers/MessageAction/isBotMessage/fordevice/f659161979f91172
         
 
 * [Get matching women list for a user](#GetMatchingWomen)
@@ -52,8 +52,8 @@ Index of end points:
     - ex: http://api.cvd.io/messaging/stickers/LeaderBoards/popular/women/fordevice/30a2af95828b0eb2?max=10
     
 * [Get status of my messages](#GetMyMessagesStatuses)
-  * [ ] GET http://api.cvd.io/messaging/{area}/MyMessagesStatuses/{deviceId}?maxItems={maxItems}
-    - ex : http://api.cvd.io/messaging/stickers/MyMessagesStatuses/fordevice/30a2af95828b0eb2?max=10
+  * [ ] GET http://api.cvd.io/messaging/{area}/SentMessagesStatus/{deviceId}?maxItems={maxItems}
+    - ex : http://api.cvd.io/messaging/stickers/SentMessagesStatus/fordevice/30a2af95828b0eb2?max=10
 
     
 
@@ -425,7 +425,7 @@ This interface is a generic endpoint for the actions you can do when you present
 exemple:
 "the user saw the user and bot messages:"
 
-    POST POST http://api.cvd.io/messaging/stikers/UserChallengeMessages/viewed/fordevice/f659161979f91172
+    POST POST http://api.cvd.io/messaging/stikers/MessageAction/viewed/fordevice/f659161979f91172
     {
       "facebookId":"952942371481416",
       "firstMessage":"1C318DA2-01F6-4ADF-A599-08DC129B92D6",
@@ -437,7 +437,7 @@ exemple:
   
 "then user choose it's prefered message:"
 
-    POST http://api.cvd.io/messaging/stikers/UserChallengeMessages/preferredMessage/fordevice/f659161979f91172
+    POST http://api.cvd.io/messaging/stikers/MessageAction/preferredMessage/fordevice/f659161979f91172
     {
       "facebookId":"952942371481416",
       "firstMessage":"1C318DA2-01F6-4ADF-A599-08DC129B92D6",
@@ -450,7 +450,7 @@ exemple:
   
 "and finally try to guess which is from a bot:"
 
-    POST http://api.cvd.io/messaging/stikers/UserChallengeMessages/isBotMessage/fordevice/f659161979f91172
+    POST http://api.cvd.io/messaging/stikers/MessageAction/isBotMessage/fordevice/f659161979f91172
     {
       "facebookId":"952942371481416",
       "firstMessage":"1C318DA2-01F6-4ADF-A599-08DC129B92D6",
@@ -466,7 +466,7 @@ exemple:
 
 View messages:
 
-    POST http://api.cvd.io/messaging/{area}/BotUserChallengeMessage/viewed/fordevice/{deviceId}
+    POST http://api.cvd.io/messaging/{area}/MessageAction/viewed/fordevice/{deviceId}
     BODY application/json
     BODY application/json
     {
@@ -477,7 +477,7 @@ View messages:
     
 Set preferred message:
 
-    POST http://api.cvd.io/messaging/{area}/BotUserChallengeMessage/preferredMessage/fordevice/{deviceId}
+    POST http://api.cvd.io/messaging/{area}/MessageAction/preferredMessage/fordevice/{deviceId}
     BODY application/json
     {
       "facebookId":string,
@@ -488,7 +488,7 @@ Set preferred message:
     
 Guess bot message:
 
-    POST http://api.cvd.io/messaging/{area}/BotUserChallengeMessage/isBotMessage/fordevice/{deviceId}
+    POST http://api.cvd.io/messaging/{area}/MessageAction/isBotMessage/fordevice/{deviceId}
     BODY application/json
     BODY application/json
     {
@@ -786,7 +786,7 @@ A user gets the statuses of it's messages (actions applied to). He get the full 
 
 exemple:
 
-    GET http://api.cvd.io/messaging/stickers/MyMessagesStatuses/fordevice/30a2af95828b0eb2?max=10
+    GET http://api.cvd.io/messaging/stickers/SentMessagesStatus/fordevice/30a2af95828b0eb2?max=10
     
     result:
     HTTP 200 OK
@@ -802,7 +802,7 @@ here, message `"1C318DA2-01F6-4ADF-A599-08DC129B92D6"` was shown to the user (`v
 
 Get profiles for a device:
 
-    GET http://api.cvd.io/messaging/{area}/MyMessagesStatuses/{deviceId}?maxItems={maxItems}
+    GET http://api.cvd.io/messaging/{area}/SentMessagesStatus/{deviceId}?maxItems={maxItems}
 
 
 
