@@ -194,10 +194,10 @@ exemple:
          "content":"bla bla bla",
          "imageName":306043_10151330260424252_2113533977_n.jpg,
          "timestamp":1470150873,
-         "actions":[]
+         "actions":[{ name="viewed",value="true"},{name="setIsPreferred",value="8D8D193E-C13D-4B76-8AA5-8744C23FDD39"}]
        },
        "botMessage": {
-         "messageId":"1C318DA2-01F6-4ADF-A599-08DC129B92D6"
+         "messageId":"8D8D193E-C13D-4B76-8AA5-8744C23FDD39"
          "textId":"AZERT",
          "content":"bla bla bla",
          "imageName":306043_10151330260424252_2113533977_n.jpg
@@ -217,7 +217,7 @@ exemple:
          "content":"hello world",
          "imageName":306043_10151330260424252_2113533977_n.jpg,
          "timestamp":1470150800,
-         "actions":["viewed","preferred"]
+         "actions":[]
        }
       }
     ]
@@ -269,7 +269,7 @@ the result sould be `OK` and contain an array of messages for user
           "content":string,
           "imageName":string,
           "timestamp":long,
-          "actions":string array
+          "actions":(string*string) array
         },
         "botMessage": {
           "messageId":string,
@@ -293,7 +293,7 @@ properties:
   * __content__ : it always have the content of the message to avoid you to load the message by yourself with other api (while on POST interface you don't need it)
   * __imageName__ : name of the image used (you have to recompose the path by your self from static repository)
   * __timestamp__ : this is the timestamp from the server when saved
-  * __actions__ : list of actions already done with the message (from the [challenge actions](#GetUserChallengeMessagesAction)), this can be actually ["viewed","setPreferred","setIsBot"]
+  * __actions__ : list of actions (name,value) already done with the message (from the [challenge actions](#GetUserChallengeMessagesAction)), this can be actually named ["viewed","setPreferred","setIsBot"]. the value property contains the id of the message for "setIsPreferred" and "setIsBot" and "true" for "viewed".
 * __botMessage__ : when message is typed as "game", then there is a bot message generated to be presented along the original user message for the game (only one always the same, generated when the user message is saved)
   * properties : they are the same as the `message` minus the ones specific to the user not needed.
 
@@ -791,11 +791,17 @@ exemple:
     result:
     HTTP 200 OK
     [
-        { "messageId":"1C318DA2-01F6-4ADF-A599-08DC129B92D6", "actions":["viewed","preferred","setIsBot"] },
-        { "messageId":"8D8D193E-C13D-4B76-8AA5-8744C23FDD39", "actions":["viewed",] },...
+        { 
+          "messageId":"1C318DA2-01F6-4ADF-A599-08DC129B92D6", 
+          "actions":[{ name="viewed",value="true"},{name="setIsPreferred",value="8D8D193E-C13D-4B76-8AA5-8744C23FDD39"}] 
+        },
+        { 
+          "messageId":"8D8D193E-C13D-4B76-8AA5-8744C23FDD39", 
+          "actions":[{ name="viewed",value="true"}] 
+        }
     ]
   
-here, message `"1C318DA2-01F6-4ADF-A599-08DC129B92D6"` was shown to the user (`viewed`), user set it's preferrence between this message and the bot message (`preferred`) and user played to guess which one was the bot message (`setIsBot`).
+here, message `"1C318DA2-01F6-4ADF-A599-08DC129B92D6"` was shown to the user (`viewed`), user set it's preferrence between this message and the bot message (`setIsPreferred`) and user played to guess which one was the bot message (`setIsBot`).
 
   
 ### Interface 
@@ -825,13 +831,13 @@ the result sould be `OK` and contain an array of messages with action statuses.
     [
       { 
         "messageId":string guid, 
-        "actions": string array },
+        "actions": (string*string) array },
     ]
 
 properties:
 
 * __messageId__ : id of the message (received from api when the message was sent)
-* __actions__ : an array with all the actions applied. 
+* __actions__ : list of actions (name,value) already done with the message (from the [challenge actions](#GetUserChallengeMessagesAction)), this can be actually named ["viewed","setPreferred","setIsBot"]. the value property contains the id of the message for "setPreferred" and "setIsBot" and "true" for "viewed".
 
 
 
