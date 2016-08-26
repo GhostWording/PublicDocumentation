@@ -82,7 +82,7 @@ exemple:
         "type":"direct",
         "isUserCustom":false,
         "content":"",
-        "imageName":306043_10151330260424252_2113533977_n.jpg,
+        "imageName":"306043_10151330260424252_2113533977_n.jpg",
         "localTimestamp":1470150873
       }
     }
@@ -192,7 +192,7 @@ exemple:
          "type":"game",
          "isUserCustom":false,
          "content":"bla bla bla",
-         "imageName":306043_10151330260424252_2113533977_n.jpg,
+         "imageName":"306043_10151330260424252_2113533977_n.jpg",
          "timestamp":1470150873,
          "actions":[{ name="viewed",value="true"},{name="setIsPreferred",value="8D8D193E-C13D-4B76-8AA5-8744C23FDD39"}]
        },
@@ -200,7 +200,7 @@ exemple:
          "messageId":"8D8D193E-C13D-4B76-8AA5-8744C23FDD39"
          "textId":"AZERT",
          "content":"bla bla bla",
-         "imageName":306043_10151330260424252_2113533977_n.jpg
+         "imageName":"306043_10151330260424252_2113533977_n.jpg"
        }
       },
       {
@@ -215,7 +215,7 @@ exemple:
          "type":"direct",
          "isUserCustom":true,
          "content":"hello world",
-         "imageName":306043_10151330260424252_2113533977_n.jpg,
+         "imageName":"306043_10151330260424252_2113533977_n.jpg",
          "timestamp":1470150800,
          "actions":[]
        }
