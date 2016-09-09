@@ -7,13 +7,13 @@ these apis provide interfaces for users to send message cards (text+image) to ot
 Index of end points:
 
 * [User (woman|man) send a message to other user (woman)](#PostUserToUserMessage):
-  * [ ] POST http://api.cvd.io/messaging/{area}/usertouser/message
+  * [x] POST http://api.cvd.io/messaging/{area}/usertouser/message
     - ex: http://api.cvd.io/messaging/stikers/usertouser/message
 
 * [User (woman|man) get all her messages](#GetUserToUserMessages):
-  * [ ] GET http://api.cvd.io/messaging/{area}/usertouser/messages/forDevice/{deviceId}
+  * [x] GET http://api.cvd.io/messaging/{area}/usertouser/messages/forDevice/{deviceId}
     - ex: http://api.cvd.io/messaging/stikers/usertouser/messages/forDevice/f659161979f91172
-  * [ ] GET http://api.cvd.io/messaging/{area}/usertouser/messages/forFacebookid/{facebookId}
+  * [x] GET http://api.cvd.io/messaging/{area}/usertouser/messages/forFacebookid/{facebookId}
     - ex: http://api.cvd.io/messaging/stikers/usertouser/messages/forFacebookid/952942371481416
 
 <!--
@@ -25,7 +25,7 @@ Index of end points:
 -->
 
 * [When a real user message is presented with a bot message](#GetUserChallengeMessagesAction):
-  * [ ] POST http://api.cvd.io/messaging/{area}/MessageAction/{action}/fordevice/{deviceId}
+  * [x] POST http://api.cvd.io/messaging/{area}/MessageAction/{action}/fordevice/{deviceId}
     * the message is shown to the user (action=viewed):
       - ex: POST http://api.cvd.io/messaging/stikers/MessageAction/viewed/fordevice/f659161979f91172
     * user choose her preferred message (action=preferredMessage):
@@ -34,13 +34,9 @@ Index of end points:
       - ex: POST http://api.cvd.io/messaging/stikers/MessageAction/isBotMessage/fordevice/f659161979f91172
         
 
-* [Get matching women list for a user](#GetMatchingWomen)
-  * [ ] GET http://api.cvd.io/messaging/{area}/MatchingWomen/fordevice/{deviceId}?max={number}
-    - ex: http://api.cvd.io/messaging/stickers/MatchingWomen/fordevice/30a2af95828b0eb2?max=10
-    
-* [Get matching man list for a user](#GetMatchingMen)
-  * [ ] GET http://api.cvd.io/messaging/{area}/MatchingMen/fordevice/{deviceId}?max={number}
-    - ex: http://api.cvd.io/messaging/stickers/MatchingMen/fordevice/30a2af95828b0eb2?max=10
+* [Get matching users list for a user](#GetSuggestedUsers)
+  * [x] GET http://api.cvd.io/messaging/{area}/SuggestedUsers/fordevice/{deviceId}?max={number}
+    - ex: http://api.cvd.io/messaging/stickers/SuggestedUsers/fordevice/30a2af95828b0eb2?max=10&showUsersWhoNotParticipate=yes
     
  
 * [Get popular men leaderboards](#GetPopularMenLeaderBoards)
@@ -52,7 +48,7 @@ Index of end points:
     - ex: http://api.cvd.io/messaging/stickers/LeaderBoards/popular/women/fordevice/30a2af95828b0eb2?max=10
     
 * [Get status of my messages](#GetMyMessagesStatuses)
-  * [ ] GET http://api.cvd.io/messaging/{area}/SentMessagesStatus/{deviceId}?maxItems={maxItems}
+  * [x] GET http://api.cvd.io/messaging/{area}/SentMessagesStatus/{deviceId}?maxItems={maxItems}
     - ex : http://api.cvd.io/messaging/stickers/SentMessagesStatus/fordevice/30a2af95828b0eb2?max=10
 
     
@@ -539,24 +535,47 @@ if the http status is anything but OK then the result should contain the error m
 
 
 
-<a name="GetMatchingWomen">
-Get matching women list for a user
+<a name="GetSuggestedUsers">
+Get a list of suggested user profiles for a user
 ----------------------------
    
 ### Description
-A user (man) get selected (women) profiles to communicate with.
+A user get selected profiles to communicate with. This endpoint can also be queried with a browser to display a user friendly view of the results. 
 
 exemple:
 
-    GET http://api.cvd.io/messaging/stickers/MatchingWomen/fordevice/30a2af95828b0eb2?max=10
+    GET http://api.cvd.io/messaging/stickers/SuggestedUsers/fordevice/30a2af95828b0eb2?max=10
     
     result:
     HTTP 200 OK
     [
-        { "facebookId":"952942371481416", "score":8},
-        { "facebookId":"10209947279466450", "score":6},
-        { "facebookId":"1037267389698761", "score":3},...
-    ]
+       {
+         "Identifier": {
+           "DeviceId": "c33e94b025f47c12",
+           "FacebookId": "1809203435977428"
+         },
+         "Score": {
+           "Value": 43
+         },
+         "LastConnection": "2016-09-08T17:05:14.22",
+         "Properties": {
+           "Age": null,
+           "Country": "United Kingdom",
+           "FacebookFirstName": "Katrina",
+           "MBTISelected": null,
+           "UserPresentation": null,
+           "ppReceptiveTo": "Facts",
+           "ppPreferBooksToParties": "Books",
+           "ppPreferGoals": "Structured",
+           "ppEnergeticAfter": "WithPeople",
+           "ppDecisionsAriseFrom": "Feelings",
+           "UserLandscape": "11988669_764214673689805_3511463888887270881_n.jpg",
+           "UserFlower": "shutterstock_119283466.jpg",
+           "UserAnimal": "10580_413779368683509_908264830_n.jpg"
+         },
+         "__props": {}
+       }, ... Other profiles removed ...
+     ]
   
 
   
@@ -564,7 +583,7 @@ exemple:
 
 Get profiles for a device:
 
-    GET http://api.cvd.io/messaging/{area}/MatchingWomen/forDevice/{deviceId}?maxItems={maxItems}
+    GET http://api.cvd.io/messaging/{area}/SuggestedUsers/forDevice/{deviceId}?maxItems={maxItems}&maxHours={maxHours}&gender={gender}&showUsersWhoNotParticipate={showUsersWhoNotParticipate}
 
 
 
@@ -572,9 +591,19 @@ Get profiles for a device:
 
 Path : 
 
-* {area} : area name of the current application doing the call
+* {area} : area name of the current application doing the call (used later to filter the users returned
 * {deviceId} : device id of the current user doing the call
+
+QueryString :
+
 * {maxItems} : number max of profiles to return, 20 by default.
+* {maxHours} : define the period of time to look for user's last connection. By default we returned only users connected within the last day (24 hours)
+* {gender} : setup the type of gender(s) to return, values can be:
+   - opposite (default) : return only users of the opposite of the user doing the call
+   - same : return only users with the same gender of the user doing the call
+   - both : return everyone (cats included ;-)
+* {showUsersWhoNotParticipate} : null by default, if set to 'yes' then include all users of all apps instead of returning only the users that have the property `ppParticipateInBattleStickers` set to `yes` (that's mainly for development purposes)
+
 
 ### Output
 
@@ -585,68 +614,33 @@ the result sould be `OK` and contain an array of profiles with scoring. the prof
 
     HTTP 200 OK
     [
-      { "facebookId":string, "score":float},...
+      {
+         "Identifier": {
+           "DeviceId": string,
+           "FacebookId": string
+         },
+         "Score": {
+           "Value": int
+         },
+         "LastConnection": datetime,
+         "Properties": {
+           "Age": string,
+           "Country": string,
+           "FacebookFirstName": string,
+           "MBTISelected": string,
+           "UserPresentation": string,
+           "ppReceptiveTo": string,
+           "ppPreferBooksToParties": string,
+           "ppPreferGoals": string,
+           "ppEnergeticAfter": string,
+           "ppDecisionsAriseFrom": string,
+           "UserLandscape": string,
+           "UserFlower": string,
+           "UserAnimal": string
+         },
     ]
 
-
-__failure__:
-if the http status is anything but OK then the result should contain the error message:
-
-    HTTP 400 BadRequest
-    {
-      "error":string
-    }
-   
-
-<a name="GetMatchingMen">
-Get matching Men list for a user
-----------------------------
-   
-### Description
-A user (woman) get selected (men) profiles to communicate with.
-
-exemple:
-
-    GET http://api.cvd.io/messaging/stickers/MatchingMen/fordevice/30a2af95828b0eb2?max=10
-    
-    result:
-    HTTP 200 OK
-    [
-        { "facebookId":"952942371481416", "score":8},
-        { "facebookId":"10209947279466450", "score":6},
-        { "facebookId":"1037267389698761", "score":3},...
-    ]
-  
-
-  
-### Interface 
-
-Get profiles for a device:
-
-    GET http://api.cvd.io/messaging/{area}/MatchingMen/forDevice/{deviceId}?maxItems={maxItems}
-
-
-
-### Inputs
-
-Path : 
-
-* {area} : area name of the current application doing the call
-* {deviceId} : device id of the current user doing the call
-* {maxItems} : number max of profiles to return, 20 by default.
-
-### Output
-
-The result can be a success or a failure:
-
-__success__:
-the result sould be `OK` and contain an array of profiles with scoring. the profile is defined by a facebookid or deviceId or both.
-
-    HTTP 200 OK
-    [
-      { "facebookId":string, "score":float},...
-    ]
-
+The results are ordered by the `Score` property DESC. The `Properties` hastable is easy access to the main properties and avoid other calls but content is subject to change.
 
 __failure__:
 if the http status is anything but OK then the result should contain the error message:
