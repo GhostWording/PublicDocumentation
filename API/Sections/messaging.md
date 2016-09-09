@@ -583,7 +583,7 @@ exemple:
 
 Get profiles for a device:
 
-    GET http://api.cvd.io/messaging/{area}/SuggestedUsers/forDevice/{deviceId}?maxItems={maxItems}&maxHours={maxHours}&gender={gender}&showUsersWhoNotParticipate={showUsersWhoNotParticipate}
+    GET http://api.cvd.io/messaging/{area}/SuggestedUsers/forDevice/{deviceId}?maxItems={maxItems}&maxHours={maxHours}&gender={gender}&showUsersWhoDoNotParticipate={showUsersWhoNotParticipate}
 
 
 
@@ -602,7 +602,7 @@ QueryString :
    - opposite (default) : return only users of the opposite of the user doing the call
    - same : return only users with the same gender of the user doing the call
    - both : return everyone (cats included ;-)
-* {showUsersWhoNotParticipate} : null by default, if set to 'yes' then include all users of all apps instead of returning only the users that have the property `ppParticipateInBattleStickers` set to `yes` (that's mainly for development purposes)
+* {showUsersWhoDoNotParticipate} : null by default, if set to 'yes' then include all users of all apps instead of returning only the users that have the property `ppParticipateInBattleStickers` set to `yes` (that's mainly for development purposes)
 
 
 ### Output
