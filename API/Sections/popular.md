@@ -22,6 +22,10 @@ Images:
       * ex : http://api.cvd.io/popular/liptip/matchingimages/intention/all
       * ex : http://api.cvd.io/popular/liptip/matchingimages/prototypeids/686367,2D21F1,6D8D36
 -->
+Popular (in area):
+* [x] [Texts that are most sent to express a given intention in an area](#TextsForArea):
+      * [x] ex : http://api.cvd.io/popular/stickers/populartexts/stickers
+      
 Popular (in intention):
 * [x] [Texts that are sent often to express a given intention](#TextsForIntention):
       * [x] ex : http://api.cvd.io/popular/yourapp/populartexts/intention/67CC40
@@ -43,6 +47,110 @@ Matching (between texts/images):
       * [x]  ex : http://api.cvd.io/popular/yourapp/matchingimages/intention/67CC40
       * [x] ex : http://api.cvd.io/popular/yourapp/matchingimages/intention/all/liptip
       * [x] ex : http://api.cvd.io/popular/yourapp/matchingimages/prototypeids/686367,2D21F1,6D8D36
+
+
+
+
+<a name="TextsForArea">
+Popular  texts for an entire area
+----------------------------
+
+### Description
+Get the texts in your culture for the best prototypes for the whole area. The selection is based on the texts within the intentions of the area but the selection and sorting is done for whole area not by intention. 
+You get in return an array of texts with their scoring. 
+
+The scoring is based on the number of times texts are displayed and selected in a message (internally it's an aggregate at the text protype level then the best text for the prototype is choosen):
+
+      GET http://api.cvd.io/popular/liptip/populartexts/liptip?maxrank=2&culture=en-EN
+      
+              [
+          {
+            "Scoring": {
+              "NbShares": 703,
+              "NbDisplays": 1000,
+              "Score": 0.001422475106,
+              "Rank": 1,
+              "DenseRank": 1
+            },
+            "Text": {
+              "TextId": "03997F",
+              "IntentionId": "D19840",
+              "IntentionSlug": "come-over-for-dinner",
+              "IntentionPrototypeSlug": "come-over-for-dinner",
+              "IntentionLabel": "come-over-for-dinner",
+              "PrototypeId": "F0ACFF",
+              "Content": "Ideally we should all eat at least five portions of fruit and vegetables a day. I've got chips and tomato sauce to go with the steak, so that's two already...maybe if you could bring some other vegetable - like, er, chocolate - we could be really healthy. Come on over!",
+              "Author": "Unknown",
+              "Updated": "2015-04-12T09:02:00",
+              "Created": "2014-05-23T17:41:00",
+              "SortBy": 15,
+              "Sender": "N",
+              "Target": "I",
+              "PoliteForm": "I",
+              "Impersonal": "false",
+              "Proximity": "P",
+              "Abstract": "",
+              "ReferenceUrl": "",
+              "ImageUrl": "http://gw-static.azurewebsites.net/specialoccasions/come-over-for-dinner/default/small/iStock_000007368976_Medium.jpg",
+              "Culture": "en-EN",
+              "IsQuote": false,
+              "Status": "published",
+              "TagIds": [
+                "C2D9A4",
+                "E40677",
+                "FC0342"
+              ],
+              "AvailableCultures": [
+                "fr-FR"
+              ],
+              "OtherRealizationIds": [
+                "5FD729",
+                "F88479"
+              ],
+              "SuggestedImages": []
+            }
+          }, ... other texts ...
+        ]
+
+### Content:
+
+The returned content has the following properties for each intention:
+
+* Texts: the array with the most popular texts in your culture for the intention with the followin properties:
+  * Scoring : the scoring properties for the text:
+       * NbShares : number of times the image has been selected in a message for the texts in this intention,
+       * NbDisplays : number of times the text prototype has been displayed while showing texts for this intention,
+       * Score : score calculated from the number of shares and of displays,
+       * Rank : the rank of the text prototype for this intention (1 to each text, no equal ranks),
+       * DenseRank : the real rank of the text prototype (doubles appear with the same rank),
+* Text : full text object content
+
+
+### Apis
+
+Get the best texts for an area:
+
+     GET http://api.cvd.io/popular/{area-info}/populartexts/{area-Id}?
+     
+     With : 
+          - area-info    = identifier name of your area (for loggin purposes, no effect on the query)
+          - area-id      = identifier of the area for which you want the data
+    
+
+### Options
+
+You can add to your query the following parameters:
+
+* **maxrank** : setup how many texts to get for each intention, by default it's `16`.
+  * exemple : http://gw-popular.azurewebsites.net/liptip/populartexts/liptip?maxrank=3 (get the 3 most popular texts for the area liptip)
+* **culture** : the culture is automatically get from the headers sent with app/browser but you can override it by passing the culture in the querystring
+  * exemple : http://gw-popular.azurewebsites.net/liptip/populartexts/liptip?maxrank=2&culture=en-EN (get 2 most popular texts in english for area liptip)
+ 
+
+
+
+
+
 
 
 <a name="TextsForIntention">
