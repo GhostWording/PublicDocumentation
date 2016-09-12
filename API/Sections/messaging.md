@@ -36,7 +36,7 @@ Index of end points:
 
 * [Get matching users list for a user](#GetSuggestedUsers)
   * [x] GET http://api.cvd.io/messaging/{area}/SuggestedUsers/fordevice/{deviceId}?max={number}
-    - ex: http://api.cvd.io/messaging/stickers/SuggestedUsers/fordevice/30a2af95828b0eb2?max=10&showUsersWhoNotParticipate=yes
+    - ex: http://api.cvd.io/messaging/stickers/SuggestedUsers/fordevice/30a2af95828b0eb2?max=10&showUsersWhoDoNotParticipate=yes
     
  
 * [Get popular men leaderboards](#GetPopularMenLeaderBoards)
