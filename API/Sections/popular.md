@@ -29,7 +29,7 @@ Popular (in area):
 Popular (in intention):
 * [x] [Texts that are sent often to express a given intention](#TextsForIntention):
       * [x] ex : http://api.cvd.io/popular/yourapp/populartexts/intention/67CC40
-      * [x] ex : http://api.cvd.io/popular/yourapp/populartexts/intention/all/liptipspecial
+      * [x] ex : http://api.cvd.io/popular/yourapp/populartexts/intention/all/stickers
 * [x] [Images that are sent often to express a given intention](#ImagesForIntentions):
       * [x] ex : http://api.cvd.io/popular/yourapp/popularimages/intention/67CC40
 
@@ -37,7 +37,7 @@ Popular (for user properties):
 * [x] [Texts that are often send by a MBTI profile](#TextsForMbtiProfile):
       * [x] ex : http://api.cvd.io/popular/yourapp/populartexts/UserProperty/MBTISelected/INTP?maxrank=3&culture=fr-FR
 * [x] [Images that are often selected and send by a MBTI profile](#ImagesForMbtiProfile)
-      * [x] ex : http://api.cvd.io/popular/yourapp/matchingimages/UserProperty/MBTISelected/ENTP?maxrank=3&culture=fr-FR
+      * [x] ex : http://api.cvd.io/popular/yourapp/popularimages/UserProperty/MBTISelected/ENTP?maxrank=3&culture=fr-FR
       
 
 Matching (between texts/images):
@@ -205,10 +205,11 @@ The returned content has the following properties for each intention:
 
 Get the best texts for all intentions in your area:
 
-     GET http://api.cvd.io/popular/{area-name}/populartexts/intention/all
+     GET http://api.cvd.io/popular/{area-name}/populartexts/intention/all/{area}
      
      With : 
-          - area-name    = identifier name of your area
+          - area-name    = identifier name of your area (for info)
+          - area         = the area id for which you want the texts
      
 Or  You can get the texts for one intention only:
 
