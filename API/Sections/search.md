@@ -7,7 +7,7 @@ Service key points:
 
 * [I want to get the best texts by entering a free text search](#FreeTextSearch)
    * get matching texts for text query: 
-       * [http://api.cvd.io/search/stickers/fulltextsearch/?text=want to drink&culture=en-EN&gender=H&top=3](http://api.cvd.io/search/stickers/fulltextsearch/?text=want to drink&culture=en-EN&gender=H&top=3)
+       * [http://api.cvd.io/search/stickers/fulltextsearch/?text=want to drink&culture=en-EN&recipientGender=H&top=3](http://api.cvd.io/search/stickers/fulltextsearch/?text=want to drink&culture=en-EN&recipientGender=H&top=3)
 * [I want to get one random card(text+image) by entering a keyword or free text](#RandomCard)
    * get card (text+image) suggestion for keywords or free text: 
        * [http://api.cvd.io/search/stickers/randomCard/forKeyword/?text=cats and dogs&culture=en-EN](http://api.cvd.io/search/stickers/randomCard/forKeyword/?text=cats and dogs&culture=en-EN)
@@ -22,7 +22,7 @@ When I enter some free text I want to have the best suggested texts based on my 
 
 Exemple: give me the `2` best texts about `have a drink` for my english `en-EN` culture and assuming the recipient is Male (M):
 
-    GET http://api.cvd.io/search/stickers/fulltextsearch/?text=have a drink&culture=en-EN&gender=M&top=2
+    GET http://api.cvd.io/search/stickers/fulltextsearch/?text=have a drink&culture=en-EN&recipientGender=M&top=2
     
     [
             {
@@ -53,7 +53,7 @@ Path options:
      * querystring:
          * text: text to search
          * culture: language code (en-EN,fr-FR,es-ES)
-         * gender: recipient gender (H,M,Male) or (F,Female)
+         * recipientGender: recipient gender (H,M,Male) or (F,Female)
          * top: max number of matching results to return
          
 Endpoint (POST)
@@ -64,7 +64,7 @@ Endpoint (POST)
          text: string,
          top: int,
          culture: string,
-         gender: string
+         recipientGender: string
       }
       
 Path options:
@@ -124,7 +124,7 @@ Path options:
      * querystring:
          * text: searched text
          * culture: language code (en-EN,fr-FR,es-ES)
-         * gender: gender recipient as (H,M,Male) or (F,Female)
+         * recipientGender: gender recipient as (H,M,Male) or (F,Female)
          * top: max number of matching results to return
                
 Return:
