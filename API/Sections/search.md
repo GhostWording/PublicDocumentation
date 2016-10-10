@@ -7,10 +7,10 @@ Service key points:
 
 * [I want to get the best texts by entering a free text search](#FreeTextSearch)
    * get matching texts for text query: 
-       * [http://api.cvd.io/search/stickers/fulltextsearch/want to drink?culture=en-EN&gender=H&top=3](http://api.cvd.io/search/stickers/fulltextsearch/want to drink?culture=en-EN&gender=H&top=3)
+       * [http://api.cvd.io/search/stickers/fulltextsearch/?text=want to drink&culture=en-EN&gender=H&top=3](http://api.cvd.io/search/stickers/fulltextsearch/?text=want to drink&culture=en-EN&gender=H&top=3)
 * [I want to get one random card(text+image) by entering a keyword or free text](#RandomCard)
    * get card (text+image) suggestion for keywords or free text: 
-       * [http://api.cvd.io/search/stickers/randomCard/forKeyword/cats and dogs?culture=en-EN](http://api.cvd.io/search/stickers/randomCard/forKeyword/cats and dogs?culture=en-EN)
+       * [http://api.cvd.io/search/stickers/randomCard/forKeyword/?text=cats and dogs&culture=en-EN](http://api.cvd.io/search/stickers/randomCard/forKeyword/?text=cats and dogs&culture=en-EN)
        
        
 <a name="FreeTextSearch">
@@ -20,9 +20,9 @@ Free text search
 ### Scenario
 When I enter some free text I want to have the best suggested texts based on my context.
 
-Exemple: give me the `2` best texts about `have a drink` for my english `en-EN` culture and assuming i'm a man:
+Exemple: give me the `2` best texts about `have a drink` for my english `en-EN` culture and assuming the recipient is Male (M):
 
-    GET http://api.cvd.io/search/stickers/fulltextsearch/have a drink?culture=en-EN&gender=M&top=2
+    GET http://api.cvd.io/search/stickers/fulltextsearch/?text=have a drink&culture=en-EN&gender=M&top=2
     
     [
             {
@@ -45,15 +45,15 @@ Exemple: give me the `2` best texts about `have a drink` for my english `en-EN` 
 
 Endoint (GET)
  
-     GET http://api.cvd.io/search/{areaInfo}/fulltextsearch/{searched text}?{querystring}
+     GET http://api.cvd.io/search/{areaInfo}/fulltextsearch/?{querystring}
      
 Path options:
      
      * areaInfo : the name of your app (not relevant for the search)
-     * searched text : the words you want to use for search
      * querystring:
+         * text: text to search
          * culture: language code (en-EN,fr-FR,es-ES)
-         * gender: (H,M,Male) or (F,Female)
+         * gender: recipient gender (H,M,Male) or (F,Female)
          * top: max number of matching results to return
          
 Endpoint (POST)
@@ -61,7 +61,7 @@ Endpoint (POST)
       POST http://api.cvd.io/search/{areaInfo}/fulltextsearch
       Body: 
       {
-         search: string,
+         text: string,
          top: int,
          culture: string,
          gender: string
@@ -96,7 +96,7 @@ When I provide some text or keywords I want in return a card (combination of tex
 
 Exemple: when I say `cats and dogs` and my culture is `en-EN`, I get a random card (by full text search):
 
-       GET http://api.cvd.io/search/stickers/randomCard/cats and dogs?culture=en-EN
+       GET http://api.cvd.io/search/stickers/randomCard/?text=cats and dogs&culture=en-EN
       
        {
           "IntentionId": "2E2986",
@@ -116,15 +116,15 @@ Exemple: when I say `cats and dogs` and my culture is `en-EN`, I get a random ca
  
 Endpoint (GET)
 
-      GET http://api.cvd.io/search/{area}/randomCard/{search}?{querystring}
+      GET http://api.cvd.io/search/{area}/randomCard/?{querystring}
       
 Path options:
      
      * areaInfo : the name of your app (not relevant for the search)
-     * searched text : the words you want to use for search
      * querystring:
+         * text: searched text
          * culture: language code (en-EN,fr-FR,es-ES)
-         * gender: (H,M,Male) or (F,Female)
+         * gender: gender recipient as (H,M,Male) or (F,Female)
          * top: max number of matching results to return
                
 Return:
