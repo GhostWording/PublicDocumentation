@@ -11,7 +11,8 @@ Service key points:
 * [I want to get one random card(text+image) by entering a keyword or free text](#RandomCard)
    * get card (text+image) suggestion for keywords or free text: 
        * [http://api.cvd.io/search/stickers/randomCard/forKeyword/?text=cats and dogs&culture=en-EN](http://api.cvd.io/search/stickers/randomCard/forKeyword/?text=cats and dogs&culture=en-EN)
-       
+
+Note: **please note that POST verb is actually the preferred query solution**
        
 <a name="FreeTextSearch">
 Free text search
@@ -43,7 +44,7 @@ Exemple: give me the `2` best texts about `have a drink` for my english `en-EN` 
  
 ### Definitions
 
-Endoint (GET)
+#### Endoint (GET)
  
      GET http://api.cvd.io/search/{areaInfo}/fulltextsearch/?{querystring}
      
@@ -56,11 +57,12 @@ Path options:
          * recipientGender: recipient gender (H,M,Male) or (F,Female)
          * top: max number of matching results to return
          
-Endpoint (POST)
+#### Endpoint (POST)
 
-      POST http://api.cvd.io/search/{areaInfo}/fulltextsearch
+      POST http://api.cvd.io/search/{areaInfo}
       Body: 
       {
+         command : string
          text: string,
          top: int,
          culture: string,
@@ -70,11 +72,19 @@ Endpoint (POST)
 Path options:
      
      * areaInfo : the name of your app (not relevant for the search)
-      
-Return:
+
+body Parameters:
+
+* command : "search"
+* text: the text to search
+* culture : the culture of the user (if not provided, we guess it from headers)
+* recipientGender: the gender of the current user (as we assume that the bot will reply to him/her)
+* top: max number of items to get in return 
+
+#### Return:
      - array of ranked texts
      
-Define:
+#### Define:
      - ranked text: {
                 "Rank": int,
                 "IntentionId": string,
@@ -114,7 +124,7 @@ Exemple: when I say `cats and dogs` and my culture is `en-EN`, I get a random ca
  
 ### Definitions
  
-Endpoint (GET)
+#### Endpoint (GET)
 
       GET http://api.cvd.io/search/{area}/randomCard/?{querystring}
       
@@ -126,8 +136,32 @@ Path options:
          * culture: language code (en-EN,fr-FR,es-ES)
          * recipientGender: gender recipient as (H,M,Male) or (F,Female)
          * top: max number of matching results to return
-               
-Return:
+
+#### Endpoint (POST)
+
+      POST http://api.cvd.io/search/{areaInfo}
+      Body: 
+      {
+         command : string
+         text: string,
+         culture: string,
+         recipientGender: string
+      }
+      
+Path options:
+     
+     * areaInfo : the name of your app (not relevant for the search)
+
+body Parameters:
+
+* command : "card"
+* text: the text to search
+* culture : the culture of the user (if not provided, we guess it from headers)
+* recipientGender: the gender of the current user (as we assume that the bot will reply to him/her)
+
+
+
+#### Return:
      - text image card : {
           "IntentionId": string,
           "PrototypeId": string,
@@ -142,8 +176,10 @@ Return:
           }
         }
      
-     
- ### Internal workflow
+
+
+
+### Internal workflow
  
  Internaly the service can work with predifined keywords or by doing full text search.
  If the search term matches a keyword in the keywords list then we'll take a random popular text within the intention associated with the keyword.
