@@ -91,13 +91,14 @@ The api is available as a webpage and in json the format returned is the followi
 
 ### Api
 
-Get the best texts for all intentions in your area:
+Get the facebook ids of the users corresponding to the parameters in the querystring:
 
      GET http://api.cvd.io/{areaId}/users/facebookids?{querystring}
      
      With in path: 
           - areaId    = identifier name of your area
-     With in querystring: 
+          
+     With in querystring (user properties): 
           - age
           - gender
           - country
@@ -109,6 +110,13 @@ The values for each parameter are the exact ones used in the apps
 
 **Catch all search**:
 If you want to search for a property and don't care about the value but only want to know if there is a value, you can use `*` as search value.
+
+**Filtering**
+additionally to the user properties to filter, you can define these parameters:
+
+* nbhours : nb hours max of the last connection of the user from now (default = 72h)
+* maxusers : nb max of facebookids to return (default = 50)
+
 
 ex:
      
@@ -240,6 +248,7 @@ All the apis endpoints return the same content defined above.
      
 * Where:
     * {facebookids} : list of comma separated values of facebook ids
+    
 * Exemple:
     * http://api.cvd.io/liptip/users/list/facebookids/10154292021876564,10154292021876563,10154292021876569
     
@@ -256,6 +265,14 @@ By providing a list of search criterias in the query string, you'll get in retur
     * queryString:
         * key value pairs to search for (ex: country=Tunisia)
         * catch all operator applies: to get all users with a property set regardless of the value (ex : country=*)
+
+**Filtering**
+additionally to the user properties to filter, you can define these parameters:
+
+* nbhours : nb hours max of the last connection of the user from now (default = 72h)
+* maxusers : nb max of facebookids to return (default = 50)
+
+
 
 3. Get the user list by searching the properties with area filter
 this Api work the same way as (2) but it only returns the users of one area:
