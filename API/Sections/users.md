@@ -27,7 +27,9 @@ The following endpoints are actually available within the service:
 Notes:
 * this service is hosted by the http://gw-usersproperties.azurewebsites.net/ app service in isolation
 * an url rewrite is used to provide the host under api.cvd.io
-* queries are cached
+* queries are cached for 1h by default
+* since 2016-11-02, all the queries involving a list of users are filtered by the date of last connection of the users: we only count or return users connected on the last x hours (x=72h by default)
+
 
 <a name="countforproperties">
 Count users for properties
@@ -61,6 +63,10 @@ It returns the user count for the search.
           - ...
     
 The values for each parameter are the exact same ones used in the apps.
+
+Additional parameters:
+
+* nbhours = nb hours since the last connection of the user from now. by default it is 72h.
 
 **Catch all search**:
 If you want to search for a property and don't care about the value but only want to know if there is a value, you can use `*` as search value.
@@ -107,6 +113,11 @@ Get the facebook ids of the users corresponding to the parameters in the queryst
           - ...
     
 The values for each parameter are the exact ones used in the apps
+
+Additional parameters:
+
+* nbhours = nb hours since the last connection of the user from now. by default it is 72h.
+* maxusers = nb max of facebook ids to return. List is ordered by last connection time desc, so the last ones are the ones that have been unactive for longuer time. 
 
 **Catch all search**:
 If you want to search for a property and don't care about the value but only want to know if there is a value, you can use `*` as search value.
@@ -265,6 +276,12 @@ By providing a list of search criterias in the query string, you'll get in retur
     * queryString:
         * key value pairs to search for (ex: country=Tunisia)
         * catch all operator applies: to get all users with a property set regardless of the value (ex : country=*)
+
+
+Additional parameters:
+
+* nbhours = nb hours since the last connection of the user from now. by default it is 72h.
+* maxusers = nb max of facebook ids to return. List is ordered by last connection time desc, so the last ones are the ones that have been unactive for longuer time. 
 
 **Filtering**
 additionally to the user properties to filter, you can define these parameters:
