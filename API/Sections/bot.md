@@ -11,7 +11,10 @@ Service exemples:
 * [Huggy, when I enter some text, I want to get one random card (text+image)](#BotEndpoint)
    * get card (text+image) suggestion for keywords or free text: 
        * [http://api.cvd.io/bot/stickers/talktobot/?command=card&text=cats and dogs&culture=en-EN](http://api.cvd.io/bot/stickers/talktobot/?command=card&text=cats and dogs&culture=en-EN)
-       
+* [Huggy, when I enter some text, I want to get a set of random card (text+image) allowing me to choose what to show](#BotEndpoint)
+ * get a card set (text+image) suggestion for keywords or free text: 
+     * [http://api.cvd.io/bot/stickers/talktobot/?command=cardset&text=cats and dogs&culture=en-EN](http://api.cvd.io/bot/stickers/talktobot/?command=cardset&text=cats and dogs&culture=en-EN)
+     
 For the bot there is only one endpoint, you'll define the different commands through this endpoint
 
 
@@ -25,7 +28,8 @@ you'll give to him.
 Available commands are currently: 
 
 * [search](#FreeTextSearch) : do a full text search with the terms you provide and return a list of texts 
-* [card](#RandomCard) : return the best matching card(text+image) for the terms you provide targeting the user doing the query
+* [card](#RandomCard) : return one random withing the best matching card(text+image) for the terms you provide targeting the user doing the query
+* [cardset](#RandomCardSet) : return a list of best random matching card(text+image) for the terms you provide targeting the user doing the query. this allows you to prefer one card in the list if you know that you already presented the others cards to the user.
 
 Endpoint:
 
@@ -159,7 +163,79 @@ Return:
           }
         }
      
-  
+
+<a name="RandomCardSet">
+Command: CardSet
+----------------
+
+### Scenario
+
+When I provide some text or keywords I want in return a list of cards(combination of text + image). This allows me to choose one random card within the list and be sure to not present the same card two times in a row.
+
+Exemple: when I say `cats and dogs` and my culture is `en-EN`, I get a random card set (by full text search):
+
+       POST http://api.cvd.io/bot/stickers/talktobot
+       Body: 
+        {
+           "command": "cardset",
+           "top":2,
+           "text": "cats and dogs",
+           "culture": "en-EN",
+           "recipientGender": "M"
+        }
+      
+       Response:
+       
+       [
+          {
+            "IntentionId": "2E2986",
+            "PrototypeId": "5F3A8F",
+            "TextId": "3C1A70",
+            "Content": "It's a humbling moment when you realize your dog or cat has actually trained you to do something.",
+            "ImageName": "iStock_000011373228_Medium.jpg",
+            "ImageLink": "http://gw-static.azurewebsites.net/canonical/iStock_000011373228_Medium.jpg",
+            "Context": {
+              "status": "found",
+              "type": "search",
+              "image": "RandomMatchingImageForText"
+            }
+          },
+          {
+            "IntentionId": "2E2986",
+            "PrototypeId": "BA5A34",
+            "TextId": "EE0A4F",
+            "Content": "Dogs have masters. Cats have staff.",
+            "ImageName": "shutterstock_208720306.jpg",
+            "ImageLink": "http://gw-static.azurewebsites.net/canonical/shutterstock_208720306.jpg",
+            "Context": {
+              "status": "found",
+              "type": "search",
+              "image": "RandomMatchingImageForText"
+            }
+          }
+        ]
+ 
+ 
+ 
+### Definitions
+
+Return:
+      - array of text image cards
+     
+      - text image card : {
+          "IntentionId": string,
+          "PrototypeId": string,
+          "TextId": string,
+          "Content": string,
+          "ImageName": string,
+          "ImageLink": string,
+          "Context": {
+            "status": "found" | "notfound",
+            "type": "search" | "keyword",
+            "image": "PopularImageForText" | "RandomMatchingImageForText" | "RandomPopularImageForIntention" | "NoMatchingImageFoundAtAll"
+          }
+        }
+       
   
  ### Notes : Internal workflow for the Random Card
  
