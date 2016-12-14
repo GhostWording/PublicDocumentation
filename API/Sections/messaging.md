@@ -589,7 +589,7 @@ Get (structured) profiles for a device: profiles are structured but not complete
 (2nd option)
 Get (flat) profiles for a device: all properties returned but in a flat format
 
-    GET http://api.cvd.io/messaging/{area}/SuggestedUsers/forDevice/{deviceId}?maxItems={maxItems}&maxHours={maxHours}&gender={gender}&showUsersWhoDoNotParticipate={showUsersWhoNotParticipate}
+    GET http://api.cvd.io/messaging/{area}/SuggestedUsers/forDevice/{deviceId}/flat?maxItems={maxItems}&maxHours={maxHours}&gender={gender}&showUsersWhoDoNotParticipate={showUsersWhoNotParticipate}
 
 
 
@@ -597,25 +597,25 @@ Get (flat) profiles for a device: all properties returned but in a flat format
 
 Path : 
 
-* {area} : area name of the current application doing the call (used later to filter the users returned
-* {deviceId} : device id of the current user doing the call
+* **{area}** : area name of the current application doing the call (used later to filter the users returned
+* **{deviceId}** : device id of the current user doing the call
 
 QueryString :
 
-* {maxItems} : number max of profiles to return, 20 by default.
-* {maxHours} : define the period of time to look for user's last connection. By default we returned only users connected within the last day (24 hours)
-* {showUsersWhoDoNotParticipate} : null by default, if set to 'yes' then include all users of all apps instead of returning only the users that have the property `ppParticipateInBattleStickers` set to `yes` (that's mainly for development purposes)
-* Filters : (if null, you don't need to provide the filter, it'll be ignored)
-     * {gender} : setup the type of gender(s) to return, values can be:
+* **{maxItems}** : number max of profiles to return, 20 by default.
+* **{maxHours}** : define the period of time to look for user's last connection. By default we returned only users connected within the last day (24 hours)
+* **{showUsersWhoDoNotParticipate}** : null by default, if set to 'yes' then include all users of all apps instead of returning only the users that have the property `ppParticipateInBattleStickers` set to `yes` (that's mainly for development purposes)
+* **Filters** : (if null, you don't need to provide the filter, it'll be ignored)
+     * **{gender}** : setup the type of gender(s) to return, values can be:
          - opposite (default) : return only users of the opposite of the user doing the call
          - same : return only users with the same gender of the user doing the call
          - both : return everyone (cats included ;-)
-     * {country} : return only users from the specified country
-     * {ppReceptiveTo} : filter by ReceptiveTo user property
-     * {ppDecisionsAriseFrom} : filter by "Decisions Arise From" user property
-     * {ppOpenedOrSettled} : filter by "Opened Or Settled" user property
-     * {ppPreferBooksToParties} : filter by "Prefer Books To Parties" user property
-     * {ppEnergeticAfter} : filter by "Energetic After" user property
+     * **{country}** : return only users from the specified country
+     * **{ppReceptiveTo}** : filter by ReceptiveTo user property
+     * **{ppDecisionsAriseFrom}** : filter by "Decisions Arise From" user property
+     * **{ppOpenedOrSettled}** : filter by "Opened Or Settled" user property
+     * **{ppPreferBooksToParties}** : filter by "Prefer Books To Parties" user property
+     * **{ppEnergeticAfter}** : filter by "Energetic After" user property
      
 
 ### Output
