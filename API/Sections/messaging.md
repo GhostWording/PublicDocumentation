@@ -549,32 +549,48 @@ exemple:
     result:
     HTTP 200 OK
     [
-       {
-         "Identifier": {
-           "DeviceId": "c33e94b025f47c12",
-           "FacebookId": "1809203435977428"
-         },
-         "Score": {
-           "Value": 43
-         },
-         "LastConnection": "2016-09-08T17:05:14.22",
-         "Properties": {
-           "Age": null,
-           "Country": "United Kingdom",
-           "FacebookFirstName": "Katrina",
-           "MBTISelected": null,
-           "UserPresentation": null,
-           "ppReceptiveTo": "Facts",
-           "ppPreferBooksToParties": "Books",
-           "ppPreferGoals": "Structured",
-           "ppEnergeticAfter": "WithPeople",
-           "ppDecisionsAriseFrom": "Feelings",
-           "UserLandscape": "11988669_764214673689805_3511463888887270881_n.jpg",
-           "UserFlower": "shutterstock_119283466.jpg",
-           "UserAnimal": "10580_413779368683509_908264830_n.jpg"
-         },
-         "__props": {}
-       }, ... Other profiles removed ...
+      {
+        "DeviceId": "ca4419ffa1299f9d",
+        "FacebookId": "699518193558537",
+        "LastConnection": "2016-12-13T14:58:49.197",
+        "Score": 40,
+        "Age": null,
+        "ConjugalSituation": "Single",
+        "Country": null,
+        "FacebookFirstName": "Daniel Gerardo",
+        "Gender": "male",
+        "InitialMBTIKnowledge": "Yes",
+        "MBTISelected": "????",
+        "MBTIYesOrNo": "No",
+        "ppAlmostNeverLate": null,
+        "ppDecisionsAriseFrom": "Feelings",
+        "ppEnergeticAfter": "WithPeople",
+        "ppI-like-you": "CA9F15",
+        "ppI-love-you": "27D6A2",
+        "ppI-miss-you": "B1F6B1",
+        "ppImportantQuality": "Positive",
+        "ppjokes": "589D98",
+        "ppJusticeOverPity": "Justice",
+        "ppLanguage": null,
+        "ppNotificationToken": "cK4tUSVIsp4:APA91bGl-KGRxPVVEZ8o80X6DYGzrG7GUS1mn1lJq8OSQ11bFfkw0cepmYEZG47gYQNFDKrMtRGzJytE-46xpKdP",
+        "ppOpenedOrSettled": "Settled",
+        "ppParticipateBattleStickers": null,
+        "ppPreferBooksToParties": "Books",
+        "ppPreferGoals": "Flexible",
+        "ppReceptiveTo": "Facts",
+        "ppSocialInteraction": "Naturally",
+        "ppthank-you": "812D47",
+        "pptu-me-plais": null,
+        "SetLanguage": null,
+        "UserAnimal": "iStock_000057902672_Medium.jpg",
+        "UserDescriptionPrototypeId": null,
+        "UserEmail": null,
+        "UserFlower": "shutterstock_13695319.jpg",
+        "UserLandscape": "bridges.jpg",
+        "UserPresentation": null,
+        "LastUpdated": "2016-12-07T14:27:04.45"
+      },
+       ... Other profiles removed ...
      ]
   
 
@@ -623,34 +639,53 @@ QueryString :
 The result can be a success or a failure:
 
 __success__:
-the result sould be `OK` and contain an array of profiles with scoring. the profile is defined by a facebookid or deviceId or both.
+the result sould be `OK` and contain an array of profiles with user properties. the profile is defined by a facebookid or deviceId or both.
 
     HTTP 200 OK
-    [
-      {
-         "Identifier": {
-           "DeviceId": string,
-           "FacebookId": string
-         },
-         "Score": {
-           "Value": int
-         },
+    
+      [
+       {
+         "DeviceId": string,
+         "FacebookId": string,
          "LastConnection": datetime,
-         "Properties": {
-           "Age": string,
-           "Country": string,
-           "FacebookFirstName": string,
-           "MBTISelected": string,
-           "UserPresentation": string,
-           "ppReceptiveTo": string,
-           "ppPreferBooksToParties": string,
-           "ppPreferGoals": string,
-           "ppEnergeticAfter": string,
-           "ppDecisionsAriseFrom": string,
-           "UserLandscape": string,
-           "UserFlower": string,
-           "UserAnimal": string
-         },
+         "Score": int,
+         "Age": int,
+         "ConjugalSituation": string,
+         "Country": string,
+         "FacebookFirstName": string,
+         "Gender":string,
+         "InitialMBTIKnowledge": string,
+         "MBTISelected": string,
+         "MBTIYesOrNo": string,
+         "ppAlmostNeverLate": string,
+         "ppDecisionsAriseFrom": string,
+         "ppEnergeticAfter": string,
+         "ppI-like-you": string,
+         "ppI-love-you": string,
+         "ppI-miss-you": string,
+         "ppImportantQuality": string,
+         "ppjokes": string,
+         "ppJusticeOverPity": string,
+         "ppLanguage": string,
+         "ppNotificationToken": string,
+         "ppOpenedOrSettled": string,
+         "ppParticipateBattleStickers": string,
+         "ppPreferBooksToParties": string,
+         "ppPreferGoals": string,
+         "ppReceptiveTo": string,
+         "ppSocialInteraction": string,
+         "ppthank-you": string,
+         "pptu-me-plais":string,
+         "SetLanguage": string,
+         "UserAnimal": string,
+         "UserDescriptionPrototypeId": string,
+         "UserEmail":string,
+         "UserFlower":string,
+         "UserLandscape": string,
+         "UserPresentation": string,
+         ... (properties are dynamic and other can appear in the future)
+         "LastUpdated": date"
+       }, ...
     ]
 
 The results are ordered by the `Score` property DESC. The `Properties` hastable is easy access to the main properties and avoid other calls but content is subject to change.
