@@ -171,7 +171,7 @@ A user (woman/man) get all messages sent by real users. Messages are typed as "d
 
 exemple:
 
-    GET http://api.cvd.io/messaging/stikers/usertouser/messages/forDevice/f659161979f91172
+    GET http://api.cvd.io/messaging/stikers/usertouser/messages/forDevice/f659161979f91172?start=2016-09-01
     
     result:
     HTTP 200 OK
@@ -218,17 +218,19 @@ exemple:
       }
     ]
   
-
+The pattern to get the messages would be:
+- if the user has actually no messages within the app, ask for all messages
+- if the user already have messages, take the date of the last message and provide it in the {start} parameter (ex: ?start='2016-09-01')
   
 ### Interface 
 
 Get messages for a device:
 
-    GET http://api.cvd.io/messaging/{area}/usertouser/messages/forDevice/{deviceId}
+    GET http://api.cvd.io/messaging/{area}/usertouser/messages/forDevice/{deviceId}?start={startdate}
 
 Get messages for a facebook id:
 
-    GET http://api.cvd.io/messaging/{area}/usertouser/messages/forFacebookId/{facebookId}
+    GET http://api.cvd.io/messaging/{area}/usertouser/messages/forFacebookId/{facebookId}?start={startdate}
  
 these interface are equivalents, they only differ on the id used.
 
@@ -241,6 +243,9 @@ Path :
 * {deviceId} : device id of the current user doing the call
 * {facebookId} : facebook id of the current user doing the call
 
+QueryString:
+
+* {start} : (optional) only return the messages after this date. format must be iso : 'yyyy-mm-dd'
 
 ### Output
 
