@@ -10,7 +10,7 @@ You can actually get theses ideas in different ways:
 * [get cards for some recipient](#ForRecipient) (and the usual intentions associated with this recipient):
   * [http://api.cvd.io/popular/stickers/IdeasOfTheDay/forRecipient/Mother](http://api.cvd.io/popular/stickers/IdeasOfTheDay/forRecipient/Mother)
 * [get cards for a recipient and an intention](#ForIntentionAndRecipient)
-  * [[http://api.cvd.io/popular/stickers/IdeasOfTheDay/forRecipient/Mother/andIntention/
+  * [http://api.cvd.io/popular/stickers/IdeasOfTheDay/forRecipient/Mother/andIntention/](http://api.cvd.io/popular/stickers/IdeasOfTheDay/forRecipient/Mother/andIntention/)
   
 <a name="ByIntention">
 By Intention
