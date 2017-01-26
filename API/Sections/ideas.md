@@ -33,13 +33,13 @@ Options:
 
 * culture : string, 'en-EN' | 'fr-FR' | 'es-ES', by default the culture will be automatically picked from the http headers
 * nbcards : int, the number of cards ideas to return for each intention, 1 by default
-* new: when set to true, it avoids the cache and forces a refresh
+* _refresh: when set to true, it avoids the cache and forces a refresh (this is only for test purposes and must not be used in the apps)_
 * deviceid: the device id of the user doing the request (not used actually but it will in the future to get more accurate suggestions for the user)
+* version: a number in the range [1..10], it allows you to get different sets of cards
  
 Response:
 
 * array of [cardIdea](#ObjectDefinitions)
-
 Notes:
 
 This api is available through your browser to have a better looking of the cards than in a json api.
@@ -74,8 +74,9 @@ Options:
 * senderGender: string, the gender of the user requesting the ideas ('H'|'M'|'Male  or  'F'|'Female'), by default 'I' (unknown)
 * culture : string, 'en-EN' | 'fr-FR' | 'es-ES'
 * nbcards : int, the number of cards ideas to return for each intention, 1 by default
-* new: when set to true, it avoids the cache and forces a refresh
+* _refresh: when set to true, it avoids the cache and forces a refresh (this is only for test purposes and must not be used in the apps)_
 * deviceid: the device id of the user doing the request (not used actually but it will in the future to get more accurate suggestions for the user)
+* version: a number in the range [1..10], it allows you to get different sets of cards
 
 Response:
 
@@ -115,8 +116,9 @@ Options:
 * senderGender: string, the gender of the user requesting the ideas ('H'|'M'|'Male  or  'F'|'Female'), by default 'I' (unknown)
 * culture : string, 'en-EN' | 'fr-FR' | 'es-ES'
 * nbcards : int, the number of cards ideas to return for each intention, 1 by default
-* new: when set to true, it avoids the cache and forces a refresh
+* _refresh: when set to true, it avoids the cache and forces a refresh (this is only for test purposes and must not be used in the apps)_
 * deviceid: the device id of the user doing the request (not used actually but it will in the future to get more accurate suggestions for the user)
+* version: a number in the range [1..10], it allows you to get different sets of cards
 
 Response:
 
