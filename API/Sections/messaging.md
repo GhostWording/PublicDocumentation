@@ -4,6 +4,8 @@ __This is a pre-release documentation to open discussion on interfaces, nothing 
 
 these apis provide interfaces for users to send message cards (text+image) to other users and other related actions.
 
+In complement to the messaging, there is the push notifications. when a message is sent, a push notification can be sent to. please refer the [Notifications](notifications.md) documentation for further details.
+
 Index of end points:
 
 * [User (woman|man) send a message to other user (woman)](#PostUserToUserMessage):
