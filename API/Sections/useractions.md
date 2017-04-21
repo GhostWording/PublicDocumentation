@@ -22,7 +22,7 @@ where `{querystring}` contains these key/values:
 
 (*) See [Values](#values) paragraph below to check the kind of values you can have
 
-- **AreaId** : the id/name of the area you use to get your intentions, this is usually the name of your app
+- **AreaId** : the name of your app
 - **ClientTime** : the time get from the client side
 - **DeviceId** : An identifier of the user device that you affect from your app
 - **RecipientId** : complementary information about the current recipient used (if needed)
