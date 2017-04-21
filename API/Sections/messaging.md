@@ -10,48 +10,48 @@ Index of end points:
 
 * [User (woman|man) send a message to other user (woman)](#PostUserToUserMessage):
   * [x] POST http://api.cvd.io/messaging/{area}/usertouser/message
-    - ex: http://api.cvd.io/messaging/stikers/usertouser/message
+    - ex: http://api.cvd.io/messaging/MBTIStickers/usertouser/message
 
 * [User (woman|man) get all her messages](#GetUserToUserMessages):
   * [x] GET http://api.cvd.io/messaging/{area}/usertouser/messages/forDevice/{deviceId}
-    - ex: http://api.cvd.io/messaging/stikers/usertouser/messages/forDevice/f659161979f91172
+    - ex: http://api.cvd.io/messaging/MBTIStickers/usertouser/messages/forDevice/f659161979f91172
   * [x] GET http://api.cvd.io/messaging/{area}/usertouser/messages/forFacebookid/{facebookId}
-    - ex: http://api.cvd.io/messaging/stikers/usertouser/messages/forFacebookid/952942371481416
+    - ex: http://api.cvd.io/messaging/MBTIStickers/usertouser/messages/forFacebookid/952942371481416
 
 <!--
 * [User (woman) get messages from bot to show along real messages](#GetBotToUserMessages):
   * [ ] GET http://api.cvd.io/messaging/{area}/bottouser/messages/forDevice/{deviceId}
-     - ex: http://api.cvd.io/messaging/stikers/bottouser/messages/forDevice/f659161979f91172
+     - ex: http://api.cvd.io/messaging/MBTIStickers/bottouser/messages/forDevice/f659161979f91172
   * [ ] GET http://api.cvd.io/messaging/{area}/bottouser/messages/forFacebookid/{facebookId}
-    - ex: http://api.cvd.io/messaging/stikers/bottouser/messages/forFacebookid/952942371481416
+    - ex: http://api.cvd.io/messaging/MBTIStickers/bottouser/messages/forFacebookid/952942371481416
 -->
 
 * [When a real user message is presented with a bot message](#GetUserChallengeMessagesAction):
   * [x] POST http://api.cvd.io/messaging/{area}/MessageAction/{action}/fordevice/{deviceId}
     * the message is shown to the user (action=viewed):
-      - ex: POST http://api.cvd.io/messaging/stikers/MessageAction/viewed/fordevice/f659161979f91172
+      - ex: POST http://api.cvd.io/messaging/MBTIStickers/MessageAction/viewed/fordevice/f659161979f91172
     * user choose her preferred message (action=preferredMessage):
-      - ex: POST http://api.cvd.io/messaging/stikers/MessageAction/preferredMessage/fordevice/f659161979f91172
+      - ex: POST http://api.cvd.io/messaging/MBTIStickers/MessageAction/preferredMessage/fordevice/f659161979f91172
     * user guess which one is the bot message (action=isBotMessage):
-      - ex: POST http://api.cvd.io/messaging/stikers/MessageAction/isBotMessage/fordevice/f659161979f91172
+      - ex: POST http://api.cvd.io/messaging/MBTIStickers/MessageAction/isBotMessage/fordevice/f659161979f91172
         
 
 * [Get matching users list for a user](#GetSuggestedUsers)
   * [x] GET http://api.cvd.io/messaging/{area}/SuggestedUsers/fordevice/{deviceId}?max={number}
-    - ex: http://api.cvd.io/messaging/stickers/SuggestedUsers/fordevice/30a2af95828b0eb2?max=10&showUsersWhoDoNotParticipate=yes
+    - ex: http://api.cvd.io/messaging/MBTIStickers/SuggestedUsers/fordevice/30a2af95828b0eb2?max=10&showUsersWhoDoNotParticipate=yes
     
  
 * [Get popular men leaderboards](#GetPopularMenLeaderBoards)
   * [ ] GET http://api.cvd.io/messaging/{area}/LeaderBoards/popular/men/fordevice/{deviceId}?max={number}
-    - ex: http://api.cvd.io/messaging/stickers/LeaderBoards/popular/men/fordevice/30a2af95828b0eb2?max=10
+    - ex: http://api.cvd.io/messaging/MBTIStickers/LeaderBoards/popular/men/fordevice/30a2af95828b0eb2?max=10
     
 * [Get popular women leaderboards](#GetPopularWomenLeaderBoards)
   * [ ] GET http://api.cvd.io/messaging/{area}/LeaderBoards/popular/women/fordevice/{deviceId}?max={number}
-    - ex: http://api.cvd.io/messaging/stickers/LeaderBoards/popular/women/fordevice/30a2af95828b0eb2?max=10
+    - ex: http://api.cvd.io/messaging/MBTIStickers/LeaderBoards/popular/women/fordevice/30a2af95828b0eb2?max=10
     
 * [Get status of my messages](#GetMyMessagesStatuses)
   * [x] GET http://api.cvd.io/messaging/{area}/SentMessagesStatus/{deviceId}?maxItems={maxItems}
-    - ex : http://api.cvd.io/messaging/stickers/SentMessagesStatus/fordevice/30a2af95828b0eb2?max=10
+    - ex : http://api.cvd.io/messaging/MBTIStickers/SentMessagesStatus/fordevice/30a2af95828b0eb2?max=10
 
     
 
@@ -64,7 +64,7 @@ A user (man) send a selected card (text+image couple) as a message to an other u
 
 exemple:
 
-    POST http://api.cvd.io/messaging/stikers/usertouser/message
+    POST http://api.cvd.io/messaging/MBTIStickers/usertouser/message
     {
       "sender": {
         "deviceId":"30a2af95828b0eb2",
@@ -173,7 +173,7 @@ A user (woman/man) get all messages sent by real users. Messages are typed as "d
 
 exemple:
 
-    GET http://api.cvd.io/messaging/stikers/usertouser/messages/forDevice/f659161979f91172?start=2016-09-01
+    GET http://api.cvd.io/messaging/MBTIStickers/usertouser/messages/forDevice/f659161979f91172?start=2016-09-01
     
     result:
     HTTP 200 OK
@@ -321,7 +321,7 @@ A user (woman) get computed messages from the bot Huggy to present along the rea
 
 exemple:
 
-    GET http://api.cvd.io/messaging/stikers/bottouser/messages/forDevice/f659161979f91172
+    GET http://api.cvd.io/messaging/MBTIStickers/bottouser/messages/forDevice/f659161979f91172
     
     result:
     HTTP 200 OK
@@ -428,7 +428,7 @@ This interface is a generic endpoint for the actions you can do when you present
 exemple:
 "the user saw the user and bot messages:"
 
-    POST POST http://api.cvd.io/messaging/stikers/MessageAction/viewed/fordevice/f659161979f91172
+    POST POST http://api.cvd.io/messaging/MBTIStickers/MessageAction/viewed/fordevice/f659161979f91172
     {
       "facebookId":"952942371481416",
       "firstMessage":"1C318DA2-01F6-4ADF-A599-08DC129B92D6",
@@ -440,7 +440,7 @@ exemple:
   
 "then user choose it's prefered message:"
 
-    POST http://api.cvd.io/messaging/stikers/MessageAction/preferredMessage/fordevice/f659161979f91172
+    POST http://api.cvd.io/messaging/MBTIStickers/MessageAction/preferredMessage/fordevice/f659161979f91172
     {
       "facebookId":"952942371481416",
       "firstMessage":"1C318DA2-01F6-4ADF-A599-08DC129B92D6",
@@ -453,7 +453,7 @@ exemple:
   
 "and finally try to guess which is from a bot:"
 
-    POST http://api.cvd.io/messaging/stikers/MessageAction/isBotMessage/fordevice/f659161979f91172
+    POST http://api.cvd.io/messaging/MBTIStickers/MessageAction/isBotMessage/fordevice/f659161979f91172
     {
       "facebookId":"952942371481416",
       "firstMessage":"1C318DA2-01F6-4ADF-A599-08DC129B92D6",
@@ -551,7 +551,7 @@ A user get selected profiles to communicate with. This endpoint can also be quer
 
 exemple:
 
-    GET http://api.cvd.io/messaging/stickers/SuggestedUsers/fordevice/30a2af95828b0eb2?max=10
+    GET http://api.cvd.io/messaging/MBTIStickers/SuggestedUsers/fordevice/30a2af95828b0eb2?max=10
     
     result:
     HTTP 200 OK
@@ -717,7 +717,7 @@ _note: the definition of popularity is not yet defined and can change in time_
 
 exemple:
 
-    GET http://api.cvd.io/messaging/stickers/LeaderBoards/popular/men/fordevice/30a2af95828b0eb2?max=10
+    GET http://api.cvd.io/messaging/MBTIStickers/LeaderBoards/popular/men/fordevice/30a2af95828b0eb2?max=10
     
     result:
     HTTP 200 OK
@@ -777,7 +777,7 @@ _note: the definition of popularity is not yet defined and can change in time_
 
 exemple:
 
-    GET http://api.cvd.io/messaging/stickers/LeaderBoards/popular/women/fordevice/30a2af95828b0eb2?max=10
+    GET http://api.cvd.io/messaging/MBTIStickers/LeaderBoards/popular/women/fordevice/30a2af95828b0eb2?max=10
     
     result:
     HTTP 200 OK
@@ -835,7 +835,7 @@ A user gets the statuses of it's messages (actions applied to). He get the full 
 
 exemple:
 
-    GET http://api.cvd.io/messaging/stickers/SentMessagesStatus/fordevice/30a2af95828b0eb2?max=10
+    GET http://api.cvd.io/messaging/MBTIStickers/SentMessagesStatus/fordevice/30a2af95828b0eb2?max=10
     
     result:
     HTTP 200 OK
