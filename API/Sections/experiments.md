@@ -6,7 +6,7 @@ Actually, there is a small endpoint giving you the information about the actual 
 
 ### Endpoint
 
-    GET http://api.cvd.io/{areaName}/experiment/current
+    GET http://api.cvd.io/{appName}/experiment/current
     accept:application/json
     
     
@@ -17,14 +17,14 @@ Response contains an object with actual experiment name and variation:
      {
         "ExperimentId": "{name}",
         "VariationId": {number},
-        "Area": "{areaName}"
+        "Area": "{appName}"
       }
       
 where:
  
 * name : name of the actual experiment
 * number : the number of the current experiment's variation
-* areaName : the name of the area you provided in the call
+* areaName : the name of your app
 
 This experiment is managed by admin. 
 
