@@ -9,10 +9,10 @@ This is an exemple of this page and how it is build:
 
 The pattern and information you provide in the url are the following:
 
-    /webapp/{culture}/area/{area_name}/recipient/{recipient_type}/intention/{intention_id}/text/{text_id}
+    /webapp/{culture}/area/{areaId}/recipient/{recipient_type}/intention/{intention_id}/text/{text_id}
     
 * culture: the language to display the text (fr,en,es)
-* area : the name of the area of your app
+* areaId : the id of the area where the intention of the text belongs to
 * recipient : the type of the recipient you target with this text
 * intention : the ID of the intention where the text is
 * textid : id of the selected text
