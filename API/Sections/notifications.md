@@ -17,6 +17,13 @@ this can be done by using the register User api:
         "deviceId":"7c9c5f92fc0a7ec5"
       }
       
+      -- change test --
+      POST http://api.cvd.io/messaging/notifications/registerUser
+      { 
+        "appName": "MBTIStickers", 
+        "notificationToken":"cOYzItgOd8I:APA91bHAx7PZnG03hjPa1td4ZXCVT1ia-wORQ9rc74Txv_ZrrhTJvnqWOYcRD50w_KGGUZxgbyJzJxKU3Nio2J-qWPUw3AI_38QLh5kqzZ2eW8rkkxJeFtcXnq3T4lNz9wd7PQmuIuy2", 
+        "deviceId":"7c9c5f92fc0a7ec5"
+      }
       
       
       
