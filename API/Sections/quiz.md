@@ -17,7 +17,8 @@ Get quiz texts for an intention
 
 Get all available quiz texts for all intentions of an area (number of texts will vary depending on the culture you provide)
 
-    GET http://api.cvd.io/{area-name}/quiz/intentions/texts
+    GET http://api.cvd.io/LipTipQuiz/quiz/intentions/texts
+    GET http://api.cvd.io/StickersQuiz/quiz/intentions/texts
     Area name is the area name of the app, for example LipTip or StatusHero
  
 Get one randomly selected intention which has quiz texts available (number of texts will vary depending on the culture you provide)
