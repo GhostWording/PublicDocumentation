@@ -6,11 +6,11 @@ These ideas are great things to push up front in your application when a user st
 You can actually get theses ideas in different ways:
 
 * [get cards for a predefined selection of intentions](#ByIntention):
-  * [http://api.cvd.io/popular/stickers/IdeasOfTheDay/ByIntention](http://api.cvd.io/popular/stickers/IdeasOfTheDay/ByIntention)
+  * [http://api.cvd.io/popular/IThinkOfYou/IdeasOfTheDay/ByIntention](http://api.cvd.io/popular/IThinkOfYou/IdeasOfTheDay/ByIntention)
 * [get cards for some recipient](#ForRecipient) (and the usual intentions associated with this recipient):
-  * [http://api.cvd.io/popular/stickers/IdeasOfTheDay/forRecipient/Mother](http://api.cvd.io/popular/stickers/IdeasOfTheDay/forRecipient/Mother)
+  * [http://api.cvd.io/popular/general/IdeasOfTheDay/forRecipient/Mother](http://api.cvd.io/popular/MBTIStickers/IdeasOfTheDay/forRecipient/Mother)
 * [get cards for a recipient and an intention](#ForIntentionAndRecipient)
-  * [http://api.cvd.io/popular/stickers/IdeasOfTheDay/forRecipient/Mother/andIntention/](http://api.cvd.io/popular/stickers/IdeasOfTheDay/forRecipient/Mother/andIntention/)
+  * [http://api.cvd.io/popular/general/IdeasOfTheDay/forRecipient/Mother/andIntention/030FD0](http://api.cvd.io/popular/MBTIStickers/IdeasOfTheDay/forRecipient/Mother/andIntention/030FD0)
   
 <a name="ByIntention">
 By Intention
@@ -21,13 +21,13 @@ By Intention
  
 ### Endoint:
  
-    GET http://api.cvd.io/popular/{area}/IdeasOfTheDay/ByIntention?{options}
+    GET http://api.cvd.io/popular/{areaId}/IdeasOfTheDay/ByIntention?{options}
     
 ### Definitions:
 
 Path:
 
-* area : the name of your app area (not relevant for the search)
+* areaId : the id of the area (used to define the group of intentions you're looking for)
     
 Options: 
 
@@ -55,19 +55,19 @@ of the current user asking for ideas in order to get even more accurate ideas.
 
 exemple, assuming I'm a man, I want new ideas to say something to my mum in french, give me 3 ideas for each intention:
 
-    GET http://api.cvd.io/popular/stickers/IdeasOfTheDay/forRecipient/Mother?culture=fr-Fr&senderGender='M'&nbcards=3
+    GET http://api.cvd.io/popular/MBTIStickers/IdeasOfTheDay/forRecipient/Mother?culture=fr-Fr&senderGender='M'&nbcards=3
     Resonse:  array of [cardIdea](#ObjectDefinitions)
     
 ### Endoint:
  
-    GET http://api.cvd.io/popular/{area}/IdeasOfTheDay/forRecipient/{recipient}?{options}
+    GET http://api.cvd.io/popular/{appName}/IdeasOfTheDay/forRecipient/{recipient}?{options}
     
 ### Definitions:
 
 Path:
 
-* area : string, the name of your app area (not relevant for the search)
-* recipient : string, a recipient name. you'll find a full list of recipients with their intentions here : [http://api.cvd.io/popular/stickers/IdeasOfTheDay/intentionforrelations](http://api.cvd.io/popular/stickers/IdeasOfTheDay/intentionforrelations)
+* area : string, the name of your app (not relevant for the search, we only look for ideas for intentions associated with the recipient)
+* recipient : string, a recipient name. you'll find a full list of recipients with their intentions here : [http://api.cvd.io/popular/MBTIStickers/IdeasOfTheDay/intentionforrelations](http://api.cvd.io/popular/MBTIStickers/IdeasOfTheDay/intentionforrelations)
  
 Options: 
 
@@ -96,19 +96,19 @@ This api will get you some ideas of things to say to someone in a certain contex
 
 exemple, assuming I'm a man, I want 3 new ideas to say good morning to my mum in french:
 
-    GET http://api.cvd.io/popular/stickers/IdeasOfTheDay/forRecipient/Mother/andIntention/030FD0?culture=fr-Fr&senderGender='M'&nbcards=3
+    GET http://api.cvd.io/popular/MBTIStickers/IdeasOfTheDay/forRecipient/Mother/andIntention/030FD0?culture=fr-Fr&senderGender='M'&nbcards=3
     Resonse:  array of [cardIdea](#ObjectDefinitions)
     
 ### Endoint:
  
-    GET http://api.cvd.io/popular/{area}/IdeasOfTheDay/forRecipient/{recipient}/andIntention/{intentionId}?{options}
+    GET http://api.cvd.io/popular/{appName}/IdeasOfTheDay/forRecipient/{recipient}/andIntention/{intentionId}?{options}
     
 ### Definitions:
 
 Path:
 
-* area : string, the name of your app area (not relevant for the search)
-* recipient : string, a recipient name. you'll find a full list of recipients with their intentions here : [http://api.cvd.io/popular/stickers/IdeasOfTheDay/intentionforrelations](http://api.cvd.io/popular/stickers/IdeasOfTheDay/intentionforrelations)
+* appName : string, the name of your app (not relevant for the search, we focus on recipient+intention only)
+* recipient : string, a recipient name. you'll find a full list of recipients with their intentions here : [http://api.cvd.io/popular/MBTIStickers/IdeasOfTheDay/intentionforrelations](http://api.cvd.io/popular/MBTIStickers/IdeasOfTheDay/intentionforrelations)
 * intentionid : the id of the intention you want ideas
  
 Options: 
@@ -128,7 +128,8 @@ Response:
 ### Response objects details:
 
 - **CardIdea** : It defines the properties of the card you'll get as response:
-     -  "IntentionId": string, id of the intention expressed in the card
+
+     - "IntentionId": string, id of the intention expressed in the card
      - "PrototypeId": string, id of the prototype of the text
      - "TextId": string, id of the text
      - "Content": string, content of the text
