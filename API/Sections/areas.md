@@ -58,7 +58,7 @@ Once you know your area you should get more detail for that area and have a list
 
 GET on that name:
 
-    GET /{areaname}
+    GET /{areaId}
         
 
 You'll get a more complete 
