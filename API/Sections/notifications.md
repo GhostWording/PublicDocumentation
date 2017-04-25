@@ -17,7 +17,7 @@ this can be done by using the register User api: (please use this new version of
       }
           
           
-This version is `Deprecated`:    
+This version is <span style="color:red">deprecated</span>:    
 
       POST http://api.cvd.io/messaging/notifications/registerUser
       { 
