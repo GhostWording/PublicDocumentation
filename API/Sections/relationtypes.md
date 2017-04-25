@@ -1,12 +1,12 @@
 # Relation Types
 
-A relation type defines a relation between people by defining the relation with the recipient you target and a gender. For exemple the relation type `Mum` is defined when you want to send a message to the recipien `Parent` and the gender is `F`(Female).
+A relation type defines a relation between people by defining the relation with the recipient you target and a gender. For exemple the relation type `Mum` is defined when you want to send a message to the recipient `Parent` and the gender is `F`(Female).
 
 To Get the actual relations, issue a request to this service:
 
-    GET http://api.cvd.io/{area}/relationtypes
+    GET http://api.cvd.io/{appName}/relationtypes
     
-Where [area] is the name of your application/area you use to use. 
+Where [appName] is the name of your application you use to use. 
 
 You'll get an Array of RelationTypes with the following properties
 
@@ -25,7 +25,7 @@ You'll get an Array of RelationTypes with the following properties
 
 For exemple: 
 
-    GET http://api.cvd.io/liptip/relationtypes
+    GET http://api.cvd.io/MyAppName/relationtypes
     
     
     [
