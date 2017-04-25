@@ -50,7 +50,7 @@ then get the list of images in a container.
 Note that each container can have it's own definition to qualify it's hierarchy
 
 
-###List all the children containers available for your app
+### List all the children containers available for your app
 
 You should get the array of all containers by calling 
 
