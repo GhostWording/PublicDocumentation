@@ -84,7 +84,7 @@ You can get an indention by it's prototype slug:
     
 exemple:
     
-    GET /General/thank-you
+    GET /TestArea/thank-you
     
     
 ## All areas and intentions
