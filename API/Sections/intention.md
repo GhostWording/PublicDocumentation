@@ -7,7 +7,7 @@ Area name when you call for an Intention or a list of Intentions.
 
 Your call should be:
 
-    GET /{area-name}/intentions
+    GET /{areName}/intentions
 
 As an Intention contains one or more labels, the resulting intentions that the server returns is dependent on the culture of the client browser. It will automatically choose the right one but you can override it by providing the
 `Accept-Language header` of your choice.
@@ -73,7 +73,7 @@ You may need to get information for one intention from its id:
     
 exemple:
     
-    GET /General/intention/006B9F
+    GET /TestArea/intention/030FD0
 
 
 ### Get By Slug
