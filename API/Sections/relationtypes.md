@@ -6,7 +6,7 @@ To Get the actual relations, issue a request to this service:
 
     GET http://api.cvd.io/{appName}/relationtypes
     
-Where [appName] is the name of your application you use to use. 
+Where [appName] is the name of your application. 
 
 You'll get an Array of RelationTypes with the following properties
 
