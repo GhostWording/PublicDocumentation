@@ -56,8 +56,8 @@ Index of end points:
     
 
 <a name="PostUserToUserMessage">
-Send User To User Message
-----------------------------
+
+## Send User To User Message
 
 ### Description
 A user (man) send a selected card (text+image couple) as a message to an other user (woman).
@@ -82,7 +82,11 @@ exemple:
         "content":"",
         "imageName":"306043_10151330260424252_2113533977_n.jpg",
         "localTimestamp":1470150873
-      }
+      },
+      "IsTest":true,
+      "Culture":"en-EN",
+      "AppName":"StickerBliss",
+      "Area":"stickers"
     }
     
     result:
