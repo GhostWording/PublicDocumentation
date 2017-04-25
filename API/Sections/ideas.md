@@ -8,11 +8,11 @@ You can actually get theses ideas in different ways:
 * [get cards for a predefined selection of intentions](#ByIntention):
   * [http://api.cvd.io/popular/TestArea/IdeasOfTheDay/ByIntention](http://api.cvd.io/popular/TestArea/IdeasOfTheDay/ByIntention)
 * [get cards for some recipient](#ForRecipient) (and the usual intentions associated with this recipient):
-  * [http://api.cvd.io/popular/MBTIStickers/IdeasOfTheDay/forRecipient/Mother](http://api.cvd.io/popular/MBTIStickers/IdeasOfTheDay/forRecipient/Mother)
+  * [http://api.cvd.io/popular/MyAppName/IdeasOfTheDay/forRecipient/Mother](http://api.cvd.io/popular/MyAppName/IdeasOfTheDay/forRecipient/Mother)
 * [get cards for a recipient and an intention](#ForIntentionAndRecipient)
-  * [http://api.cvd.io/popular/MBTIStickers/IdeasOfTheDay/forRecipient/Mother/andIntention/030FD0](http://api.cvd.io/popular/MBTIStickers/IdeasOfTheDay/forRecipient/Mother/andIntention/030FD0)
+  * [http://api.cvd.io/popular/MyAppName/IdeasOfTheDay/forRecipient/Mother/andIntention/030FD0](http://api.cvd.io/popular/MyAppName/IdeasOfTheDay/forRecipient/Mother/andIntention/030FD0)
 * [get cards for a recipient and an area name](#ForIntentionAndArea)
-  * [http://api.cvd.io/popular/MBTIStickers/IdeasOfTheDay/forRecipient/Mother/andArea/TestArea](http://api.cvd.io/popular/MBTIStickers/IdeasOfTheDay/forRecipient/Mother/andArea/TestArea)
+  * [http://api.cvd.io/popular/MyAppName/IdeasOfTheDay/forRecipient/Mother/andArea/TestArea](http://api.cvd.io/popular/MyAppName/IdeasOfTheDay/forRecipient/Mother/andArea/TestArea)
   
     
   
@@ -67,7 +67,7 @@ of the current user asking for ideas in order to get even more accurate ideas.
 
 exemple, assuming I'm a man, I want new ideas to say something to my mum in french, give me 3 ideas for each intention:
 
-    GET http://api.cvd.io/popular/MBTIStickers/IdeasOfTheDay/forRecipient/Mother?culture=fr-Fr&senderGender='M'&nbcards=3
+    GET http://api.cvd.io/popular/MyAppName/IdeasOfTheDay/forRecipient/Mother?culture=fr-Fr&senderGender='M'&nbcards=3
     Resonse:  array of [cardIdea](#ObjectDefinitions)
     
 ### Endoint:
@@ -79,7 +79,7 @@ exemple, assuming I'm a man, I want new ideas to say something to my mum in fren
 Path:
 
 * area : string, the name of your app (not relevant for the search, we only look for ideas for intentions associated with the recipient)
-* recipient : string, a recipient name. you'll find a full list of recipients with their intentions here : [http://api.cvd.io/popular/MBTIStickers/IdeasOfTheDay/intentionforrelations](http://api.cvd.io/popular/MBTIStickers/IdeasOfTheDay/intentionforrelations)
+* recipient : string, a recipient name. you'll find a full list of recipients with their intentions here : [http://api.cvd.io/popular/MyAppName/IdeasOfTheDay/intentionforrelations](http://api.cvd.io/popular/MyAppName/IdeasOfTheDay/intentionforrelations)
  
 Options: 
 
@@ -107,7 +107,7 @@ This api will get you some ideas of things to say to someone in a certain contex
 
 exemple, assuming I'm a man, I want 3 new ideas to say good morning to my mum in french:
 
-    GET http://api.cvd.io/popular/MBTIStickers/IdeasOfTheDay/forRecipient/Mother/andIntention/030FD0?culture=fr-Fr&senderGender='M'&nbcards=3
+    GET http://api.cvd.io/popular/MyAppName/IdeasOfTheDay/forRecipient/Mother/andIntention/030FD0?culture=fr-Fr&senderGender='M'&nbcards=3
     Resonse:  array of [cardIdea](#ObjectDefinitions)
     
 ### Endoint:
@@ -119,7 +119,7 @@ exemple, assuming I'm a man, I want 3 new ideas to say good morning to my mum in
 Path:
 
 * appName : string, the name of your app (not relevant for the search, we focus on recipient+intention only)
-* recipient : string, a recipient name. you'll find a full list of recipients with their intentions here : [http://api.cvd.io/popular/MBTIStickers/IdeasOfTheDay/intentionforrelations](http://api.cvd.io/popular/MBTIStickers/IdeasOfTheDay/intentionforrelations)
+* recipient : string, a recipient name. you'll find a full list of recipients with their intentions here : [http://api.cvd.io/popular/MyAppName/IdeasOfTheDay/intentionforrelations](http://api.cvd.io/popular/MyAppName/IdeasOfTheDay/intentionforrelations)
 * intentionid : the id of the intention you want ideas
  
 Options: 
