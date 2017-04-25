@@ -28,6 +28,7 @@ You can actually get theses ideas in different ways:
  By default you'll get one card suggestion by intention for the predefined list of intentions for the Ideas of the Day (you can get the list
  at [http://api.cvd.io/IdeaOfTheDay/intentions](http://api.cvd.io/IdeaOfTheDay/intentions).
  
+ 
 ### Endoint:
  
     GET http://api.cvd.io/popular/{areaName}/IdeasOfTheDay/ByIntention?{options}
@@ -59,7 +60,8 @@ This api is available through your browser to have a better looking of the cards
 
 
 <a name="ForRecipient">
-##For recipient
+
+## For recipient
 
 
 This api will get you some ideas of things to say to someone, targeting a recipient you define in parameter. You may also provide the gender
@@ -101,6 +103,7 @@ This api is available through your browser to have a better looking of the cards
 
 
 <a name="ForIntentionAndRecipient">
+
 ## For a specific recipient and intention
 
 This api will get you some ideas of things to say to someone in a certain context, targeting a recipient and intention you define in parameter. You may also provide the gender of the current user asking for ideas in order to get even more accurate ideas.
@@ -136,6 +139,7 @@ Response:
 * array of [cardIdea](#ObjectDefinitions)
  
 <a name="ObjectDefinitions">
+
 ### Response objects details:
 
 - **CardIdea** : It defines the properties of the card you'll get as response:
@@ -151,6 +155,7 @@ Response:
 
       
 <a name="ForIntentionAndArea">
+
 ## For a specific recipient and Area
 
 TBD
