@@ -7,10 +7,10 @@ Service key points:
 
 * [I want to get the best texts by entering a free text search](#FreeTextSearch)
    * get matching texts for text query: 
-       * [http://api.cvd.io/search/MBTIStickers/fulltextsearch/?text=want to drink&culture=en-EN&recipientGender=H&top=3](http://api.cvd.io/search/stickers/fulltextsearch/?text=want to drink&culture=en-EN&recipientGender=H&top=3)
+       * http://api.cvd.io/search/MBTIStickers/fulltextsearch/?text=want to drink&culture=en-EN&recipientGender=H&top=3
 * [I want to get one random card(text+image) by entering a keyword or free text](#RandomCard)
    * get card (text+image) suggestion for keywords or free text: 
-       * [http://api.cvd.io/search/MBTIStickers/randomCard/forKeyword/?text=cats and dogs&culture=en-EN](http://api.cvd.io/search/stickers/randomCard/forKeyword/?text=cats and dogs&culture=en-EN)
+       * [http://api.cvd.io/search/MBTIStickers/randomCard/forKeyword/?text=cats and dogs&culture=en-EN]
 
 Note: **please note that POST verb is actually the preferred query solution**
        
