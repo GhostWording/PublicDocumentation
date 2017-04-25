@@ -7,10 +7,10 @@ Service key points:
 
 * [I want to get the best texts by entering a free text search](#FreeTextSearch)
    * get matching texts for text query: 
-       * [http://api.cvd.io/search/stickers/fulltextsearch/?text=want to drink&culture=en-EN&recipientGender=H&top=3](http://api.cvd.io/search/stickers/fulltextsearch/?text=want to drink&culture=en-EN&recipientGender=H&top=3)
+       * [http://api.cvd.io/search/MBTIStickers/fulltextsearch/?text=want to drink&culture=en-EN&recipientGender=H&top=3](http://api.cvd.io/search/stickers/fulltextsearch/?text=want to drink&culture=en-EN&recipientGender=H&top=3)
 * [I want to get one random card(text+image) by entering a keyword or free text](#RandomCard)
    * get card (text+image) suggestion for keywords or free text: 
-       * [http://api.cvd.io/search/stickers/randomCard/forKeyword/?text=cats and dogs&culture=en-EN](http://api.cvd.io/search/stickers/randomCard/forKeyword/?text=cats and dogs&culture=en-EN)
+       * [http://api.cvd.io/search/MBTIStickers/randomCard/forKeyword/?text=cats and dogs&culture=en-EN](http://api.cvd.io/search/stickers/randomCard/forKeyword/?text=cats and dogs&culture=en-EN)
 
 Note: **please note that POST verb is actually the preferred query solution**
        
@@ -23,7 +23,7 @@ When I enter some free text I want to have the best suggested texts based on my 
 
 Exemple: give me the `2` best texts about `have a drink` for my english `en-EN` culture and assuming the recipient is Male (M):
 
-    GET http://api.cvd.io/search/stickers/fulltextsearch/?text=have a drink&culture=en-EN&recipientGender=M&top=2
+    GET http://api.cvd.io/search/MBTIStickers/fulltextsearch/?text=have a drink&culture=en-EN&recipientGender=M&top=2
     
     [
             {
@@ -46,11 +46,11 @@ Exemple: give me the `2` best texts about `have a drink` for my english `en-EN` 
 
 #### Endoint (GET)
  
-     GET http://api.cvd.io/search/{areaInfo}/fulltextsearch/?{querystring}
+     GET http://api.cvd.io/search/{appName}/fulltextsearch/?{querystring}
      
 Path options:
      
-     * areaInfo : the name of your app (not relevant for the search)
+     * appName : the name of your app (not relevant for the search)
      * querystring:
          * text: text to search
          * culture: language code (en-EN,fr-FR,es-ES)
@@ -59,7 +59,7 @@ Path options:
          
 #### Endpoint (POST)
 
-      POST http://api.cvd.io/search/{areaInfo}
+      POST http://api.cvd.io/search/{appName}
       Body: 
       {
          command : string
