@@ -164,9 +164,12 @@ From here you just have to recompose 
 
 to get access to the images.
 
-Exemple:
+Example:
 
-    gw-static.azurewebsites.net/myapp/goodmorning/sayhello/full/file2-full.jpg
+    http://gw-static.azurewebsites.net/cvd/recipients/default/xsmall/iStock_000010603333_Medium.jpg
+    http://az767698.vo.msecnd.net/cvd/recipients/default/xsmall/iStock_000010603333_Medium.jpg
+    http://az767698.vo.msecnd.net/cvd/intentions/default/xsmall/0x550_2.jpg
+    http://az767698.vo.msecnd.net/canonical/0x550_2.jpg
 
 ### List all the containers for all the apps
 
