@@ -11,10 +11,19 @@ You can actually get theses ideas in different ways:
   * [http://api.cvd.io/popular/MBTIStickers/IdeasOfTheDay/forRecipient/Mother](http://api.cvd.io/popular/MBTIStickers/IdeasOfTheDay/forRecipient/Mother)
 * [get cards for a recipient and an intention](#ForIntentionAndRecipient)
   * [http://api.cvd.io/popular/MBTIStickers/IdeasOfTheDay/forRecipient/Mother/andIntention/030FD0](http://api.cvd.io/popular/MBTIStickers/IdeasOfTheDay/forRecipient/Mother/andIntention/030FD0)
+* [get cards for a recipient and an area name](#ForIntentionAndArea)
+  * [http://api.cvd.io/popular/MBTIStickers/IdeasOfTheDay/forRecipient/Mother/andArea/TestArea](http://api.cvd.io/popular/MBTIStickers/IdeasOfTheDay/forRecipient/Mother/andArea/TestArea)
+  
+    
+  
+  
+  
+  
   
 <a name="ByIntention">
-By Intention
-------------
+
+## By Intention
+
  
  By default you'll get one card suggestion by intention for the predefined list of intentions for the Ideas of the Day (you can get the list
  at [http://api.cvd.io/IdeaOfTheDay/intentions](http://api.cvd.io/IdeaOfTheDay/intentions).
@@ -50,8 +59,7 @@ This api is available through your browser to have a better looking of the cards
 
 
 <a name="ForRecipient">
-For recipient
-------------
+##For recipient
 
 
 This api will get you some ideas of things to say to someone, targeting a recipient you define in parameter. You may also provide the gender
@@ -93,8 +101,7 @@ This api is available through your browser to have a better looking of the cards
 
 
 <a name="ForIntentionAndRecipient">
-For a specific recipient and intention
-------------
+## For a specific recipient and intention
 
 This api will get you some ideas of things to say to someone in a certain context, targeting a recipient and intention you define in parameter. You may also provide the gender of the current user asking for ideas in order to get even more accurate ideas.
 
@@ -143,3 +150,9 @@ Response:
      - "Recipient": string, can be ("H","F","I","N")
 
       
+<a name="ForIntentionAndArea">
+## For a specific recipient and Area
+
+TBD
+
+get ideas for an area and filtered by recipients
