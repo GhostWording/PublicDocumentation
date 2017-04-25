@@ -57,12 +57,13 @@ Matching (between texts/images):
 
 
 ### Description
-Get the texts in your culture for the best prototypes for the whole area. The selection is based on the texts within the intentions of the area but the selection and sorting is done for whole area not by intention. 
+Get the most popular texts among users of a given app.
 You get in return an array of texts with their scoring. 
+Sorting is done by popularity, not by Intention.
 
 The scoring is based on the number of times texts are displayed and selected in a message (internally it's an aggregate at the text protype level then the best text for the prototype is choosen):
 
-      GET http://api.cvd.io/popular/liptip/populartexts/liptip?maxrank=2&culture=en-EN
+      GET http://api.cvd.io/popular/MyAppName/populartexts/MBTIStickers?maxrank=2&culture=en-EN
       
               [
           {
@@ -129,13 +130,13 @@ The returned content has the following properties for each intention:
 
 ### Apis
 
-Get the best texts for an area:
+Get the best texts for an app:
 
-     GET http://api.cvd.io/popular/{area-info}/populartexts/{area-Id}?
+     GET http://api.cvd.io/popular/{myAppName}/populartexts/{targetAppName}?
      
      With : 
-          - area-info    = identifier name of your area (for loggin purposes, no effect on the query)
-          - area-id      = identifier of the area for which you want the data
+          - myAppName    = Your app name (for loggin purposes, no effect on the query)
+          - targetAppName = App from which data has been gathered
     
 
 ### Options
