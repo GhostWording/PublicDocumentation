@@ -17,7 +17,7 @@ this can be done by using the register User api: (please use this new version of
       }
           
           
-This version is <span style="color:red">deprecated</span>:    
+![#f03c15](https://placehold.it/15/f03c15/000000?text=+) This version is **Deprecated**:    
 
       POST http://api.cvd.io/messaging/notifications/registerUser
       { 
