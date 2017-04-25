@@ -6,11 +6,11 @@ These ideas are great things to push up front in your application when a user st
 You can actually get theses ideas in different ways:
 
 * [get cards for a predefined selection of intentions](#ByIntention):
-  * [http://api.cvd.io/popular/IThinkOfYou/IdeasOfTheDay/ByIntention](http://api.cvd.io/popular/IThinkOfYou/IdeasOfTheDay/ByIntention)
+  * [http://api.cvd.io/popular/TestArea/IdeasOfTheDay/ByIntention](http://api.cvd.io/popular/TestArea/IdeasOfTheDay/ByIntention)
 * [get cards for some recipient](#ForRecipient) (and the usual intentions associated with this recipient):
-  * [http://api.cvd.io/popular/general/IdeasOfTheDay/forRecipient/Mother](http://api.cvd.io/popular/MBTIStickers/IdeasOfTheDay/forRecipient/Mother)
+  * [http://api.cvd.io/popular/MBTIStickers/IdeasOfTheDay/forRecipient/Mother](http://api.cvd.io/popular/MBTIStickers/IdeasOfTheDay/forRecipient/Mother)
 * [get cards for a recipient and an intention](#ForIntentionAndRecipient)
-  * [http://api.cvd.io/popular/general/IdeasOfTheDay/forRecipient/Mother/andIntention/030FD0](http://api.cvd.io/popular/MBTIStickers/IdeasOfTheDay/forRecipient/Mother/andIntention/030FD0)
+  * [http://api.cvd.io/popular/MBTIStickers/IdeasOfTheDay/forRecipient/Mother/andIntention/030FD0](http://api.cvd.io/popular/MBTIStickers/IdeasOfTheDay/forRecipient/Mother/andIntention/030FD0)
   
 <a name="ByIntention">
 By Intention
@@ -21,13 +21,16 @@ By Intention
  
 ### Endoint:
  
-    GET http://api.cvd.io/popular/{areaId}/IdeasOfTheDay/ByIntention?{options}
+    GET http://api.cvd.io/popular/{areaName}/IdeasOfTheDay/ByIntention?{options}
     
 ### Definitions:
 
 Path:
 
-* areaId : the id of the area (used to define the group of intentions you're looking for)
+* areaName : the name of the area (used to define the group of intentions you're looking for)
+
+**note**: if you specify a wrong area name, you'll still receive ideas from a "fallback" area
+
     
 Options: 
 
@@ -49,6 +52,7 @@ This api is available through your browser to have a better looking of the cards
 <a name="ForRecipient">
 For recipient
 ------------
+
 
 This api will get you some ideas of things to say to someone, targeting a recipient you define in parameter. You may also provide the gender
 of the current user asking for ideas in order to get even more accurate ideas.
