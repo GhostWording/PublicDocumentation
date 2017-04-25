@@ -23,37 +23,38 @@ Images:
       * ex : http://api.cvd.io/popular/liptip/matchingimages/prototypeids/686367,2D21F1,6D8D36
 -->
 Popular (in area):
-* [x] [Texts that are most sent to express a given intention in an area](#TextsForArea):
-      * [x] ex : http://api.cvd.io/popular/stickers/populartexts/stickers
+* [Texts that are most sent to express a given intention in an area](#TextsForArea):
+  - ex : http://api.cvd.io/popular/stickers/populartexts/stickers
       
 Popular (in intention):
-* [x] [Texts that are sent often to express a given intention](#TextsForIntention):
-      * [x] ex : http://api.cvd.io/popular/yourapp/populartexts/intention/67CC40
-      * [x] ex : http://api.cvd.io/popular/yourapp/populartexts/intention/all/stickers
-* [x] [Images that are sent often to express a given intention](#ImagesForIntentions):
-      * [x] ex : http://api.cvd.io/popular/yourapp/popularimages/intention/67CC40
+* Texts that are sent often to express a given intention](#TextsForIntention):
+  - ex : http://api.cvd.io/popular/yourapp/populartexts/intention/67CC40
+  - ex : http://api.cvd.io/popular/yourapp/populartexts/intention/all/stickers
+* [Images that are sent often to express a given intention](#ImagesForIntentions):
+  - ex : http://api.cvd.io/popular/yourapp/popularimages/intention/67CC40
 
 Popular (for user properties):
-* [x] [Texts that are often send by a MBTI profile](#TextsForMbtiProfile):
-      * [x] ex : http://api.cvd.io/popular/yourapp/populartexts/UserProperty/MBTISelected/INTP?maxrank=3&culture=fr-FR
-* [x] [Images that are often selected and send by a MBTI profile](#ImagesForMbtiProfile)
-      * [x] ex : http://api.cvd.io/popular/yourapp/popularimages/UserProperty/MBTISelected/ENTP?maxrank=3&culture=fr-FR
+* [Texts that are often send by a MBTI profile](#TextsForMbtiProfile):
+  - ex : http://api.cvd.io/popular/yourapp/populartexts/UserProperty/MBTISelected/INTP?maxrank=3&culture=fr-FR
+* [Images that are often selected and send by a MBTI profile](#ImagesForMbtiProfile)
+  - ex : http://api.cvd.io/popular/yourapp/popularimages/UserProperty/MBTISelected/ENTP?maxrank=3&culture=fr-FR
       
 
 Matching (between texts/images):
-* [x] [Texts that are sent often with a given image](#MatchingTextsForImage): 
-      * [x] ex : http://api.cvd.io/popular/liptip/matchingtexts/image/shutterstock_188418881.jpg
-* [x] [Images that are sent often with a given text](#MatchingImagesForPrototypes):
-      * [x]  ex : http://api.cvd.io/popular/yourapp/matchingimages/intention/67CC40
-      * [x] ex : http://api.cvd.io/popular/yourapp/matchingimages/intention/all/liptip
-      * [x] ex : http://api.cvd.io/popular/yourapp/matchingimages/prototypeids/686367,2D21F1,6D8D36
+* [Texts that are sent often with a given image](#MatchingTextsForImage): 
+  - ex : http://api.cvd.io/popular/liptip/matchingtexts/image/shutterstock_188418881.jpg
+* [Images that are sent often with a given text](#MatchingImagesForPrototypes):
+  - ex : http://api.cvd.io/popular/yourapp/matchingimages/intention/67CC40
+  - ex : http://api.cvd.io/popular/yourapp/matchingimages/intention/all/liptip
+  - ex : http://api.cvd.io/popular/yourapp/matchingimages/prototypeids/686367,2D21F1,6D8D36
 
 
 
 
 <a name="TextsForArea">
-Popular  texts for an entire area
-----------------------------
+
+## Popular  texts for an entire area
+
 
 ### Description
 Get the texts in your culture for the best prototypes for the whole area. The selection is based on the texts within the intentions of the area but the selection and sorting is done for whole area not by intention. 
@@ -154,8 +155,8 @@ You can add to your query the following parameters:
 
 
 <a name="TextsForIntention">
-Popular  texts for Intention
-----------------------------
+
+## Popular  texts for Intention
 
 ### Description
 Get the texts in your culture for the best prototypes for one intention. 
@@ -235,8 +236,9 @@ You can add to your query the following parameters:
 
 
 <a name="#ImagesForIntentions">
-Popular Images for Intention
-----------------------------
+
+## Popular Images for Intention
+
 
 ### Description
 Get the most popular images for each intention. You get in return an array of intentions with their scoring and for each an array of images with their special scoring:
@@ -307,8 +309,8 @@ You can define the following parameters:
   
 
 <a name="MatchingTextsForImage">
-Matching  texts for Image
--------------------------
+
+## Matching  texts for Image
 
 ### Description
 It returns the best prototypes for one image with the most appropriate realization in your culture
@@ -368,8 +370,9 @@ You can define the following parameters:
 
 
 <a name="#MatchingImagesForPrototypes">
-Matching Images for a text Prototypes
---------------------------------------------
+
+## Matching Images for a text Prototypes
+
 
 ### Description
 Get the best matching images for each text prototype (for one, for all in a list or for all in an intention). 
