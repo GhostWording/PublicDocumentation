@@ -54,18 +54,18 @@ Note that each container can have it's own definition to qualify it's hierarchy
 
 You should get the array of all containers by calling 
 
-    /container/{appname}:
+    /container/{folderName}:
 
 exemple:
 
-    GET gw-static.azurewebsites.net/container/general
+    GET gw-static.azurewebsites.net/container/cvd
 
 The resulting json is in the same format that for all containers.
 
 But you can also filter by it's properties. 
 Let's say that you want to have only the containers that contain small size photos:
 
-    GET  gw-static.azurewebsites.net/container/general?size=small
+    GET  gw-static.azurewebsites.net/container/cvd?size=small
 
 The properties defined for each container are configured by the admin and may change in time, 
 but currently they are defined like that:
