@@ -22,9 +22,9 @@ Images:
       * ex : http://api.cvd.io/popular/liptip/matchingimages/intention/all
       * ex : http://api.cvd.io/popular/liptip/matchingimages/prototypeids/686367,2D21F1,6D8D36
 -->
-Popular (in area):
+Popular (among users of a given app : MBTIStickers in this example):
 * [Texts that are most sent to express a given intention in an area](#TextsForArea):
-  - ex : http://api.cvd.io/popular/stickers/populartexts/stickers
+  - ex : http://api.cvd.io/popular/MyAppName/populartexts/MBTIStickers
       
 Popular (in intention):
 * Texts that are sent often to express a given intention](#TextsForIntention):
