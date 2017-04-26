@@ -1,5 +1,3 @@
-__This is a pre-release documentation to open discussion on interfaces, nothing is functional actually__
-
 # APIS for Messaging
 
 these apis provide interfaces for users to send message cards (text+image) to other users and other related actions.
@@ -8,14 +6,14 @@ In complement to the messaging, there is the push notifications. when a message 
 
 Index of end points:
 
-* [User (woman|man) send a message to other user (woman)](#PostUserToUserMessage):
-  * [x] POST http://api.cvd.io/messaging/{area}/usertouser/message
+* [User send a message to other user ](#PostUserToUserMessage):
+  * [x] POST http://api.cvd.io/messaging/{appName}/usertouser/message
     - ex: http://api.cvd.io/messaging/MBTIStickers/usertouser/message
 
-* [User (woman|man) get all her messages](#GetUserToUserMessages):
-  * [x] GET http://api.cvd.io/messaging/{area}/usertouser/messages/forDevice/{deviceId}
+* [User get all his messages](#GetUserToUserMessages):
+  * [x] GET http://api.cvd.io/messaging/{appName}/usertouser/messages/forDevice/{deviceId}
     - ex: http://api.cvd.io/messaging/MBTIStickers/usertouser/messages/forDevice/f659161979f91172
-  * [x] GET http://api.cvd.io/messaging/{area}/usertouser/messages/forFacebookid/{facebookId}
+  * [x] GET http://api.cvd.io/messaging/{appName}/usertouser/messages/forFacebookid/{facebookId}
     - ex: http://api.cvd.io/messaging/MBTIStickers/usertouser/messages/forFacebookid/952942371481416
 
 <!--
@@ -27,7 +25,7 @@ Index of end points:
 -->
 
 * [When a real user message is presented with a bot message](#GetUserChallengeMessagesAction):
-  * [x] POST http://api.cvd.io/messaging/{area}/MessageAction/{action}/fordevice/{deviceId}
+  * [x] POST http://api.cvd.io/messaging/{appName}/MessageAction/{action}/fordevice/{deviceId}
     * the message is shown to the user (action=viewed):
       - ex: POST http://api.cvd.io/messaging/MBTIStickers/MessageAction/viewed/fordevice/f659161979f91172
     * user choose her preferred message (action=preferredMessage):
@@ -37,20 +35,20 @@ Index of end points:
         
 
 * [Get matching users list for a user](#GetSuggestedUsers)
-  * [x] GET http://api.cvd.io/messaging/{area}/SuggestedUsers/fordevice/{deviceId}?max={number}
+  * [x] GET http://api.cvd.io/messaging/{appName}/SuggestedUsers/fordevice/{deviceId}?max={number}
     - ex: http://api.cvd.io/messaging/MBTIStickers/SuggestedUsers/fordevice/30a2af95828b0eb2?max=10&showUsersWhoDoNotParticipate=yes
     
  
-* [Get popular men leaderboards](#GetPopularMenLeaderBoards)
-  * [ ] GET http://api.cvd.io/messaging/{area}/LeaderBoards/popular/men/fordevice/{deviceId}?max={number}
+* [Get popular men leaderboards](#GetPopularMenLeaderBoards) - **TBD**
+  * [ ] GET http://api.cvd.io/messaging/{appName}/LeaderBoards/popular/men/fordevice/{deviceId}?max={number}
     - ex: http://api.cvd.io/messaging/MBTIStickers/LeaderBoards/popular/men/fordevice/30a2af95828b0eb2?max=10
     
-* [Get popular women leaderboards](#GetPopularWomenLeaderBoards)
-  * [ ] GET http://api.cvd.io/messaging/{area}/LeaderBoards/popular/women/fordevice/{deviceId}?max={number}
+* [Get popular women leaderboards](#GetPopularWomenLeaderBoards) - **TBD**
+  * [ ] GET http://api.cvd.io/messaging/{appName}/LeaderBoards/popular/women/fordevice/{deviceId}?max={number}
     - ex: http://api.cvd.io/messaging/MBTIStickers/LeaderBoards/popular/women/fordevice/30a2af95828b0eb2?max=10
     
 * [Get status of my messages](#GetMyMessagesStatuses)
-  * [x] GET http://api.cvd.io/messaging/{area}/SentMessagesStatus/{deviceId}?maxItems={maxItems}
+  * [x] GET http://api.cvd.io/messaging/{appName}/SentMessagesStatus/{deviceId}?maxItems={maxItems}
     - ex : http://api.cvd.io/messaging/MBTIStickers/SentMessagesStatus/fordevice/30a2af95828b0eb2?max=10
 
     
@@ -60,7 +58,7 @@ Index of end points:
 ## Send User To User Message
 
 ### Description
-A user (man) send a selected card (text+image couple) as a message to an other user (woman).
+A user send a selected card (text+image couple) as a message to an other user.
 
 exemple:
 
@@ -84,9 +82,7 @@ exemple:
         "localTimestamp":1470150873
       },
       "IsTest":true,
-      "Culture":"en-EN",
-      "AppName":"StickerBliss",
-      "Area":"stickers"
+      "Culture":"en-EN"
     }
     
     result:
@@ -98,14 +94,14 @@ exemple:
   
 ### Interface 
 
-    POST http://api.cvd.io/messaging/{area}/usertouser/message
+    POST http://api.cvd.io/messaging/{appName}/usertouser/message
     BODY application/json
   
 ### Inputs
 
 Path : 
 
-* {area} : area name of the current application doing the call
+* {appName} : application name of the current application sending the message
 
 Posted Body:
 
@@ -128,7 +124,9 @@ expected format is `application/json` with the folling form:
         "content":string,
         "imageName":string,
         "localTimestamp":long
-      }
+      },
+      "IsTest" : boolean, 
+      "Culture": string
     }
 
 properties:
@@ -142,7 +140,8 @@ properties:
   * __isUserCustom__ : if the message was customized by the user then this should be set to `true`.
   * __imageName__ : the name of the image to send (only the name, not full path). If the image is a personal user picture then "UserImage" should be provided instead.
   * __localTimestamp__ : the datetime of the creation of the message
-
+* IsTest : true when in developer mode
+* Culture : the culture of the message sent
   
 ### Output
 
@@ -169,11 +168,11 @@ the http status is anything but OK and the result should contain the error messa
 
 
 <a name="GetUserToUserMessages">
-Get all messages for a user 
-----------------------------
+
+## Get all messages for a user 
 
 ### Description
-A user (woman/man) get all messages sent by real users. Messages are typed as "direct" for the ones sent directly or "game" for the ones involved in the game. For each user message where type="game", there is also a bot message.
+A user get all messages sent by real users. Messages are typed as "direct" for the ones sent directly or "game" for the ones involved in the game. For each user message where type="game", there is also a bot message.
 
 exemple:
 
@@ -185,7 +184,8 @@ exemple:
       {
        "sender": {
          "deviceId":"30a2af95828b0eb2",
-         "facebookId":"10153830470651564"
+         "facebookId":"10153830470651564",
+         "appName" : "MBTIStickers"
        },
        "message": {
          "messageId":"1C318DA2-01F6-4ADF-A599-08DC129B92D6"
@@ -208,7 +208,8 @@ exemple:
       {
        "sender": {
          "deviceId":"30a2af95828b0eb2",
-         "facebookId":"10153830470651564"
+         "facebookId":"10153830470651564",
+         "humourapp"
        },
        "message": {
          "messageId":"8D8D193E-C13D-4B76-8AA5-8744C23FDD39",
@@ -232,11 +233,11 @@ The pattern to get the messages would be:
 
 Get messages for a device:
 
-    GET http://api.cvd.io/messaging/{area}/usertouser/messages/forDevice/{deviceId}?start={startdate}
+    GET http://api.cvd.io/messaging/{appName}/usertouser/messages/forDevice/{deviceId}?start={startdate}
 
 Get messages for a facebook id:
 
-    GET http://api.cvd.io/messaging/{area}/usertouser/messages/forFacebookId/{facebookId}?start={startdate}
+    GET http://api.cvd.io/messaging/{appName}/usertouser/messages/forFacebookId/{facebookId}?start={startdate}
  
 these interface are equivalents, they only differ on the id used.
 
@@ -245,7 +246,7 @@ these interface are equivalents, they only differ on the id used.
 
 Path : 
 
-* {area} : area name of the current application doing the call
+* {appName} : application name of the current application doing the call
 * {deviceId} : device id of the current user doing the call
 * {facebookId} : facebook id of the current user doing the call
 
@@ -265,7 +266,8 @@ the result sould be `OK` and contain an array of messages for user
       {
         "sender": {
           "deviceId":string,
-          "facebookId":string
+          "facebookId":string,
+          "appName":string
         },
         "message": {
           "messageId":string,
@@ -291,6 +293,7 @@ the result sould be `OK` and contain an array of messages for user
 properties:
 
 * __sender__ : it should have at least the deviceId and if exists the facebook id (which should always be the case)
+* __appName__: the application name from where the user sent the message
 * __message__ : 
   * __messageId__ : the id of the message, this must be used for any communications involving the message (like [When a real user message is presented with a bot message apis](#GetBotUserChallengeAction))
   * __textId__ : id of the original text if it's not a user creation
@@ -423,8 +426,8 @@ if the http status is anything but OK then the result should contain the error m
 
 
 <a name="GetUserChallengeMessagesAction">
-When a real user message is presented with a bot message
-----------------------------
+
+## When a real user message is presented with a bot message
 
 ### Description
 This interface is a generic endpoint for the actions you can do when you present the messages to the users. The challenge message is always a combination of two messages shown to the user
@@ -455,7 +458,7 @@ exemple:
     result:
     HTTP 200 OK {} 
   
-"and finally try to guess which is from a bot:"
+"and finally try to guess which message is from a bot:"
 
     POST http://api.cvd.io/messaging/MBTIStickers/MessageAction/isBotMessage/fordevice/f659161979f91172
     {
@@ -473,8 +476,7 @@ exemple:
 
 View messages:
 
-    POST http://api.cvd.io/messaging/{area}/MessageAction/viewed/fordevice/{deviceId}
-    BODY application/json
+    POST http://api.cvd.io/messaging/{appName}/MessageAction/viewed/fordevice/{deviceId}
     BODY application/json
     {
       "facebookId":string,
@@ -484,7 +486,7 @@ View messages:
     
 Set preferred message:
 
-    POST http://api.cvd.io/messaging/{area}/MessageAction/preferredMessage/fordevice/{deviceId}
+    POST http://api.cvd.io/messaging/{appName}/MessageAction/preferredMessage/fordevice/{deviceId}
     BODY application/json
     {
       "facebookId":string,
@@ -495,7 +497,7 @@ Set preferred message:
     
 Guess bot message:
 
-    POST http://api.cvd.io/messaging/{area}/MessageAction/isBotMessage/fordevice/{deviceId}
+    POST http://api.cvd.io/messaging/{appName}/MessageAction/isBotMessage/fordevice/{deviceId}
     BODY application/json
     BODY application/json
     {
@@ -509,7 +511,7 @@ Guess bot message:
 
 Path : 
 
-* {area} : area name of the current application doing the call
+* {appName} : application name of the current application doing the call
 * {deviceId} : device id of the current user doing the call
 
 Posted Body:
@@ -547,8 +549,8 @@ if the http status is anything but OK then the result should contain the error m
 
 
 <a name="GetSuggestedUsers">
-Get a list of suggested user profiles for a user
-----------------------------
+
+## Get a list of suggested user profiles for a user
    
 ### Description
 A user get selected profiles to communicate with. This endpoint can also be queried with a browser to display a user friendly view of the results. 
@@ -604,19 +606,19 @@ exemple:
        ... Other profiles removed ...
      ]
   
-
+__Note : this list of user properties is dynamic and can evolve in structure and content in time
   
 ### Interface 
 
 Get (structured) profiles for a device: profiles are structured but not complete
 
-    GET http://api.cvd.io/messaging/{area}/SuggestedUsers/forDevice/{deviceId}?maxItems={maxItems}&maxHours={maxHours}&gender={gender}&showUsersWhoDoNotParticipate={showUsersWhoNotParticipate}
+    GET http://api.cvd.io/messaging/{appName}/SuggestedUsers/forDevice/{deviceId}?maxItems={maxItems}&maxHours={maxHours}&gender={gender}&showUsersWhoDoNotParticipate={showUsersWhoNotParticipate}
 
 
 (2nd option)
 Get (flat) profiles for a device: all properties returned but in a flat format
 
-    GET http://api.cvd.io/messaging/{area}/SuggestedUsers/forDevice/{deviceId}/flat?maxItems={maxItems}&maxHours={maxHours}&gender={gender}&showUsersWhoDoNotParticipate={showUsersWhoNotParticipate}
+    GET http://api.cvd.io/messaging/{appName}/SuggestedUsers/forDevice/{deviceId}/flat?maxItems={maxItems}&maxHours={maxHours}&gender={gender}&showUsersWhoDoNotParticipate={showUsersWhoNotParticipate}
 
 
 
@@ -624,7 +626,7 @@ Get (flat) profiles for a device: all properties returned but in a flat format
 
 Path : 
 
-* **{area}** : area name of the current application doing the call (used later to filter the users returned
+* **{appName}** : name of the current application doing the call returned
 * **{deviceId}** : device id of the current user doing the call
 
 QueryString :
@@ -713,8 +715,10 @@ if the http status is anything but OK then the result should contain the error m
 
 
 <a name="GetPopularMenLeaderBoards">
-Get popular men leaderboards
-----------------------------
+
+## Get popular men leaderboards
+
+
 ### Description
 A men leaderboard based on popularity. This board is computed for your profile, that means the leaderboard is not an absolute one but can be different depending on your country for exemple. 
 _note: the definition of popularity is not yet defined and can change in time_
@@ -736,14 +740,14 @@ exemple:
 
 Get board for a device:
 
-    GET http://api.cvd.io/messaging/{area}/LeaderBoards/popular/men/fordevice/{deviceId}?maxItems={maxItems}
+    GET http://api.cvd.io/messaging/{appName}/LeaderBoards/popular/men/fordevice/{deviceId}?maxItems={maxItems}
 
 
 ### Inputs
 
 Path : 
 
-* {area} : area name of the current application doing the call
+* {appName} : name of the current application doing the call
 * {deviceId} : device id of the current user doing the call
 * {maxItems} : number max of profiles to return, 20 by default.
 
@@ -772,8 +776,9 @@ if the http status is anything but OK then the result should contain the error m
 
 
 <a name="GetPopularWomenLeaderBoards">
-Get popular women leaderboards
-----------------------------
+
+## Get popular women leaderboards
+
   
 ### Description
 A women leaderboard based on popularity. This board is computed for your profile, that means the leaderboard is not an absolute one but can be different depending on your country for exemple. 
@@ -796,14 +801,14 @@ exemple:
 
 Get board for a device:
 
-    GET http://api.cvd.io/messaging/{area}/LeaderBoards/popular/women/fordevice/{deviceId}?maxItems={maxItems}
+    GET http://api.cvd.io/messaging/{appName}/LeaderBoards/popular/women/fordevice/{deviceId}?maxItems={maxItems}
 
 
 ### Inputs
 
 Path : 
 
-* {area} : area name of the current application doing the call
+* {appName} : name of the current application doing the call
 * {deviceId} : device id of the current user doing the call
 * {maxItems} : number max of profiles to return, 20 by default.
 
@@ -831,8 +836,8 @@ if the http status is anything but OK then the result should contain the error m
 
 
 <a name="GetMyMessagesStatuses">
-Get my messages statuses
-----------------------------
+
+## Get my messages statuses
    
 ### Description
 A user gets the statuses of it's messages (actions applied to). He get the full list of it's messages with an array of actions applied to each message.
@@ -861,7 +866,7 @@ here, message `"1C318DA2-01F6-4ADF-A599-08DC129B92D6"` was shown to the user (`v
 
 Get profiles for a device:
 
-    GET http://api.cvd.io/messaging/{area}/SentMessagesStatus/{deviceId}?maxItems={maxItems}
+    GET http://api.cvd.io/messaging/{appName}/SentMessagesStatus/{deviceId}?maxItems={maxItems}
 
 
 
@@ -869,7 +874,7 @@ Get profiles for a device:
 
 Path : 
 
-* {area} : area name of the current application doing the call
+* {appName} : name of the current application doing the call
 * {deviceId} : device id of the current user doing the call
 * {maxItems} : number max of profiles to return, 20 by default.
 
