@@ -2,29 +2,30 @@
 
 Users Api is defined as an endpoint to provide count and user list based on users properties queries. For ex: count the number of users of application X in country Y that are in the 18-35 years age range.
 
-These apis are hosted under [http://api.cvd.io/{area}/users/](http://api.cvd.io/{area}/users/).
+These apis are hosted under [http://api.cvd.io/{appName}/users/](http://api.cvd.io/{appName}/users/).
 
 The following endpoints are actually available within the service:
 
 * List of users:
-     * [X] [Count users corresponding to the provided properties in querystring](#countforproperties)
-           * [x] ex : http://api.cvd.io/liptip/users/count?country=Algeria&gender=*
-     * [X] [Get the list of facebookids of the users corresponding to the provided properties in querystring](#facebookidsforproperties)
-           * [x]  ex : http://api.cvd.io/liptip/users/facebookids?country=*&gender=female&conjugalsituation=InACouple
-     * [X] [Get a list of users with their properties](#userlistwithproperties)
-           * [X] get the properties for the users that I provided facebook ids
-               * ex : http://api.cvd.io/liptip/users/list/facebookids/10154292021876564,10154292021876563,10154292021876569
-           * [X] get the properties for the users matching the search criteria
-               * ex : http://api.cvd.io/liptip/users/list?contry=Tunisia&MBTISelected=*
-           * [X] get the properties for the users matching the search criteria for one area only
-               * ex : http://api.cvd.io/justforinfo/users/list/stickers?contry=Tunisia&MBTISelected=*
+  * [Count users corresponding to the provided properties in querystring](#countforproperties)
+    * ex : http://api.cvd.io/MyAppName/users/count?country=Algeria&gender=*
+  * [Get the list of facebookids of the users corresponding to the provided properties in querystring](#facebookidsforproperties)
+    * ex : http://api.cvd.io/MyAppName/users/facebookids?country=*&gender=female&conjugalsituation=InACouple
+  * [Get a list of users with their properties](#userlistwithproperties)
+    * get the properties for the users that I provided facebook ids
+      * ex : http://api.cvd.io/MyAppName/users/list/facebookids/10154292021876564,10154292021876563,10154292021876569
+    * get the properties for the users matching the search criteria
+      * ex : http://api.cvd.io/MyAppName/users/list?contry=Tunisia&MBTISelected=*
+    * get the properties for the users matching the search criteria for one area only
+      * ex : http://api.cvd.io/MyAppName/users/list/stickers?contry=Tunisia&MBTISelected=*
 * One User :
-     * [X] [Get all the properties of a user by it's id](#userproperties)
-           * [x] ex with Facebook id : http://api.cvd.io/liptip/users/withfacebookid/10154292021876564
-           * [x] ex with Device Id   : http://api.cvd.io/liptip/users/withdeviceid/c91df9b2e0620bcb
+  * [Get all the properties of a user by it's id](#userproperties)
+    * ex with Facebook id : http://api.cvd.io/MyAppName/users/withfacebookid/10154292021876564
+    * ex with Device Id   : http://api.cvd.io/MyAppName/users/withdeviceid/c91df9b2e0620bcb
            
 
 Notes:
+
 * this service is hosted by the http://gw-usersproperties.azurewebsites.net/ app service in isolation
 * an url rewrite is used to provide the host under api.cvd.io
 * queries are cached for 1h by default
@@ -32,10 +33,11 @@ Notes:
 
 
 <a name="countforproperties">
-Count users for properties
-----------------------------
+
+## Count users for properties
 
 ### Description
+
 return the number of users corresponding to the searched properties
 
 ### Content:
@@ -79,8 +81,9 @@ This means : give me all female speaking french that I know the country, whateve
 
      
 <a name="facebookidsforproperties">
-Get FacebookId of users for properties
-----------------------------
+
+## Get FacebookId of users for properties
+
 
 ### Description
 return an array of facebook id for users corresponding to some properties
@@ -138,10 +141,11 @@ This means : give me all female speaking french that I know the country, whateve
    
 
 <a name="userproperties">
-Properties for a user by id
-----------------------------
+
+## Properties for a user by id
 
 ### Description
+
 return all existing properties for a user by an id. That id is something that allows us to identify an user like the `facebookId` if the user is authentified with Facebook or the `deviceId` that identifies the device where the app is running if you don't have anything else.
 
 ### Content:
@@ -177,6 +181,7 @@ Note that some properties may be null if the user didn't set them before, we ret
 Actually the `UserId` field is kept for compatibility, it contains the id you used to query the api. In the returned content, you'll get the facebookid and the deviceid also. 
 
 ### Api
+
 All the apis return the same content defined before.
 
 Get the properties for the user by facebook id (as identifier of the user)
@@ -188,11 +193,11 @@ Get the properties for the user by device id (as identifier of the device)
 
      GET http://api.cvd.io/{area}/users/withdeviceid/{deviceid}
      
-<a name="userlistwithproperties  ">
-Properties for a user by id
-----------------------------   
+
+## Properties for a user by id
 
 ### Description
+
 return all existing properties for a list of users. The list of users can be defined either by providing a list of facebook ids or by searching the properties
 
 ### Content:
@@ -251,6 +256,7 @@ Note that some properties may be null if the user didn't set them before, we ret
 Actually the `UserId` field is kept for compatibility, it contains the id you used to query the api. In the returned content, you'll get the facebookid and the deviceid also. 
 
 ### Api
+
 All the apis endpoints return the same content defined above.
 
 1. Get the properties for the users by providing the list of facebook id for the users you want to have the properties:
@@ -265,6 +271,7 @@ All the apis endpoints return the same content defined above.
     
 
 2. Get the user list by searching the properties
+
 By providing a list of search criterias in the query string, you'll get in return a list of matching users with their properties.
 
 **Note:_take care of the volume of data! you can have a huge list of users if your search is not precise enough and with a full list of properties for each user, it can be huge. Please as for a count for your search before_.**
