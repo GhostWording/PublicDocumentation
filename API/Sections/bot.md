@@ -7,20 +7,24 @@ Service exemples:
 
 * [Huggy, give me the best texts by entering a free text search](#BotEndpoint)
    * get matching texts for text query: 
-       * [http://api.cvd.io/bot/stickers/talktobot/?command=search&text=want to drink&culture=en-EN&gender=H&top=3](http://api.cvd.io/bot/stickers/talktobot/?command=search&text=want to drink&culture=en-EN&gender=H&top=3)
+       * [http://api.cvd.io/bot/MyAppName/talktobot/?command=search&text=want to drink&culture=en-EN&gender=H&top=3](http://api.cvd.io/bot/MyAppName/talktobot/?command=search&text=want to drink&culture=en-EN&gender=H&top=3)
 * [Huggy, when I enter some text, I want to get one random card (text+image)](#BotEndpoint)
    * get card (text+image) suggestion for keywords or free text: 
-       * [http://api.cvd.io/bot/stickers/talktobot/?command=card&text=cats and dogs&culture=en-EN](http://api.cvd.io/bot/stickers/talktobot/?command=card&text=cats and dogs&culture=en-EN)
+       * [http://api.cvd.io/bot/MyAppName/talktobot/?command=card&text=cats and dogs&culture=en-EN](http://api.cvd.io/bot/MyAppName/talktobot/?command=card&text=cats and dogs&culture=en-EN)
 * [Huggy, when I enter some text, I want to get a set of random card (text+image) allowing me to choose what to show](#BotEndpoint)
  * get a card set (text+image) suggestion for keywords or free text: 
-     * [http://api.cvd.io/bot/stickers/talktobot/?command=cardset&text=cats and dogs&culture=en-EN](http://api.cvd.io/bot/stickers/talktobot/?command=cardset&text=cats and dogs&culture=en-EN)
+     * [http://api.cvd.io/bot/MyAppName/talktobot/?command=cardset&text=cats and dogs&culture=en-EN](http://api.cvd.io/bot/MyAppName/talktobot/?command=cardset&text=cats and dogs&culture=en-EN)
      
 For the bot there is only one endpoint, you'll define the different commands through this endpoint
 
+**Please note that** :
+* _all results are cached for some time, so you'll have the same results if you do consecutive requests but there is no guaranty in longuer time that they will be identical_
+* _all sets are randomized : that means that, among the predefined set of cards we have, we only serve the top x random cards you asked for within this set._
+
 
 <a name="BotEndpoint">
-TalkToBot Endpoint
-------------------
+
+## TalkToBot Endpoint
 
 When you talk to the bot (Huggy), you'll give him some commands with their parameters through one endpoint. The content is different depending on the command 
 you'll give to him.
@@ -33,7 +37,7 @@ Available commands are currently:
 
 Endpoint:
 
-      POST http://api.cvd.io/bot/{areaInfo}/talktobot
+      POST http://api.cvd.io/bot/{appName}/talktobot
       Body: 
       {
          command: string
@@ -45,7 +49,7 @@ Endpoint:
       
 Parameters:
 
-* areaInfo : the name of your app (not relevant for the search)
+* appName : the name of your app (not relevant for the search)
 * command : [search](#FreeTextSearch) | [card](#RandomCard)
 * text: the text the user enter for the bot
 * culture : the culture of the user (if not provided, we guess it from headers)
@@ -55,15 +59,15 @@ Parameters:
 The result depends on the command you send. Please see details below.
 
 <a name="FreeTextSearch">
-Command : Search
-----------------
+
+## Command : Search
 
 ### Scenario
 When I enter some free text I want to have the best suggested texts based on my context.
 
 Exemple: give me the `2` best texts about `have a drink` for my english `en-EN` culture and assuming the recipient is Male (M):
 
-    POST http://api.cvd.io/bot/stickers/talktobot
+    POST http://api.cvd.io/bot/MyAppName/talktobot
     Body: 
       {
          command: "search"
@@ -111,8 +115,8 @@ Define:
  
 
 <a name="RandomCard">
-Command: Card
-----------------
+
+## Command: Card
 
 ### Scenario
 
@@ -120,7 +124,7 @@ When I provide some text or keywords I want in return a card (combination of tex
 
 Exemple: when I say `cats and dogs` and my culture is `en-EN`, I get a random card (by full text search):
 
-       POST http://api.cvd.io/bot/stickers/talktobot
+       POST http://api.cvd.io/bot/MyAppName/talktobot
        Body: 
         {
            command: "card"
@@ -165,8 +169,8 @@ Return:
      
 
 <a name="RandomCardSet">
-Command: CardSet
-----------------
+
+## Command: CardSet
 
 ### Scenario
 
@@ -174,7 +178,7 @@ When I provide some text or keywords I want in return a list of cards(combinatio
 
 Exemple: when I say `cats and dogs` and my culture is `en-EN`, I get a random card set (by full text search):
 
-       POST http://api.cvd.io/bot/stickers/talktobot
+       POST http://api.cvd.io/bot/MyAppName/talktobot
        Body: 
         {
            "command": "cardset",
