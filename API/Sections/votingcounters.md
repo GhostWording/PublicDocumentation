@@ -5,6 +5,21 @@ Please read the usage part first and then go the api details.
 
 ## Usage
 
+### Create the counter
+Before others users can vote, one has to initialize the counter.
+
+Exemple : I want other users to vote for a photo of mine, I will first create the counter:
+
+- create counter for PhotoA:
+
+          POST /vote/MyAppName/ForUser/Initialize
+         { 
+                "recipient" : {
+                      "deviceId" : "123", 
+                      "facebookId" : "yyzz", }, 
+                 "counterName" : "votesForPhotoA" 
+         }
+
 ### Voting
 Users can vote for photos of other users. Each time a user photo get a vote, the global counter of a user should be updated too (that's the responsability of the client to do that).
 
@@ -129,6 +144,26 @@ exemple: user decided to remove photo A, you want to reset the photo A counter:
 * **return** : 
       
       { "status":"reset or error"}
+
+
+## POST /vote/{appName}/ForUser/Initialize
+
+* **definition** : creates the counter identified by a label "counterName" for a user (recipient) defined by it's facebookid or deviceid . 
+* **when to use** : when you need to add a new counter for other people to vote
+* **payload** : 
+
+      { 
+          "recipient" : { 
+             "deviceId" : "", 
+             "facebookId" : "",
+          }, 
+          "counterName" : "label name"
+      }
+
+* **return** : 
+      
+      { "status":"saved or error"}
+
 
 
 ## GET /vote/{appName}/users/ByCounterName/{name}?direction=desc&max=10
