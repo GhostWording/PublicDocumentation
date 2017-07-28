@@ -184,6 +184,3 @@ exemple: user decided to remove photo A, you want to reset the photo A counter:
             { "facebookId":"", "appName":"", "counter":0}
       ]
 
-
-![#009900](https://placehold.it/12/009900/000000?text=+) **Note**
-_this would be the base of the work for [votingcounters.md](https://github.com/GhostWording/PublicDocumentation/tree/master/API/Sections) documentation file_
