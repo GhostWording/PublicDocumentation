@@ -28,9 +28,9 @@ This is the rules to follow:
           
    * count nb of ok/not ok when profiles presented
    
-          - ppPsychologicalProfileLooksGood-yes
-          - ppPsychologicalProfileLooksGood-no
-          - ppPsychologicalProfileLooksGood-INTP-yes ...
+          - ppProfileLooksGood-yes
+          - ppProfileLooksGood-no
+          - ppProfileLooksGood-INTP-yes ...
           
     
 
