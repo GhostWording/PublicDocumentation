@@ -18,11 +18,16 @@ This is the rules to follow:
 * values with ids (like texts) should always be prefixed with their type.
 * exemples:
    * count the likes and dislikes for text 012345
+   
           - text-012345-like-yes
           - text-012345-like-no
+          
    * count votes for photo Aaa.jpg
+   
           - photo-aaa.jpg
+          
    * count nb of ok/not ok when profiles presented
+   
           - ppPsychologicalProfileLooksGood-yes
           - ppPsychologicalProfileLooksGood-no
           - ppPsychologicalProfileLooksGood-INTP-yes ...
