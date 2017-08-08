@@ -7,6 +7,28 @@ Please read the usage part first and then go the api details.
 
 ## Usage
 
+### Naming
+Before going further, it is important to keep consistant naming accross the counters. This is a very simple api with nothing more than the name of the counter to qualify it, so it has to be precise, human redeable, and possibly computer compliant if we want to extract information from the name.
+
+This is the rules to follow:
+
+* always use `-` to separate words
+* all words should be in lower case but they can keep their internal Upper case letters if needed (ppDecisionsAriseFrom-Thinking)
+* identification and more specific part have to come after the more generic ones from left to right.
+* values with ids (like texts) should always be prefixed with their type.
+* exemples:
+   * count the likes and dislikes for text 012345
+          - text-012345-like-yes
+          - text-012345-like-no
+   * count votes for photo Aaa.jpg
+          - photo-aaa.jpg
+   * count nb of ok/not ok when profiles presented
+          - ppPsychologicalProfileLooksGood-yes
+          - ppPsychologicalProfileLooksGood-no
+          - ppPsychologicalProfileLooksGood-INTP-yes ...
+          
+    
+
 ### Create the counter
 There is no method _Create_ counter in the sense that the counter would be automatically created if it not exist, but you can create
 a counter with the value 0 by calling the method `Initialize`:
