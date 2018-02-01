@@ -63,7 +63,7 @@ For publishing the event you should send a `POST` TO `http://gw-usertracking.azu
       }
     
     
-    ## Details
+## Details
     
     The valuable properties for huggy events are defined as this:
     
@@ -92,10 +92,18 @@ For publishing the event you should send a `POST` TO `http://gw-usertracking.azu
       * it's not directly the level of the curring executing node because the second question answered can be in a node at 4 or 5 degree of depth.
       
       
-  
-    
-    
-    
+## Special notes for Fragments
+
+Sequence Fragments can be load within sequences via the LinksToFragment property. That means that these special sequences must be considered as **part of the original sequence** and not as a new sequence.
+
+this implies for the properties sent when you're sending an event for a fragment:
+
+* Context : you must put here the id of the parent sequence (not the id of the fragment)
+* RecipientId: as it should contain the degree of interaction with the user, we expect here a continuation of the value from the parent sequence. If you start the fragment after 2 interactions with the user and ask a question, then the value of the SequenceNext should be 3
+* ActionType: when you start a fragment, it's not a real start, so the value for the fragment should always be `HuggySequenceNext` even if it's the root of the fragment.
+* ActionLocation: it should also contain the value of master-order of the parent sequence as we are continuing the sequence. 
+
+
     
     
     
