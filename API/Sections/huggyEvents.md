@@ -65,31 +65,31 @@ For publishing the event you should send a `POST` TO `http://gw-usertracking.azu
     
 ## Details
     
-    The valuable properties for huggy events are defined as this:
+The valuable properties for huggy events are defined as this:
     
-    * **ActionType**:
-      * it defines the type of the action for the event
-      * it can be HuggyConversationStart | HuggySequenceStart | HuggySequenceNext (...)
-    * **AreaId**: the name of the bot you're executing
-    * **ActionLocation**: 
-      * in information about the reference to this sequence (which master file reference this sequence ? and in what order within?)
-      * it's a combination of these 2 info in one field separated by a dash -> `"{masterFile}-{order}"`
-    * **Context**: SequenceId. In order to reconstitute the executing path we need to be able to link events that happened during the execution of the sequence, that's why you need to keep in this context field the Id of the current sequence
-    * **Last**: 
-      * if the element is the last element of the sequence tree, then it's marked `Last=1`, if not then it's `0`. 
-      * in a simpler way, then if the element is a node (an element with children) then it's 0, if its a Leaf then its a terminal element and value is 1.
-    * **TargetId**: contains the id of the current executing element in the tree
-    * **TargetType**: 
-      * it contains a contextual information of the sequence. as sequences are stored in groups, it should be the group name (for exemple: Start,Survey...). 
-      * If you don't have this info, it could be `App` for mobile apps or `Bot` for chat bots.
-    * **TargetParameter**: some additional information about the current node
-      * if sequenceStart: it contains the label of the question sent to the user within the root node (if you have it)
-      * if sequenceNext: it contains the `ElementValue` field of the node
-    * **RecipientId**:
-      * `Attention`: this field doesn't means what it means, for simplicity we reused an existing field in user events not used here.
-      * For HuggySequenceNext only
-      * it contains the degree of interaction with the user: if we started the sequence and ask a first question, then when user click on command it's its first interaction in this sequence, then we'll send a `RecipientId=1`. after that we'll show him some steps, continue with a linksto and ask a new question. Then, after user selection, when we'll start executing the next command we'll send a `RecipienId=2`.
-      * it's not directly the level of the curring executing node because the second question answered can be in a node at 4 or 5 degree of depth.
+* **ActionType**:
+  * it defines the type of the action for the event
+  * it can be HuggyConversationStart | HuggySequenceStart | HuggySequenceNext (...)
+* **AreaId**: the name of the bot you're executing
+* **ActionLocation**: 
+  * in information about the reference to this sequence (which master file reference this sequence ? and in what order within?)
+  * it's a combination of these 2 info in one field separated by a dash -> `"{masterFile}-{order}"`
+* **Context**: SequenceId. In order to reconstitute the executing path we need to be able to link events that happened during the execution of the sequence, that's why you need to keep in this context field the Id of the current sequence
+* **Last**: 
+  * if the element is the last element of the sequence tree, then it's marked `Last=1`, if not then it's `0`. 
+  * in a simpler way, then if the element is a node (an element with children) then it's 0, if its a Leaf then its a terminal element and value is 1.
+* **TargetId**: contains the id of the current executing element in the tree
+* **TargetType**: 
+  * it contains a contextual information of the sequence. as sequences are stored in groups, it should be the group name (for exemple: Start,Survey...). 
+  * If you don't have this info, it could be `App` for mobile apps or `Bot` for chat bots.
+* **TargetParameter**: some additional information about the current node
+  * if sequenceStart: it contains the label of the question sent to the user within the root node (if you have it)
+  * if sequenceNext: it contains the `ElementValue` field of the node
+* **RecipientId**:
+  * `Attention`: this field doesn't means what it means, for simplicity we reused an existing field in user events not used here.
+  * For HuggySequenceNext only
+  * it contains the degree of interaction with the user: if we started the sequence and ask a first question, then when user click on command it's its first interaction in this sequence, then we'll send a `RecipientId=1`. after that we'll show him some steps, continue with a linksto and ask a new question. Then, after user selection, when we'll start executing the next command we'll send a `RecipienId=2`.
+  * it's not directly the level of the curring executing node because the second question answered can be in a node at 4 or 5 degree of depth.
       
       
 ## Special notes for Fragments
