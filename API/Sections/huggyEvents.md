@@ -1,33 +1,17 @@
 # HuggyEvents
 
-HuggyEvents are a special category of events send by bot apps through regular [user events](https://github.com/GhostWording/PublicDocumentation/blob/master/API/Sections/useractions.md).
+HuggyEvents are a special category of events send by bot apps through regular [user events](https://github.com/GhostWording/PublicDocumentation/blob/master/API/Sections/useractions.md). We'll only discuss here the specificities of these events
 
-As it's a regular userevent, the payload is exactly the same as defined in user events page, we'll only discuss here about the values of these properties.
+The objective of the HuggyEvents is to see the path taken by the users, to see when they stop and globally what are the best sequences. For that we need to see when a sequence is presented to a user, when a user interacts with it and if he finishes it.
 
-For publishing the event you should send a `POST` TO `http://gw-usertracking.azurewebsites.net/userevent/batch` with the following `JSON` payload:
+* **[Presented]**: a sequence is presented when you start executing it and start showing the first elements to the user. You'll send an event with `ActionType=HuggySequenceStart`. 
+* **[Started]**: a sequence is started when the user reacts (click/select) for the first time to something in the sequence (a menu is shown). You'll send an event with `ActionType=HuggySequenceNext` and specify the **Recipient=1** (we re-use that field **RecipientId** just to not create a new one, but that means _number of interractions with the user_)
+* **[Finished]**: a sequence is finished when you arrive at the end of the sequence in a leaf and that there is nothing more to show. You'll send an event with `ActionType=HuggySequenceNext`, specify the number of interraction and set the field `Last=1`
+* **other interactions**: between the start and finish you're supposed to send an `ActionType=HuggySequenceNext` each time a user clicks on something to continue (specifying the Nth of times the user did something in this sequence).
 
-    {
-        "ActionType":"HuggySequenceStart",
-        "ActionLocation":"",
-        "TargetType":"id of seq",
-        "TargetId":"Page",
-        "TargetParameter":null,
-        "AreaId":"bot name",
-        "UserId":null,
-        "DeviceId":"4e115472",
-        "RecipientId":"",
-        "LanguageCode":"fr",
-        "ClientTime":"2016-01-11T15:56:57.2233538Z",
-        "FacebookId":"2xxxx",
-        "VersionNumber":1,
-        "OsType":"app os",
-        "ExperimentId":3,
-        "VariationId":4,
-        "IsNewInstall":true,
-        "IntentionId":""
-        "Last":0
-    }
-    
+Please refer to the details below for the other specific values of the event.
+
+
 ## Exemples of payloads
 (for brievety, I only put here useful fields for the event, the rest is as usual)
 
@@ -47,7 +31,7 @@ For publishing the event you should send a `POST` TO `http://gw-usertracking.azu
       }
 
 
-* (still in HowAreYou sequence), After executing the first node in the sequence tree, I finished by executing commands and asking something to the user. After the user selection, we'll start executing the command selected and send a `HuggySequenceNext` event:
+* (still in HowAreYou sequence), After executing the first node in the sequence tree, I continue by executing commands and asking something to the user. After the user selection, we'll start executing the command selected and send a `HuggySequenceNext` event:
 
     
       {
@@ -63,6 +47,22 @@ For publishing the event you should send a `POST` TO `http://gw-usertracking.azu
       }
     
     
+* (still in HowAreYou sequence). in the previous node of the sequence I shown a menu, the user click on an item. as this one is the last one of the sequence I'll send a `HuggySequenceNext` event with `Last=1` and `RecipientId=2` (because this step result is the second interaction of the user with the sequence).
+
+
+      {
+        "ActionType":"HuggySequenceNext",
+        "AreaId":"testBot",
+        "ActionLocation":"mybotmaster-30",
+        "Context":"HowAreYou",
+        "Last":1,
+        "TargetId":"ILikeCookies",
+        "TargetType":"Survey",
+        "TargetParameter":"1",
+        "RecipientId":2
+      }
+    
+
 ## Details
     
 The valuable properties for huggy events are defined as this:
