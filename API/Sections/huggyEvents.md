@@ -74,6 +74,9 @@ The valuable properties for huggy events are defined as this:
 * **ActionLocation**: 
   * in information about the reference to this sequence (which master file reference this sequence ? and in what order within?)
   * it's a combination of these 2 info in one field separated by a dash -> `"{masterFile}-{order}"`
+  * these information comme either from you parsing the master files if you have access to them or directly in the sequence model when you ask for a sequence through the `GetNextSequence` bot api:
+     * MasterName: the master file name, it should also be the bot name (like huggy, surveypony, etc...),
+     * MasterOrder: the order of the sequence in the conversation
 * **Context**: SequenceId. In order to reconstitute the executing path we need to be able to link events that happened during the execution of the sequence, that's why you need to keep in this context field the Id of the current sequence
 * **Last**: 
   * if the element is the last element of the sequence tree, then it's marked `Last=1`, if not then it's `0`. 
@@ -81,6 +84,7 @@ The valuable properties for huggy events are defined as this:
 * **TargetId**: contains the id of the current executing element in the tree
 * **TargetType**: 
   * it contains a contextual information of the sequence. as sequences are stored in groups, it should be the group name (for exemple: Start,Survey...). 
+      *  this information comes as a property within the Sequence you get through the bot apis: `MasterGroup` (its the group name where the sequence belongs to)
   * If you don't have this info, it could be `App` for mobile apps or `Bot` for chat bots.
 * **TargetParameter**: some additional information about the current node
   * if sequenceStart: it contains the label of the question sent to the user within the root node (if you have it)
