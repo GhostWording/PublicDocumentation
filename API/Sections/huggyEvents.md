@@ -58,7 +58,7 @@ Please refer to the details below for the other specific values of the event.
         "Last":1,
         "TargetId":"ILikeCookies",
         "TargetType":"Survey",
-        "TargetParameter":"1",
+        "TargetParameter":"DoYouLikeCookies",
         "RecipientId":2
       }
     
