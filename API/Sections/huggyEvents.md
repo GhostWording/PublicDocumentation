@@ -105,7 +105,8 @@ this implies for the properties sent when you're sending an event for a fragment
 * Context : you must put here the id of the parent sequence (not the id of the fragment)
 * RecipientId: as it should contain the degree of interaction with the user, we expect here a continuation of the value from the parent sequence. If you start the fragment after 2 interactions with the user and ask a question, then the value of the SequenceNext should be 3
 * ActionType: when you start a fragment, it's not a real start, so the value for the fragment should always be `HuggySequenceNext` even if it's the root of the fragment.
-* ActionLocation: it should also contain the value of master-order of the parent sequence as we are continuing the sequence. 
+* ActionLocation: it should also contain the value of master-order of the parent sequence as we are continuing the sequence.
+* TargetParameter: same as for sequences, you should have the Parent Id (the id of the question)
 
 
     
