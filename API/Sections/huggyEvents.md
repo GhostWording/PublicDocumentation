@@ -42,7 +42,7 @@ Please refer to the details below for the other specific values of the event.
         "Last":0,
         "TargetId":"ImFine",
         "TargetType":"Survey",
-        "TargetParameter":"1",
+        "TargetParameter":"AreYouFineOrNot",
         "RecipientId":1
       }
     
@@ -88,7 +88,7 @@ The valuable properties for huggy events are defined as this:
   * If you don't have this info, it could be `App` for mobile apps or `Bot` for chat bots.
 * **TargetParameter**: some additional information about the current node
   * if sequenceStart: it contains the label of the question sent to the user within the root node (if you have it)
-  * if sequenceNext: it contains the `ElementValue` field of the node
+  * if sequenceNext: it contains the `ParentId`, that means the Id of question. For sequences with only one level, it will be the same as sequenceId. 
 * **RecipientId**:
   * `Attention`: this field doesn't means what it means, for simplicity we reused an existing field in user events not used here.
   * For HuggySequenceNext only
