@@ -162,7 +162,7 @@ The MasterGroup represent a logical group of sequences with a specific meaning. 
 
 In Case of any identified  error you'll receive an `HTTP 400 BadRequest` error code with a payload containing the problem found:
 
-``
+```
 {
     "TypeId": 0,
     "Type": "UnknownBotName",
