@@ -120,6 +120,24 @@ You’ll get in return either
 *  an Http BadRequest with a message identifying the error (see [Errors section](#errors))
 
 
+### By keyword from user input
+
+when user types something, you should first call this api to see if there's a fragment that matches user input that you can show him:
+
+
+```
+POST http://gw-bot-apis.azurewebsites.net/api/sequences/keywordsearch
+content-type:application/json
+body {
+  "Text":"love"
+}
+```
+
+you'll get in return an HTTP OK 200 with a fragment if something matches and an HTTP BADREQUEST 400 if nothing was found
+
+keywords fragments file is defined and loaded by the regular [/data/bot/apps/botapis/masterSequencesConfiguration.json](https://github.com/GhostWording/gw-config-apis/blob/master/data/bot/apps/botapis/masterSequencesConfiguration.json) configuration file
+
+
 ## Sequences
 
 I want to get the next sequence:
