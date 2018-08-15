@@ -9,6 +9,8 @@
 * Sequences : 
    * get one fragment by Id or tag :  http://api.cvd.io/botapis/sequences/fragment
    * get next sequence for user : http://api.cvd.io/botapis/sequences/next
+* History :
+   * clear user history and properties : http//api.cvd.io/botapis/sequences/clear
 
 Note for the following apis that:
 * a botName must be provided to identify the context you're working on (the name of the bot not the app name)
@@ -160,6 +162,26 @@ Note:
 * LastSequenceId : is optional and is the id of the sequence you've just finished
 * the next sequence is calculated based on the order of the referenced sequences in the master file, the information on your profile and the history of the previously executed sequences.
 * each time you call the service and that the service provides you a new sequences it will be added to user's history of executed sequences.
+
+
+## Clear
+
+An api is provided in order to clear all user data used by the bot apis allowing the user to restart a fresh conversation next time it asks the apis for something.
+
+```
+POST http://api.cvd.io/botapi/sequences/clear
+{ 
+   "BotName":"test", 
+   "DeviceId": "123", 
+   "FacebookId": "456"
+}
+```
+
+You’ll get in return either
+
+* an Http OK with an array containing the details of the clear
+*  an Http BadRequest with a message identifying the error (see [Errors section](#errors))
+
 
 ## Huggy Events
 
